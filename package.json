@@ -1,0 +1,27 @@
+{
+  "name": "tab-manager",
+  "version": "1.0.0",
+  "main": "tab.js",
+  "license": "Mozilla Public License 2.0",
+  "packageManager": "yarn@3.3.1",
+  "devDependencies": {
+    "web-ext": "^7.4.0"
+  },
+  "scripts": {
+    "lint": "web-ext lint --source-dir ./src"
+  },
+  "webExt": {
+    "sourceDir": "src",
+    "run": {
+      "firefox": "firefoxdeveloperedition",
+      "startUrl": [
+        "go.dev",
+        "github.com"
+      ],
+      "devtools": true
+    },
+    "build": {
+      "overwriteDest": true
+    }
+  }
+}

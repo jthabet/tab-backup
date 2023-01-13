@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "version": "0.4",
+  "name": "Tab manager",
+  "description": "Import and export tabs as a json file.",
+  "permissions": [
+    "tabs",
+    "downloads"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "browser_action": {
+    "browser_style": true,
+    "default_title": "Tab manager",
+    "default_popup": "tabs.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}
