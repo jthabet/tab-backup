@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "version": "0.6.2",
+  "name": "Tab Backup",
+  "description": "Import and export tabs in a file.",
+  "permissions": [
+    "tabs",
+    "downloads"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "action": {
+    "browser_style": true,
+    "default_title": "Tab Backup",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "32": "icons/folder_10773696-@32px.png"
+    },
+    "theme_icons": [
+      {
+        "light": "icons/folder_10773696-@16px.png",
+        "dark": "icons/folder_10773696-@16px.png",
+        "size": 16
+      },
+      {
+        "light": "icons/folder_10773696-@32px.png",
+        "dark": "icons/folder_10773696-@32px.png",
+        "size": 32
+      },
+      {
+        "light": "icons/folder_10773696-@64px.png",
+        "dark": "icons/folder_10773696-@64px.png",
+        "size": 64
+      }
+    ]
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "addon@example.com"
+    }
+  }
+}
