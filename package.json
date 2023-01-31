@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "tab.js",
   "license": "Mozilla Public License 2.0",
-  "packageManager": "yarn@3.3.1",
   "devDependencies": {
     "web-ext": "^7.4.0"
   },
