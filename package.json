@@ -7,7 +7,7 @@
     "web-ext": "^7.4.0"
   },
   "scripts": {
-    "lint": "web-ext lint --source-dir ./src"
+    "lint": "web-ext lint --source-dir ./src --firefox-preview=mv3"
   },
   "webExt": {
     "sourceDir": "src",
