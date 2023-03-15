@@ -1,20 +1,25 @@
+import "./main.css";
+
 function listTabs() {
   getCurrentWindowTabs().then((tabs) => {
-    let tabsList = document.getElementById("tabs-list");
-    let currentTabs = document.createDocumentFragment();
-    let limit = 25;
+    const tabsList = document.getElementById("tabs-list");
+    const currentTabs = document.createDocumentFragment();
+    const limit = 25;
     let counter = 0;
 
     tabsList.textContent = "";
 
     for (let tab of tabs) {
       if (counter <= limit) {
-        let tabLink = document.createElement("a");
+        const li = document.createElement("li");
 
-        tabLink.textContent = tab.title || tab.id;
+        li.textContent = tab.title || tab.id;
         // tabLink.setAttribute("href", tab.id);
-        tabLink.classList.add("switch-tabs");
-        currentTabs.appendChild(tabLink);
+        li.classList.add("block");
+        li.classList.add("mt-2");
+        li.classList.add("dark:text-white");
+
+        currentTabs.appendChild(li);
       }
 
       counter += 1;
@@ -94,6 +99,8 @@ document.addEventListener("click", (e) => {
   } else if (e.target.id === "tabs-export") {
     exportCurrentTabs();
   } else if (e.target.id === "tabs-import") {
+    browser.runtime.openOptionsPage();
+  } else if (e.target.id === "option-menu") {
     browser.runtime.openOptionsPage();
   }
 

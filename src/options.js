@@ -1,3 +1,5 @@
+import "./main.css";
+
 const fileInput = document.getElementById("input");
 
 fileInput.addEventListener("change", (event) => {
@@ -36,4 +38,10 @@ function openImportedTabs(text) {
   } catch (err) {
     console.error(err);
   }
+}
+
+function retrieveCurrentExtStorage() {
+  browser.storage.sync
+    .getBytesInUse()
+    .then((res) => console.log("current storage is " + res));
 }

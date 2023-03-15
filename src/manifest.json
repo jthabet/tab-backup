@@ -15,7 +15,25 @@
   "action": {
     "browser_style": true,
     "default_title": "Tab manager",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": "icons/tabler-icon-app-window-white.svg",
+    "theme_icons": [
+      {
+        "light": "icons/tabler-icon-app-window-white.svg",
+        "dark": "icons/tabler-icon-app-window-white.svg",
+        "size": 16
+      },
+      {
+        "light": "icons/tabler-icon-app-window-white.svg",
+        "dark": "icons/tabler-icon-app-window-white.svg",
+        "size": 32
+      },
+      {
+        "light": "icons/tabler-icon-app-window-white.svg",
+        "dark": "icons/tabler-icon-app-window-white.svg",
+        "size": 64
+      }
+    ]
   },
   "options_ui": {
     "page": "options.html",
