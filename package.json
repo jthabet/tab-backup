@@ -28,7 +28,8 @@
     "webpack-dev-server": "^4.11.1"
   },
   "scripts": {
-    "lint": "web-ext lint --source-dir ./src"
+    "lint": "web-ext lint --source-dir ./src",
+    "run": "webpack -w"
   },
   "webExt": {
     "sourceDir": "src",

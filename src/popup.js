@@ -14,9 +14,7 @@ function listTabs() {
         const li = document.createElement("li");
 
         li.textContent = tab.title || tab.id;
-        // tabLink.setAttribute("href", tab.id);
         li.classList.add("block");
-        li.classList.add("mt-2");
         li.classList.add("dark:text-white");
 
         currentTabs.appendChild(li);
