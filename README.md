@@ -1,4 +1,4 @@
-# tab-manager
+# tab-backup
 
 # Requierment
 
@@ -9,3 +9,7 @@
 _The web-ext configuration can be found in package.json under the webExt key_
 
 To build the extension use the following command: `web-ext build`
+
+# About
+
+Icons : https://github.com/tabler/tabler-icons

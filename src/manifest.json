@@ -1,8 +1,8 @@
 {
-  "manifest_version": 2,
-  "version": "0.4",
-  "name": "Tab manager",
-  "description": "Import and export tabs as a json file.",
+  "manifest_version": 3,
+  "version": "0.5",
+  "name": "Tab Backup",
+  "description": "Import and export tabs in a file.",
   "permissions": [
     "tabs",
     "downloads"
@@ -12,13 +12,36 @@
       "background.js"
     ]
   },
-  "browser_action": {
+  "action": {
     "browser_style": true,
-    "default_title": "Tab manager",
-    "default_popup": "tabs.html"
+    "default_title": "Tab Backup",
+    "default_popup": "popup.html",
+    "default_icon": "icons/tabler-icon-app-window-white.svg",
+    "theme_icons": [
+      {
+        "light": "icons/tabler-icon-app-window-white.svg",
+        "dark": "icons/tabler-icon-app-window-white.svg",
+        "size": 16
+      },
+      {
+        "light": "icons/tabler-icon-app-window-white.svg",
+        "dark": "icons/tabler-icon-app-window-white.svg",
+        "size": 32
+      },
+      {
+        "light": "icons/tabler-icon-app-window-white.svg",
+        "dark": "icons/tabler-icon-app-window-white.svg",
+        "size": 64
+      }
+    ]
   },
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "addon@example.com"
+    }
   }
 }
