@@ -2,14 +2,14 @@
 
 # Requierment
 
-- Install the web-ext tool https://github.com/mozilla/web-ext.
+- **npm** `9.4.0` .
 
 # Build
 
-_The web-ext configuration can be found in package.json under the webExt key_
-
-To build the extension use the following command: `web-ext build`
+- Run `npm install` to install the packages.
+- Build the extension with `npx webpack`.
+- The built code will be located inside the `dist` folder.
 
 # About
 
-Icons : https://github.com/tabler/tabler-icons
+The icons used are from this repository https://github.com/tabler/tabler-icons
