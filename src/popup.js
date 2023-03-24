@@ -1,4 +1,4 @@
-import { StrictMode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import dayjs from "dayjs";
 
@@ -181,8 +181,4 @@ function exportCurrentTabs() {
 }
 
 const root = createRoot(document.getElementById("root"));
-root.render(
-  <StrictMode>
-    <Popup />
-  </StrictMode>
-);
+root.render(<Popup />);

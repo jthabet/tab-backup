@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import "./main.css";
@@ -56,8 +55,4 @@ function openImportedTabs(text) {
 }
 
 const root = createRoot(document.getElementById("root"));
-root.render(
-  <StrictMode>
-    <ImportAction />
-  </StrictMode>
-);
+root.render(<ImportAction />);
