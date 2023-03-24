@@ -6,7 +6,7 @@ import "./main.css";
 
 function Popup() {
   return (
-    <div className="relative m-1">
+    <div className="relative m-1 bg-inherit">
       <NavBar />
 
       <div className="mt-3 border-t border-slate-700 px-3 ">
@@ -18,7 +18,7 @@ function Popup() {
 
 function NavBar() {
   return (
-    <div className="sticky top-0  flex h-2/5 justify-center space-x-3 pt-2 dark:bg-slate-900">
+    <div className="sticky top-0  flex h-2/5 justify-center space-x-3 bg-inherit pt-2">
       <button
         className="rounded-full p-2.5 text-center hover:bg-slate-700"
         onClick={() => exportCurrentTabs()}
@@ -69,7 +69,7 @@ function NavBar() {
         </svg>
       </button>
 
-      <button
+      {/* <button
         className="rounded-full p-2.5 text-center hover:bg-slate-700"
         onClick={() => {
           browser.runtime.openOptionsPage();
@@ -92,7 +92,7 @@ function NavBar() {
           <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
           <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
         </svg>
-      </button>
+      </button> */}
     </div>
   );
 }
