@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "0.5",
+  "version": "0.6.1",
   "name": "Tab Backup",
   "description": "Import and export tabs in a file.",
   "permissions": [
