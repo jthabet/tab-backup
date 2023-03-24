@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "version": "0.4",
-  "name": "Tab manager",
-  "description": "Import and export tabs as a json file.",
+  "version": "0.5",
+  "name": "Tab Backup",
+  "description": "Import and export tabs in a file.",
   "permissions": [
     "tabs",
     "downloads"
@@ -14,7 +14,7 @@
   },
   "action": {
     "browser_style": true,
-    "default_title": "Tab manager",
+    "default_title": "Tab Backup",
     "default_popup": "popup.html",
     "default_icon": "icons/tabler-icon-app-window-white.svg",
     "theme_icons": [
