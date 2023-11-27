@@ -18,7 +18,7 @@ function Popup() {
 
 function NavBar() {
   return (
-    <div className="sticky top-0  flex h-2/5 justify-center space-x-3 bg-inherit pt-2">
+    <div className="sticky top-0 flex h-2/5 justify-center space-x-3 bg-inherit pt-2 dark:bg-slate-900 ">
       <button
         className="rounded-full p-2.5 text-center hover:bg-slate-700"
         onClick={() => exportCurrentTabs()}
@@ -45,7 +45,7 @@ function NavBar() {
       <button
         className="rounded-full p-2.5 text-center hover:bg-slate-700"
         onClick={() => {
-          browser.runtime.openOptionsPage();
+          browser.runtime.openOptionsPage().catch((err) => console.error(err));
           window.close();
         }}
       >
@@ -68,31 +68,6 @@ function NavBar() {
           <path d="M11.5 17.5l-2.5 -2.5l2.5 -2.5"></path>
         </svg>
       </button>
-
-      {/* <button
-        className="rounded-full p-2.5 text-center hover:bg-slate-700"
-        onClick={() => {
-          browser.runtime.openOptionsPage();
-          window.close();
-        }}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="icon icon-tabler icon-tabler-settings pointer-events-none"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          strokeWidth="1"
-          stroke="currentColor"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
-          <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
-        </svg>
-      </button> */}
     </div>
   );
 }
@@ -108,7 +83,7 @@ function TabsList() {
 
   return (
     <ol
-      className="m-1 mt-5 mb-4 w-11/12 list-inside list-disc space-y-3 truncate italic subpixel-antialiased"
+      className="m-1 mb-4 mt-5 w-11/12 list-inside list-disc space-y-3 truncate italic subpixel-antialiased"
       id="tabs-list"
     >
       {tabs.map((tab) => (
@@ -117,8 +92,10 @@ function TabsList() {
           key={tab.id}
           href="#"
           onClick={(e) => {
-            e.preventDefault;
-            browser.tabs.update(tab.id, { active: true });
+            e.preventDefault();
+            browser.tabs
+              .update(tab.id, { active: true })
+              .catch((err) => console.error(err));
           }}
         >
           <li>{tab.title}</li>
@@ -181,4 +158,10 @@ function exportCurrentTabs() {
 }
 
 const root = createRoot(document.getElementById("root"));
-root.render(<Popup />);
+root.render(
+  <div className="h-128 w-96 ">
+    <div className="max-h-full min-h-full min-w-full max-w-full place-items-center overflow-auto overscroll-auto scroll-auto font-sans font-normal  antialiased">
+      <Popup />
+    </div>
+  </div>,
+);
