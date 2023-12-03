@@ -4,12 +4,21 @@ import dayjs from "dayjs";
 
 import "./main.css";
 
+const root = createRoot(document.getElementById("root"));
+root.render(
+  <div className="h-128 w-96 bg-inherit">
+    <div className="max-h-full min-h-full min-w-full max-w-full place-items-center overflow-auto overscroll-auto scroll-auto">
+      <Popup />
+    </div>
+  </div>,
+);
+
 function Popup() {
   return (
-    <div className="relative m-1 bg-inherit">
+    <div className="relative ">
       <NavBar />
 
-      <div className="mt-3 border-t border-slate-700 px-3 ">
+      <div className="border-t border-slate-700 px-3">
         <TabsList />
       </div>
     </div>
@@ -18,7 +27,7 @@ function Popup() {
 
 function NavBar() {
   return (
-    <div className="sticky top-0 flex h-2/5 justify-center space-x-3 bg-inherit pt-2 dark:bg-slate-900 ">
+    <div className="sticky top-0 flex h-2/5 justify-center space-x-3 bg-inherit pt-2 dark:bg-slate-900">
       <button
         className="rounded-full p-2.5 text-center hover:bg-slate-700"
         onClick={() => exportCurrentTabs()}
@@ -83,7 +92,7 @@ function TabsList() {
 
   return (
     <ol
-      className="m-1 mb-4 mt-5 w-11/12 list-inside list-disc space-y-3 truncate italic subpixel-antialiased"
+      className="m-1 mb-4 mt-5 w-11/12 list-inside list-disc space-y-3 font-sans font-normal italic subpixel-antialiased"
       id="tabs-list"
     >
       {tabs.map((tab) => (
@@ -98,7 +107,9 @@ function TabsList() {
               .catch((err) => console.error(err));
           }}
         >
-          <li>{tab.title}</li>
+          <li className="truncate" title={tab.title}>
+            {tab.title}
+          </li>
         </a>
       ))}
     </ol>
@@ -156,12 +167,3 @@ function exportCurrentTabs() {
         .catch((error) => console.error(`Download failed ${error}`));
     });
 }
-
-const root = createRoot(document.getElementById("root"));
-root.render(
-  <div className="h-128 w-96 ">
-    <div className="max-h-full min-h-full min-w-full max-w-full place-items-center overflow-auto overscroll-auto scroll-auto font-sans font-normal  antialiased">
-      <Popup />
-    </div>
-  </div>,
-);
