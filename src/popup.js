@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { IconFileDownload, IconFileUpload } from "@tabler/icons-react";
 import dayjs from "dayjs";
 
 import "./main.css";
@@ -27,28 +28,12 @@ function Popup() {
 
 function NavBar() {
   return (
-    <div className="sticky top-0 flex h-2/5 justify-center space-x-3 bg-inherit pt-2 dark:bg-slate-900">
+    <div className="sticky top-0 flex h-2/5 justify-center space-x-3 bg-inherit p-2  dark:bg-slate-900">
       <button
         className="rounded-full p-2.5 text-center hover:bg-slate-700"
         onClick={() => exportCurrentTabs()}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="icon icon-tabler icon-tabler-device-floppy pointer-events-none"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          strokeWidth="1"
-          stroke="currentColor"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2"></path>
-          <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-          <path d="M14 4l0 4l-6 0l0 -4"></path>
-        </svg>
+        <IconFileDownload strokeWidth={1} />
       </button>
 
       <button
@@ -58,24 +43,7 @@ function NavBar() {
           window.close();
         }}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="icon icon-tabler icon-tabler-file-arrow-left pointer-events-none"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          strokeWidth="1"
-          stroke="currentColor"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-          <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
-          <path d="M15 15h-6"></path>
-          <path d="M11.5 17.5l-2.5 -2.5l2.5 -2.5"></path>
-        </svg>
+        <IconFileUpload strokeWidth={1} />
       </button>
     </div>
   );
@@ -92,7 +60,7 @@ function TabsList() {
 
   return (
     <ol
-      className="m-1 mb-4 mt-5 w-11/12 list-inside list-disc space-y-3 font-sans font-normal italic subpixel-antialiased"
+      className="m-1 mb-4 ml-3 mt-5 w-11/12 list-inside list-disc space-y-3 font-sans font-normal italic subpixel-antialiased"
       id="tabs-list"
     >
       {tabs.map((tab) => (
