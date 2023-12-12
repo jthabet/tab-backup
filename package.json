@@ -42,8 +42,9 @@
   "scripts": {
     "lint": "web-ext lint --source-dir ./src",
     "start": "webpack -w",
-    "build": "webpack",
-    "sign-extension": "web-ext sign"
+    "build": "webpack --mode production",
+    "sign-extension": "web-ext sign",
+    "build-extension": "web-ext build -s ./dist"
   },
   "webExt": {
     "sourceDir": "src",
