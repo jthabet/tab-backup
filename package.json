@@ -1,59 +1,63 @@
 {
   "name": "tab-backup",
+  "description": "Tab manager extension",
   "version": "1.0.0",
   "license": "Mozilla Public License 2.0",
+  "dependencies": {
+    "@tabler/icons-react": "^2.42.0",
+    "dayjs": "^1.11.10",
+    "prettier": "^3.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "devDependencies": {
-    "@babel/core": "^7.22.5",
-    "@babel/preset-env": "^7.22.5",
-    "@babel/preset-react": "^7.22.5",
+    "@babel/core": "^7.23.5",
+    "@babel/preset-env": "^7.23.5",
+    "@babel/preset-react": "^7.23.3",
     "@webpack-cli/generators": "^3.0.7",
-    "autoprefixer": "^10.4.14",
-    "babel-loader": "^9.1.2",
+    "autoprefixer": "^10.4.16",
+    "babel-loader": "^9.1.3",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
-    "eslint": "^8.43.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
-    "postcss": "^8.4.24",
+    "postcss": "^8.4.32",
     "postcss-loader": "^7.3.3",
-    "postcss-preset-env": "^8.5.1",
-    "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "^0.3.0",
+    "postcss-preset-env": "^9.3.0",
+    "prettier-plugin-tailwindcss": "^0.5.7",
     "style-loader": "^3.3.3",
-    "tailwindcss": "^3.3.2",
-    "web-ext": "^7.6.2",
-    "web-ext-plugin": "^2.8.0",
+    "tailwindcss": "^3.3.5",
+    "web-ext": "^7.8.0",
+    "web-ext-plugin": "^2.9.0",
     "web-ext-types": "^3.2.1",
-    "webpack": "^5.88.1",
-    "webpack-bundle-analyzer": "^4.9.0",
+    "webpack": "^5.89.0",
+    "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   },
   "scripts": {
     "lint": "web-ext lint --source-dir ./src",
-    "start": "webpack -w"
+    "start": "webpack -w",
+    "build": "webpack --mode production",
+    "sign-extension": "web-ext sign",
+    "build-extension": "web-ext build -s ./dist"
   },
   "webExt": {
     "sourceDir": "src",
     "run": {
-      "firefox": "firefoxdeveloperedition",
+      "firefox": "/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox",
       "startUrl": [
         "go.dev",
         "github.com"
       ],
-      "devtools": true
+      "devtools": false
     },
     "build": {
       "overwriteDest": true
     }
-  },
-  "description": "Tab manager extension",
-  "dependencies": {
-    "dayjs": "^1.11.8",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
   }
 }

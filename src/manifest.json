@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "0.6.2",
+  "version": "0.6.3",
   "name": "Tab Backup",
   "description": "Import and export tabs in a file.",
   "permissions": [
@@ -13,7 +13,6 @@
     ]
   },
   "action": {
-    "browser_style": true,
     "default_title": "Tab Backup",
     "default_popup": "popup.html",
     "default_icon": {
@@ -43,7 +42,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "addon@example.com"
+      "id": "op://dev/Firefox add-on/add more/UUID"
     }
   }
 }

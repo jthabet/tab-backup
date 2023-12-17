@@ -1,3 +1,6 @@
 node_modules
 web-ext-artifacts
 dist
+pnpm-lock.yaml
+.web-extension-id
+.env

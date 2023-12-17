@@ -62,7 +62,7 @@ export default {
       firefox:
         "/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox",
       runLint: false,
-      devtools: true,
+      devtools: false,
     }),
   ],
 };
