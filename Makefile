@@ -14,6 +14,12 @@ build_extension: build
 	@echo "Building the extension with web-ext..."
 	pnpm build-extension
 
+update_manifest:
+	op inject -f -i dist/manifest.json -o dist/manifest.json
+
+sign-extension:
+	web-ext sign --api-key=$(op read "op://dev/Firefox add-on/username") --api-secret=$(op read "op://dev/Firefox add-on/credential") --id=$(op read "op://dev/Firefox add-on/add more/UUID") --channel=unlisted -s ./dist
+
 clean:
 	@echo "Cleaning web-ext-artifacts/*"
 	rm -f web-ext-artifacts/*
