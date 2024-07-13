@@ -18,7 +18,6 @@ function Popup() {
   return (
     <div className="relative ">
       <NavBar />
-
       <div className="border-t border-slate-700 px-3">
         <TabsList />
       </div>
@@ -28,22 +27,28 @@ function Popup() {
 
 function NavBar() {
   return (
-    <div className="sticky top-0 flex h-2/5 justify-center space-x-3 bg-inherit p-2  dark:bg-slate-900">
+    <div className="sticky top-0 flex h-2/5 justify-center space-x-3 bg-inherit p-2">
       <button
-        className="rounded-full p-2.5 text-center hover:bg-slate-700"
+        className="h-12 min-w-[7rem] rounded-lg bg-blue-600 p-2.5 text-center hover:bg-blue-700"
         onClick={() => exportCurrentTabs()}
       >
-        <IconFileDownload strokeWidth={1} />
+        <span className="flex items-center justify-between">
+          <IconFileDownload strokeWidth={2} />
+          Download
+        </span>
       </button>
 
       <button
-        className="rounded-full p-2.5 text-center hover:bg-slate-700"
+        className="h-12 min-w-[7rem] rounded-lg bg-blue-600 p-2.5 text-center hover:bg-blue-700"
         onClick={() => {
           browser.runtime.openOptionsPage().catch((err) => console.error(err));
           window.close();
         }}
       >
-        <IconFileUpload strokeWidth={1} />
+        <span className="flex items-center justify-between ">
+          <IconFileUpload strokeWidth={2} />
+          Upload
+        </span>
       </button>
     </div>
   );
@@ -60,12 +65,12 @@ function TabsList() {
 
   return (
     <ol
-      className="m-1 mb-4 ml-3 mt-5 w-11/12 list-inside list-disc space-y-3 font-sans font-normal italic subpixel-antialiased"
+      className="m-1 mb-4 ml-3 mt-5 w-11/12 list-inside list-disc space-y-3 font-sans font-normal subpixel-antialiased"
       id="tabs-list"
     >
       {tabs.map((tab) => (
         <a
-          className="hover:not-italic hover:text-blue-400"
+          className="hover:text-blue-400"
           key={tab.id}
           href="#"
           onClick={(e) => {
