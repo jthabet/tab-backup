@@ -29,7 +29,7 @@ function NavBar() {
   return (
     <div className="sticky top-0 flex h-2/5 justify-center space-x-3 bg-inherit p-2">
       <button
-        className="h-12 min-w-[7rem] rounded-lg bg-blue-600 p-2.5 text-center hover:bg-blue-700"
+        className="h-12 min-w-28 rounded-lg bg-blue-600 p-2.5 text-center hover:bg-blue-700"
         onClick={() => exportCurrentTabs()}
       >
         <span className="flex items-center justify-between">
@@ -39,7 +39,7 @@ function NavBar() {
       </button>
 
       <button
-        className="h-12 min-w-[7rem] rounded-lg bg-blue-600 p-2.5 text-center hover:bg-blue-700"
+        className="h-12 min-w-28 rounded-lg bg-blue-600 p-2.5 text-center hover:bg-blue-700"
         onClick={() => {
           browser.runtime.openOptionsPage().catch((err) => console.error(err));
           window.close();

@@ -9,7 +9,7 @@ function ImportAction() {
     <div className="flex items-center space-x-6">
       <label className="inline-block">Import tabs from</label>
       <input
-        className="block h-12 min-w-[8rem] text-sm text-slate-500 file:mr-4 file:rounded-lg file:border-0 file:bg-blue-600 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-sky-100 hover:file:bg-blue-800"
+        className="block h-12 min-w-32 text-sm text-slate-500 file:mr-4 file:rounded-lg file:border-0 file:bg-blue-600 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-sky-100 hover:file:bg-blue-800"
         type="file"
         id="input"
         accept="application/json"
