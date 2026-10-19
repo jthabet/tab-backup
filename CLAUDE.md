@@ -34,5 +34,5 @@ There is no automated test suite. Verify changes by loading `dist/manifest.json`
 
 ## Versioning and release
 
-- The extension version lives in `src/manifest.json` (and is duplicated in `manifest-template.json`); `package.json`'s version is unrelated.
-- `manifest-template.json` adds `browser_specific_settings.gecko.id` as a 1Password `op://` reference. Signing (`make sign-extension`, `make update_manifest`) resolves credentials via the 1Password CLI (`op`); `.env.example` holds the same `op://` references. Never inline real secrets.
+- The extension version and add-on ID (`browser_specific_settings.gecko.id`, public on AMO) live in `src/manifest.json`; `package.json`'s version is unrelated.
+- `make sign-extension` builds and signs `dist/`, reading the AMO API key/secret from 1Password via `op read`; `.env.example` holds the same `op://` references. In Makefile recipes, shell command substitution must be written `$$(...)`. Never inline real secrets.
