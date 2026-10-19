@@ -13,7 +13,7 @@
     ]
   },
   "action": {
-    "default_titl e": "Tab Backup",
+    "default_title": "Tab Backup",
     "default_popup": "popup.html",
     "default_icon": {
       "32": "icons/folder_10773696-@32px.png"
@@ -22,7 +22,7 @@
       {
         "light": "icons/folder_10773696-@16px.png",
         "dark": "icons/folder_10773696-@16px.png",
-        "size": 
+        "size": 16
       },
       {
         "light": "icons/folder_10773696-@32px.png",
@@ -42,7 +42,10 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "op://dev/Firefox add-on/add more/UUID"
+      "id": "op://dev/Firefox add-on/add more/UUID",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
     }
   }
 }

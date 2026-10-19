@@ -90,8 +90,8 @@ everyday browsing.
 1. Confirm the toolbar badge shows the number of open tabs.
 2. Open the extension popup and confirm the current window's tabs are listed.
 3. Select a tab title and confirm Firefox activates that tab.
-4. Select **Download** and confirm a timestamped JSON file is saved.
-5. Select **Upload**, choose the exported file, and confirm its tabs reopen.
+4. Select **Back up** and confirm a timestamped JSON file is saved.
+5. Select **Restore…**, choose the exported file, and confirm its tabs reopen.
 6. Open and close a tab and confirm the badge count changes.
 
 To inspect runtime errors, find Tab Backup on `about:debugging` and select
