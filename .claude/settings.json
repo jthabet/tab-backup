@@ -1,0 +1,5 @@
+{
+  "enabledPlugins": {
+    "modern-web-guidance@claude-plugins-official": true
+  }
+}

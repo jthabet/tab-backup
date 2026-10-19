@@ -29,7 +29,7 @@ There is no automated test suite. Verify changes by loading `dist/manifest.json`
 - **popup.js**: lists current-window tabs (click to activate) and the **Back up** button, which serializes `[{title, url}]` to a Blob and saves it via `browser.downloads` as `tabs-DD-MM-YYYY_HH-mm.json`.
 - **options.js**: the import flow. The popup's **Restore…** button opens the options page (in a tab, per `options_ui.open_in_tab`) and closes the popup; the file input there parses the JSON and calls `browser.tabs.create` for each entry. Keep import UI on the options page rather than the popup.
 - The export JSON shape (`[{title, url}]`) is the contract between export and import — keep them compatible.
-- Code uses the Firefox `browser.*` promise-based WebExtension API (not `chrome.*`). The Chrome-oriented skills in `.agents/skills/` are general guidance only.
+- Code uses the Firefox `browser.*` promise-based WebExtension API (not `chrome.*`). The Chrome-oriented `modern-web-guidance:chrome-extensions` skill is general guidance only.
 - Styling: `src/main.css` imports Tailwind v4 with a custom `--height-128` theme token and a v3-compat border-color base layer. Prettier uses `prettier-plugin-tailwindcss` for class ordering.
 
 ## Versioning and release

@@ -4,3 +4,6 @@ dist
 pnpm-lock.yaml
 .web-extension-id
 .env
+
+.agents
+skills-lock.json
