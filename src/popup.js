@@ -21,7 +21,7 @@ async function renderTabsList() {
     const button = document.createElement("button");
     button.type = "button";
     button.className =
-      "max-w-[calc(100%-1.5rem)] cursor-pointer truncate text-left align-bottom hover:text-blue-400";
+      "max-w-[calc(100%-1.5rem)] cursor-pointer truncate text-left align-bottom hover:text-neutral-500 dark:hover:text-neutral-400";
     button.textContent = tab.title;
     button.addEventListener("click", () => {
       browser.tabs
