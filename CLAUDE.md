@@ -12,15 +12,16 @@ Tab Backup is a Firefox (Manifest V3) extension that exports the current window'
 pnpm install
 pnpm build            # production build into dist/
 pnpm start            # webpack watch, rebuilds dist/ (no Firefox launch)
-pnpm start:firefox    # watch + launch Firefox Developer Edition with a temp profile via web-ext-plugin
-pnpm lint             # web-ext lint on ./src (not ESLint)
+pnpm dev              # watch + launch Firefox Developer Edition with a temp profile via web-ext-plugin
+pnpm lint             # build, then web-ext lint on dist/ (not ESLint)
 pnpm build-extension  # package dist/ into web-ext-artifacts/ (run after pnpm build)
+pnpm exec web-ext run # run an existing dist/ build in Developer Edition (webExt config in package.json)
 make                  # clean + build + package
 ```
 
 There is no automated test suite. Verify changes by loading `dist/manifest.json` via `about:debugging` → This Firefox → Load Temporary Add-on (Reload after each rebuild), and running the smoke test in `README.md`. Use **Inspect** on `about:debugging` for runtime errors.
 
-`pnpm start:firefox` can fail on macOS 27 with a misleading "Profile Missing" dialog (OS sandbox issue); use `pnpm start` + manual `about:debugging` loading instead.
+The `webExt` key in `package.json` must keep `sourceDir: "dist"`; `src/` contains JSX that web-ext cannot lint or load.
 
 ## Architecture
 

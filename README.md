@@ -55,23 +55,25 @@ Load `dist/manifest.json` using the [manual testing](#manual-testing) workflow.
 After a rebuild, select **Reload** next to Tab Backup on `about:debugging`.
 Press `Ctrl+C` to stop watching.
 
-#### Firefox profile behavior
+### Firefox Developer Edition
 
-The optional automated runner can launch Firefox Developer Edition, install
-the extension in a temporary profile, and reload it after source changes:
+To rebuild on changes and also launch Firefox Developer Edition with the
+extension installed and reloaded automatically, run:
 
 ```sh
-pnpm start:firefox
+pnpm dev
 ```
 
 The temporary profile does not contain your usual tabs, accounts, settings, or
 installed add-ons, and its changes are discarded when the process stops. The
 Firefox executable is configured in `webpack.config.mjs`.
 
-On macOS 27, launching Firefox this way may fail with a misleading **Profile
-Missing** dialog. Verbose Firefox output shows that this is an operating-system
-sandbox failure rather than a missing profile. Use `pnpm start` together with
-the manual `about:debugging` workflow on affected systems.
+To run `web-ext` directly against an existing build (it reads the `webExt`
+settings in `package.json`, which point at `dist` and Developer Edition):
+
+```sh
+pnpm exec web-ext run --devtools
+```
 
 To test Tab Backup with your existing Firefox profile and real tabs, keep your
 normal Firefox window open and use the [manual testing](#manual-testing)
@@ -79,7 +81,7 @@ workflow instead. Loading `dist/manifest.json` from `about:debugging` installs
 the extension temporarily in that running profile without configuring webpack
 to write to your everyday profile.
 
-If `pnpm start:firefox` reports that a profile is already in use, close the
+If `pnpm dev` reports that a profile is already in use, close the
 Firefox window previously opened by the command and run it again. A dedicated
 reusable development profile can also be selected with the `firefoxProfile`
 option in `webpack.config.mjs`, but it should not point to a profile used for
@@ -96,6 +98,12 @@ everyday browsing.
 
 To inspect runtime errors, find Tab Backup on `about:debugging` and select
 **Inspect**.
+
+To check the built extension with Mozilla's add-on linter, run:
+
+```sh
+pnpm lint
+```
 
 For more detail, see Mozilla's guides to
 [temporary installation](https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/)
