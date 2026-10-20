@@ -1,15 +1,3 @@
 {
-  "presets": [
-    "@babel/preset-env",
-    [
-      "@babel/preset-react",
-      {
-        "runtime": "automatic", // defaults to classic
-        // Babel 8 defaults this to true unless NODE_ENV/BABEL_ENV is set, which
-        // emits jsxDEV calls that the production React bundle does not provide.
-        "development": false
-        // "importSource": "custom-jsx-library" // defaults to react (only in automatic runtime)
-      }
-    ]
-  ]
+  "presets": ["@babel/preset-env"]
 }

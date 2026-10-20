@@ -1,92 +1,50 @@
-import { useEffect, useState } from "react";
-import { createRoot } from "react-dom/client";
-import { IconFolderDown, IconFolderUp } from "@tabler/icons-react";
-import dayjs from "dayjs";
-
 import "./main.css";
 
-const root = createRoot(document.getElementById("root"));
-root.render(
-  <div className="h-128 w-96 bg-inherit">
-    <div className="max-h-full min-h-full max-w-full min-w-full overflow-auto overscroll-auto scroll-auto">
-      <Popup />
-    </div>
-  </div>,
-);
+document.getElementById("backup").addEventListener("click", exportCurrentTabs);
 
-function Popup() {
-  return (
-    <div className="relative">
-      <NavBar />
-      <div className="border-t border-slate-700 px-3">
-        <TabsList />
-      </div>
-    </div>
-  );
-}
+document.getElementById("restore").addEventListener("click", () => {
+  browser.runtime.openOptionsPage().catch((err) => console.error(err));
+  window.close();
+});
 
-function NavBar() {
-  return (
-    <div className="sticky top-0 flex h-2/5 justify-center space-x-3 bg-inherit p-2">
-      <button
-        type="button"
-        className="flex h-12 min-w-28 cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-blue-600 bg-blue-600 px-4 text-white hover:border-blue-700 hover:bg-blue-700"
-        onClick={() => exportCurrentTabs()}
-      >
-        <IconFolderDown strokeWidth={2} aria-hidden="true" />
-        Back up
-      </button>
+renderTabsList();
 
-      <button
-        type="button"
-        className="flex h-12 min-w-28 cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-blue-600 px-4 text-blue-600 hover:bg-blue-600/10 dark:text-blue-400"
-        onClick={() => {
-          browser.runtime.openOptionsPage().catch((err) => console.error(err));
-          window.close();
-        }}
-      >
-        <IconFolderUp strokeWidth={2} aria-hidden="true" />
-        Restore…
-      </button>
-    </div>
-  );
-}
+async function renderTabsList() {
+  const list = document.getElementById("tabs-list");
+  const tabs = await getCurrentWindowTabs();
 
-function TabsList() {
-  const [tabs, setTabs] = useState([]);
+  for (const tab of tabs) {
+    const item = document.createElement("li");
+    item.className = "truncate";
+    item.title = tab.title;
 
-  useEffect(() => {
-    getCurrentWindowTabs().then((tabs) => {
-      setTabs(tabs);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className =
+      "max-w-[calc(100%-1.5rem)] cursor-pointer truncate text-left align-bottom hover:text-blue-400";
+    button.textContent = tab.title;
+    button.addEventListener("click", () => {
+      browser.tabs
+        .update(tab.id, { active: true })
+        .catch((err) => console.error(err));
     });
-  }, []);
 
-  return (
-    <ol
-      className="m-1 mt-5 mb-4 ml-3 w-11/12 list-inside list-disc space-y-3 font-sans font-normal subpixel-antialiased"
-      id="tabs-list"
-    >
-      {tabs.map((tab) => (
-        <li key={tab.id} className="truncate" title={tab.title}>
-          <button
-            type="button"
-            className="max-w-[calc(100%-1.5rem)] cursor-pointer truncate text-left align-bottom hover:text-blue-400"
-            onClick={() => {
-              browser.tabs
-                .update(tab.id, { active: true })
-                .catch((err) => console.error(err));
-            }}
-          >
-            {tab.title}
-          </button>
-        </li>
-      ))}
-    </ol>
-  );
+    item.append(button);
+    list.append(item);
+  }
 }
 
 function getCurrentWindowTabs() {
   return browser.tabs.query({ currentWindow: true });
+}
+
+// DD-MM-YYYY_HH-mm in local time, e.g. 19-10-2026_21-27.
+function timestamp(date = new Date()) {
+  const pad = (n) => String(n).padStart(2, "0");
+  return (
+    `${pad(date.getDate())}-${pad(date.getMonth() + 1)}-${date.getFullYear()}` +
+    `_${pad(date.getHours())}-${pad(date.getMinutes())}`
+  );
 }
 
 async function exportCurrentTabs() {
@@ -99,7 +57,7 @@ async function exportCurrentTabs() {
     });
     objURL = URL.createObjectURL(blob);
 
-    const filename = `tabs-${dayjs().format("DD-MM-YYYY_HH-mm")}.json`;
+    const filename = `tabs-${timestamp()}.json`;
     const downloadId = await browser.downloads.download({
       url: objURL,
       filename,

@@ -22,7 +22,8 @@ pnpm install
 ## Test in Firefox
 
 Firefox must load the compiled extension from `dist`. The files in `src`
-contain JSX and cannot be loaded directly.
+import CSS that webpack compiles with Tailwind, so they cannot be loaded
+directly.
 
 ### Manual testing
 

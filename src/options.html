@@ -1,16 +1,22 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="color-scheme" content="light dark" />
-  <title>Options</title>
-</head>
-
-<body
-  class="mt-4 grid auto-cols-auto place-content-center items-center gap-4 space-x-3 dark:bg-neutral-900 dark:text-white">
-  <div id="root"></div>
-  <script src="options.js" type="module"></script>
-</body>
-
+  <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Options</title>
+  </head>
+  <body
+    class="mt-4 grid auto-cols-auto place-content-center items-center gap-4 dark:bg-neutral-900 dark:text-white"
+  >
+    <div class="flex items-center gap-6">
+      <label class="inline-block" for="input">Import tabs from</label>
+      <input
+        class="block h-12 min-w-32 text-sm text-slate-500 file:mr-4 file:rounded-lg file:border-0 file:bg-blue-600 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-sky-100 hover:file:bg-blue-800"
+        type="file"
+        id="input"
+        accept="application/json"
+      />
+    </div>
+    <script src="options.js"></script>
+  </body>
 </html>
