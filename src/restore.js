@@ -15,24 +15,14 @@ document.getElementById("input").addEventListener("change", (event) => {
 });
 
 function openImportedTabs(text) {
-  let objects;
-  try {
-    objects = JSON.parse(text);
-  } catch (err) {
-    console.error(`Invalid backup file: ${err}`);
+  const urls = parseBackup(text);
+  if (urls.length === 0) {
+    console.error("No tabs found in this backup file");
     return;
   }
-  if (!Array.isArray(objects)) {
-    console.error("Invalid backup file: expected an array of {title, url}");
-    return;
-  }
+  console.log(`found ${urls.length} tabs`);
 
-  const entries = objects.filter(
-    (object) => object && typeof object.url === "string" && object.url,
-  );
-  console.log(`found ${entries.length} tabs`);
-
-  for (const { url } of entries) {
+  for (const url of urls) {
     const properties = toCreateProperties(url);
     if (!properties) {
       console.warn(`Skipped ${url}: extensions cannot open this kind of URL`);
@@ -43,6 +33,28 @@ function openImportedTabs(text) {
       .then((tab) => console.info(`Created new tab: ${tab.title}`))
       .catch((error) => console.error(`Error opening ${url}: ${error}`));
   }
+}
+
+// Returns the URLs in a backup. JSON backups ([{title, url}]) keep every
+// entry, including about: pages and duplicates; Markdown, plain-text and
+// HTML-bookmark backups only carry their http(s) links, read once each.
+function parseBackup(text) {
+  let data;
+  try {
+    data = JSON.parse(text);
+  } catch {
+    // Bookmark files escape & as &amp; in hrefs, so read them as HTML.
+    const links = /<a\s[^>]*href=/i.test(text)
+      ? [...new DOMParser().parseFromString(text, "text/html").links]
+          .map((link) => link.getAttribute("href"))
+          .filter((href) => /^https?:\/\//i.test(href))
+      : (text.match(/https?:\/\/[^\s"'<>]+/g) ?? []);
+    return [...new Set(links)];
+  }
+  if (!Array.isArray(data)) return [];
+  return data
+    .filter((entry) => entry && typeof entry.url === "string" && entry.url)
+    .map((entry) => entry.url);
 }
 
 const NEW_TAB_URLS = new Set([

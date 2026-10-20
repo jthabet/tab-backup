@@ -5,7 +5,8 @@
   "description": "Import and export tabs in a file.",
   "permissions": [
     "tabs",
-    "downloads"
+    "downloads",
+    "storage"
   ],
   "background": {
     "scripts": [
@@ -37,7 +38,7 @@
     ]
   },
   "options_ui": {
-    "page": "options.html",
+    "page": "settings.html",
     "open_in_tab": true
   },
   "browser_specific_settings": {

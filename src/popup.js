@@ -1,8 +1,17 @@
 import "./main.css";
+import { FORMATS, formatFilename } from "./formats.js";
+import { getSettings } from "./settings-store.js";
 
 document.getElementById("backup").addEventListener("click", exportCurrentTabs);
 
 document.getElementById("restore").addEventListener("click", () => {
+  browser.tabs
+    .create({ url: browser.runtime.getURL("restore.html") })
+    .catch((err) => console.error(err));
+  window.close();
+});
+
+document.getElementById("settings").addEventListener("click", () => {
   browser.runtime.openOptionsPage().catch((err) => console.error(err));
   window.close();
 });
@@ -38,26 +47,22 @@ function getCurrentWindowTabs() {
   return browser.tabs.query({ currentWindow: true });
 }
 
-// DD-MM-YYYY_HH-mm in local time, e.g. 19-10-2026_21-27.
-function timestamp(date = new Date()) {
-  const pad = (n) => String(n).padStart(2, "0");
-  return (
-    `${pad(date.getDate())}-${pad(date.getMonth() + 1)}-${date.getFullYear()}` +
-    `_${pad(date.getHours())}-${pad(date.getMinutes())}`
-  );
-}
-
 async function exportCurrentTabs() {
   let objURL;
   try {
-    const tabs = await getCurrentWindowTabs();
-    const list = tabs.map((tab) => ({ title: tab.title, url: tab.url }));
-    const blob = new Blob([JSON.stringify(list, null, 2)], {
-      type: "application/json",
-    });
+    const [tabs, settings] = await Promise.all([
+      getCurrentWindowTabs(),
+      getSettings(),
+    ]);
+    const format = FORMATS[settings.format] ?? FORMATS.json;
+    const now = new Date();
+    const name = formatFilename(settings.filenamePattern, now, tabs.length);
+
+    const content = format.serialize(tabs, { folder: `Tab Backup ${name}` });
+    const blob = new Blob([content], { type: format.type });
     objURL = URL.createObjectURL(blob);
 
-    const filename = `tabs-${timestamp()}.json`;
+    const filename = `${name}.${format.extension}`;
     const downloadId = await browser.downloads.download({
       url: objURL,
       filename,

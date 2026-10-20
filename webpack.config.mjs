@@ -15,11 +15,14 @@ export default (env = {}) => {
     entry: {
       background: "./background.js",
       popup: "./popup.js",
-      options: "./options.js",
+      restore: "./restore.js",
+      settings: "./settings.js",
     },
     output: {
       path: path.resolve(__dirname, "dist"),
       filename: "[name].js",
+      // Remove files from earlier builds so stale pages never get packaged.
+      clean: true,
     },
     watchOptions: {
       ignored: ["**/node_modules/**", "**/dist/**", "**/.git/**"],
@@ -55,8 +58,12 @@ export default (env = {}) => {
             to: "popup.html",
           },
           {
-            from: "options.html",
-            to: "options.html",
+            from: "restore.html",
+            to: "restore.html",
+          },
+          {
+            from: "settings.html",
+            to: "settings.html",
           },
           {
             from: "manifest.json",

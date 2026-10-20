@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Settings | Tab Backup</title>
+  </head>
+  <body
+    class="min-h-screen bg-white text-neutral-900 dark:bg-neutral-900 dark:text-white"
+  >
+    <main class="mx-auto flex max-w-md flex-col gap-8 px-4 py-12">
+      <header class="flex flex-col items-center gap-3 text-center">
+        <!-- Hand-drawn sliders (same as the popup's settings button) -->
+        <svg
+          aria-hidden="true"
+          width="48"
+          height="48"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="text-neutral-400 dark:text-neutral-500"
+        >
+          <path d="M4 7.1c3.3-.2 6.6-.2 9.9 0" />
+          <path d="M18.1 7c.6 0 1.3 0 1.9.1" />
+          <path
+            d="M16 5c1.2 0 2.1.9 2.1 2s-.9 2.1-2.1 2.1-2-.9-2-2.1.8-2 2-2z"
+          />
+          <path d="M4 12.1h1.9" />
+          <path d="M10.1 12c3.3-.1 6.6-.1 9.9.1" />
+          <path d="M8 10c1.2 0 2.1.9 2.1 2s-.9 2-2.1 2-2-.9-2-2 .8-2 2-2z" />
+          <path d="M4 17.1c2.6-.2 5.3-.2 7.9 0" />
+          <path d="M16.1 17h3.9" />
+          <path d="M14 15c1.2 0 2.1.9 2.1 2s-.9 2-2.1 2-2-.8-2-2 .8-2 2-2z" />
+        </svg>
+        <h1 class="text-xl font-semibold">Settings</h1>
+      </header>
+
+      <fieldset class="flex flex-col gap-2">
+        <legend class="mb-2 text-sm font-semibold">Backup format</legend>
+
+        <label
+          class="flex cursor-pointer gap-3 rounded-lg border border-neutral-200 p-3 has-checked:border-neutral-800 has-checked:bg-neutral-50 dark:border-neutral-700 dark:has-checked:border-neutral-200 dark:has-checked:bg-neutral-800"
+        >
+          <input
+            type="radio"
+            name="format"
+            value="json"
+            class="mt-1 accent-neutral-800 dark:accent-neutral-100"
+          />
+          <span class="flex flex-col">
+            <span class="text-sm font-medium">JSON</span>
+            <span class="text-sm text-neutral-500 dark:text-neutral-400">
+              Restores every tab exactly, including new tab and Reader View
+              pages.
+            </span>
+          </span>
+        </label>
+
+        <label
+          class="flex cursor-pointer gap-3 rounded-lg border border-neutral-200 p-3 has-checked:border-neutral-800 has-checked:bg-neutral-50 dark:border-neutral-700 dark:has-checked:border-neutral-200 dark:has-checked:bg-neutral-800"
+        >
+          <input
+            type="radio"
+            name="format"
+            value="markdown"
+            class="mt-1 accent-neutral-800 dark:accent-neutral-100"
+          />
+          <span class="flex flex-col">
+            <span class="text-sm font-medium">Markdown</span>
+            <span class="text-sm text-neutral-500 dark:text-neutral-400">
+              A list of titled links for notes and docs.
+            </span>
+          </span>
+        </label>
+
+        <label
+          class="flex cursor-pointer gap-3 rounded-lg border border-neutral-200 p-3 has-checked:border-neutral-800 has-checked:bg-neutral-50 dark:border-neutral-700 dark:has-checked:border-neutral-200 dark:has-checked:bg-neutral-800"
+        >
+          <input
+            type="radio"
+            name="format"
+            value="text"
+            class="mt-1 accent-neutral-800 dark:accent-neutral-100"
+          />
+          <span class="flex flex-col">
+            <span class="text-sm font-medium">Plain text</span>
+            <span class="text-sm text-neutral-500 dark:text-neutral-400">
+              One URL per line.
+            </span>
+          </span>
+        </label>
+
+        <label
+          class="flex cursor-pointer gap-3 rounded-lg border border-neutral-200 p-3 has-checked:border-neutral-800 has-checked:bg-neutral-50 dark:border-neutral-700 dark:has-checked:border-neutral-200 dark:has-checked:bg-neutral-800"
+        >
+          <input
+            type="radio"
+            name="format"
+            value="html"
+            class="mt-1 accent-neutral-800 dark:accent-neutral-100"
+          />
+          <span class="flex flex-col">
+            <span class="text-sm font-medium">HTML bookmarks</span>
+            <span class="text-sm text-neutral-500 dark:text-neutral-400">
+              Import into the bookmarks of any browser.
+            </span>
+          </span>
+        </label>
+
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          Restore reads all four. Markdown, plain text and HTML bring back web
+          links only.
+        </p>
+      </fieldset>
+
+      <div class="flex flex-col gap-2">
+        <label for="filename" class="text-sm font-semibold">File name</label>
+        <p
+          id="filename-hint"
+          class="text-sm text-neutral-500 dark:text-neutral-400"
+        >
+          Use {YYYY} {MM} {DD} {HH} {mm} {ss} for the date and time, and {count}
+          for the number of tabs. The extension is added for you.
+        </p>
+        <div class="flex gap-2">
+          <input
+            id="filename"
+            type="text"
+            spellcheck="false"
+            autocomplete="off"
+            aria-describedby="filename-hint filename-preview"
+            class="h-9 min-w-0 flex-1 rounded-md border border-neutral-300 bg-transparent px-3 font-mono text-sm focus:outline-2 focus:outline-offset-1 focus:outline-neutral-800 dark:border-neutral-600 dark:focus:outline-neutral-100"
+          />
+          <button
+            type="button"
+            id="filename-reset"
+            class="h-9 cursor-pointer rounded-md border border-neutral-300 px-3 text-sm font-medium hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-800"
+          >
+            Reset
+          </button>
+        </div>
+        <p class="text-sm">
+          <span class="text-neutral-500 dark:text-neutral-400">Preview:</span>
+          <span id="filename-preview" class="font-mono break-all"></span>
+        </p>
+      </div>
+
+      <footer class="flex flex-col items-center gap-2 text-center">
+        <p
+          id="status"
+          role="status"
+          class="h-5 text-sm text-neutral-500 dark:text-neutral-400"
+        ></p>
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          Settings sync across your devices when you're signed in to Firefox and
+          add-on sync is on.
+        </p>
+      </footer>
+    </main>
+    <script src="settings.js"></script>
+  </body>
+</html>

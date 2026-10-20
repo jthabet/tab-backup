@@ -95,7 +95,9 @@ everyday browsing.
 3. Select a tab title and confirm Firefox activates that tab.
 4. Select **Back up** and confirm a timestamped JSON file is saved.
 5. Select **Restore…**, choose the exported file, and confirm its tabs reopen.
-6. Open and close a tab and confirm the badge count changes.
+6. Open settings with the sliders button, pick another format and file name
+   pattern, and confirm the next backup uses them and still restores.
+7. Open and close a tab and confirm the badge count changes.
 
 To inspect runtime errors, find Tab Backup on `about:debugging` and select
 **Inspect**.
