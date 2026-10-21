@@ -1,6 +1,10 @@
 import "./main.css";
 import { FORMATS, formatFilename } from "./formats.js";
 import { getSettings } from "./settings-store.js";
+import {
+  hasBookmarksPermission,
+  saveBookmarkBackup,
+} from "./bookmark-backups.js";
 
 document.getElementById("backup").addEventListener("click", exportCurrentTabs);
 
@@ -48,14 +52,43 @@ function getCurrentWindowTabs() {
 }
 
 async function exportCurrentTabs() {
+  const [tabs, settings] = await Promise.all([
+    getCurrentWindowTabs(),
+    getSettings(),
+  ]);
+  const now = new Date();
+
+  let toFile = settings.destination !== "bookmarks";
+  if (settings.destination !== "file") {
+    try {
+      if (!(await hasBookmarksPermission())) {
+        throw new Error("bookmark access was removed in about:addons");
+      }
+      const skipped = await saveBookmarkBackup(
+        tabs,
+        now,
+        settings.keepBookmarkBackups,
+      );
+      if (skipped)
+        console.warn(`Skipped ${skipped} tabs that can't be bookmarked`);
+    } catch (error) {
+      // Fall back to a file so the backup isn't lost.
+      console.error(`Bookmark backup failed: ${error}`);
+      toFile = true;
+    }
+  }
+
+  if (toFile) {
+    await downloadBackup(tabs, settings, now);
+  } else {
+    window.close();
+  }
+}
+
+async function downloadBackup(tabs, settings, now) {
   let objURL;
   try {
-    const [tabs, settings] = await Promise.all([
-      getCurrentWindowTabs(),
-      getSettings(),
-    ]);
     const format = FORMATS[settings.format] ?? FORMATS.json;
-    const now = new Date();
     const name = formatFilename(settings.filenamePattern, now, tabs.length);
 
     const content = format.serialize(tabs, { folder: `Tab Backup ${name}` });

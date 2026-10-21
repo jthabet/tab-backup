@@ -5,7 +5,15 @@ import {
   getSettings,
   saveSettings,
 } from "./settings-store.js";
+import {
+  hasBookmarksPermission,
+  requestBookmarksPermission,
+} from "./bookmark-backups.js";
 
+const destinationInputs = document.querySelectorAll(
+  'input[name="destination"]',
+);
+const keepInput = document.getElementById("keep");
 const formatInputs = document.querySelectorAll('input[name="format"]');
 const filenameInput = document.getElementById("filename");
 const preview = document.getElementById("filename-preview");
@@ -13,16 +21,58 @@ const status = document.getElementById("status");
 
 let statusTimer;
 let saveTimer;
+let keepTimer;
 
 init();
 
 async function init() {
   const settings = await getSettings();
+  // A destination that needs bookmarks only counts if access is granted;
+  // the user can revoke it in about:addons.
+  const destination =
+    settings.destination !== "file" && !(await hasBookmarksPermission())
+      ? "file"
+      : settings.destination;
+  for (const input of destinationInputs) {
+    input.checked = input.value === destination;
+  }
+  keepInput.value = settings.keepBookmarkBackups;
   for (const input of formatInputs) {
     input.checked = input.value === settings.format;
   }
   filenameInput.value = settings.filenamePattern;
   updatePreview();
+
+  let currentDestination = destination;
+  for (const input of destinationInputs) {
+    input.addEventListener("change", () => {
+      if (input.value === "file") {
+        currentDestination = "file";
+        save({ destination: "file" });
+        return;
+      }
+      // Firefox only shows the permission prompt for a direct user action,
+      // so request it before awaiting anything else.
+      requestBookmarksPermission().then((granted) => {
+        if (granted) {
+          currentDestination = input.value;
+          save({ destination: input.value });
+        } else {
+          for (const other of destinationInputs) {
+            other.checked = other.value === currentDestination;
+          }
+          showStatus("Bookmark backups need access to your bookmarks.");
+        }
+      });
+    });
+  }
+
+  keepInput.addEventListener("input", () => {
+    const keep = Math.round(Number(keepInput.value));
+    if (!Number.isFinite(keep) || keep < 1 || keep > 200) return;
+    clearTimeout(keepTimer);
+    keepTimer = setTimeout(() => save({ keepBookmarkBackups: keep }), 400);
+  });
 
   for (const input of formatInputs) {
     input.addEventListener("change", () => {

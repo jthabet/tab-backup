@@ -3,6 +3,9 @@
 export const DEFAULT_SETTINGS = {
   format: "json",
   filenamePattern: "tabs-{DD}-{MM}-{YYYY}_{HH}-{mm}",
+  // "file", "bookmarks" or "both"
+  destination: "file",
+  keepBookmarkBackups: 20,
 };
 
 // Missing keys fall back to their defaults.

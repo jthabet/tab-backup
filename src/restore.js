@@ -1,4 +1,11 @@
 import "./main.css";
+import {
+  deleteBookmarkBackup,
+  hasBookmarksPermission,
+  listBookmarkBackups,
+} from "./bookmark-backups.js";
+
+const status = document.getElementById("status");
 
 document.getElementById("input").addEventListener("change", (event) => {
   const input = event.target;
@@ -6,33 +13,101 @@ document.getElementById("input").addEventListener("change", (event) => {
   if (!file) return;
   file
     .text()
-    .then(openImportedTabs)
-    .catch((err) => console.error(err))
+    .then((text) => {
+      const urls = parseBackup(text);
+      if (urls.length === 0) {
+        status.textContent = "No tabs found in this file.";
+        return;
+      }
+      return openUrls(urls);
+    })
+    .catch((err) => {
+      console.error(err);
+      status.textContent = "Couldn't read this file.";
+    })
     // Allow choosing the same file again to re-trigger the change event.
     .finally(() => {
       input.value = "";
     });
 });
 
-function openImportedTabs(text) {
-  const urls = parseBackup(text);
-  if (urls.length === 0) {
-    console.error("No tabs found in this backup file");
-    return;
-  }
-  console.log(`found ${urls.length} tabs`);
+initBookmarkBackups();
 
-  for (const url of urls) {
-    const properties = toCreateProperties(url);
-    if (!properties) {
-      console.warn(`Skipped ${url}: extensions cannot open this kind of URL`);
-      continue;
-    }
-    browser.tabs
-      .create({ ...properties, active: false })
-      .then((tab) => console.info(`Created new tab: ${tab.title}`))
-      .catch((error) => console.error(`Error opening ${url}: ${error}`));
-  }
+// Opens the URLs as background tabs and reports the result.
+async function openUrls(urls) {
+  const results = await Promise.allSettled(
+    urls.map((url) => {
+      const properties = toCreateProperties(url);
+      if (!properties) {
+        return Promise.reject(new Error(`extensions cannot open ${url}`));
+      }
+      return browser.tabs.create({ ...properties, active: false });
+    }),
+  );
+  const failed = results.filter((result) => result.status === "rejected");
+  for (const { reason } of failed) console.warn(`Skipped: ${reason}`);
+
+  const opened = results.length - failed.length;
+  status.textContent =
+    `Opened ${opened} ${opened === 1 ? "tab" : "tabs"}` +
+    (failed.length ? `, skipped ${failed.length} that can't be opened.` : ".");
+}
+
+async function initBookmarkBackups() {
+  if (!(await hasBookmarksPermission())) return;
+  document.getElementById("synced").hidden = false;
+  await renderBookmarkBackups();
+
+  // Refresh when Firefox Sync brings in or removes backups.
+  let timer;
+  const refresh = () => {
+    clearTimeout(timer);
+    timer = setTimeout(renderBookmarkBackups, 300);
+  };
+  browser.bookmarks.onCreated.addListener(refresh);
+  browser.bookmarks.onRemoved.addListener(refresh);
+  browser.bookmarks.onChanged.addListener(refresh);
+}
+
+async function renderBookmarkBackups() {
+  const list = document.getElementById("synced-list");
+  const backups = await listBookmarkBackups();
+  document.getElementById("synced-empty").hidden = backups.length > 0;
+  list.hidden = backups.length === 0;
+
+  list.replaceChildren(
+    ...backups.map((backup) => {
+      const item = document.createElement("li");
+      item.className = "flex items-center gap-2 px-3 py-2";
+
+      const label = document.createElement("span");
+      label.className = "min-w-0 flex-1 truncate text-sm";
+      label.textContent = backup.title;
+      label.title = backup.title;
+
+      const restore = document.createElement("button");
+      restore.type = "button";
+      restore.className =
+        "h-8 cursor-pointer rounded-md border border-neutral-300 px-3 text-sm font-medium hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-800";
+      restore.textContent = "Restore";
+      restore.addEventListener("click", () => openUrls(backup.urls));
+
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className =
+        "h-8 cursor-pointer rounded-md px-3 text-sm text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100";
+      remove.textContent = "Delete";
+      remove.setAttribute("aria-label", `Delete ${backup.title}`);
+      remove.addEventListener("click", async () => {
+        if (!window.confirm(`Delete the backup "${backup.title}"?`)) return;
+        await deleteBookmarkBackup(backup.id);
+        await renderBookmarkBackups();
+      });
+
+      item.append(label, restore, remove);
+      return item;
+    }),
+  );
 }
 
 // Returns the URLs in a backup. JSON backups ([{title, url}]) keep every

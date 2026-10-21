@@ -8,6 +8,9 @@
     "downloads",
     "storage"
   ],
+  "optional_permissions": [
+    "bookmarks"
+  ],
   "background": {
     "scripts": [
       "background.js"

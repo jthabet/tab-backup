@@ -39,7 +39,80 @@
       </header>
 
       <fieldset class="flex flex-col gap-2">
-        <legend class="mb-2 text-sm font-semibold">Backup format</legend>
+        <legend class="mb-2 text-sm font-semibold">Save backups to</legend>
+
+        <label
+          class="flex cursor-pointer gap-3 rounded-lg border border-neutral-200 p-3 has-checked:border-neutral-800 has-checked:bg-neutral-50 dark:border-neutral-700 dark:has-checked:border-neutral-200 dark:has-checked:bg-neutral-800"
+        >
+          <input
+            type="radio"
+            name="destination"
+            value="file"
+            class="mt-1 accent-neutral-800 dark:accent-neutral-100"
+          />
+          <span class="flex flex-col">
+            <span class="text-sm font-medium">A file</span>
+            <span class="text-sm text-neutral-500 dark:text-neutral-400">
+              Downloaded in the format below.
+            </span>
+          </span>
+        </label>
+
+        <label
+          class="flex cursor-pointer gap-3 rounded-lg border border-neutral-200 p-3 has-checked:border-neutral-800 has-checked:bg-neutral-50 dark:border-neutral-700 dark:has-checked:border-neutral-200 dark:has-checked:bg-neutral-800"
+        >
+          <input
+            type="radio"
+            name="destination"
+            value="bookmarks"
+            class="mt-1 accent-neutral-800 dark:accent-neutral-100"
+          />
+          <span class="flex flex-col">
+            <span class="text-sm font-medium">Bookmarks</span>
+            <span class="text-sm text-neutral-500 dark:text-neutral-400">
+              A dated folder in Other Bookmarks › Tab Backup, synced to your
+              other devices by Firefox Sync.
+            </span>
+          </span>
+        </label>
+
+        <label
+          class="flex cursor-pointer gap-3 rounded-lg border border-neutral-200 p-3 has-checked:border-neutral-800 has-checked:bg-neutral-50 dark:border-neutral-700 dark:has-checked:border-neutral-200 dark:has-checked:bg-neutral-800"
+        >
+          <input
+            type="radio"
+            name="destination"
+            value="both"
+            class="mt-1 accent-neutral-800 dark:accent-neutral-100"
+          />
+          <span class="flex flex-col">
+            <span class="text-sm font-medium">Both</span>
+            <span class="text-sm text-neutral-500 dark:text-neutral-400">
+              A file and a bookmark folder.
+            </span>
+          </span>
+        </label>
+
+        <div class="mt-1 flex items-center gap-2 text-sm">
+          <label for="keep">Keep the last</label>
+          <input
+            id="keep"
+            type="number"
+            min="1"
+            max="200"
+            step="1"
+            class="h-8 w-16 rounded-md border border-neutral-300 bg-transparent px-2 text-sm focus:outline-2 focus:outline-offset-1 focus:outline-neutral-800 dark:border-neutral-600 dark:focus:outline-neutral-100"
+          />
+          <span>bookmark backups</span>
+        </div>
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          Older ones are deleted. Saving to bookmarks asks for permission to
+          read and change your bookmarks.
+        </p>
+      </fieldset>
+
+      <fieldset class="flex flex-col gap-2">
+        <legend class="mb-2 text-sm font-semibold">File format</legend>
 
         <label
           class="flex cursor-pointer gap-3 rounded-lg border border-neutral-200 p-3 has-checked:border-neutral-800 has-checked:bg-neutral-50 dark:border-neutral-700 dark:has-checked:border-neutral-200 dark:has-checked:bg-neutral-800"

@@ -98,7 +98,11 @@ everyday browsing.
 5. Select **Restore…**, choose the exported file, and confirm its tabs reopen.
 6. Open settings with the sliders button, pick another format and file name
    pattern, and confirm the next backup uses them and still restores.
-7. Open and close a tab and confirm the badge count changes.
+7. In settings, choose **Bookmarks**, allow bookmark access, select
+   **Back up**, and confirm a dated folder appears in Other Bookmarks › Tab
+   Backup and in the list on the restore page, where **Restore** and
+   **Delete** work.
+8. Open and close a tab and confirm the badge count changes.
 
 To inspect runtime errors, find Tab Backup on `about:debugging` and select
 **Inspect**.

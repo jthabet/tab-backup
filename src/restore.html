@@ -8,7 +8,9 @@
   <body
     class="grid min-h-screen place-items-center bg-white text-neutral-900 dark:bg-neutral-900 dark:text-white"
   >
-    <main class="flex max-w-sm flex-col items-center gap-4 px-4 text-center">
+    <main
+      class="flex w-full max-w-md flex-col items-center gap-4 px-4 py-12 text-center"
+    >
       <!-- Hand-drawn archive box, arrow out (same as the popup's Restore… icon) -->
       <svg
         aria-hidden="true"
@@ -51,6 +53,32 @@
       >
         Choose backup file…
       </label>
+
+      <p
+        id="status"
+        role="status"
+        class="min-h-5 text-sm text-neutral-500 dark:text-neutral-400"
+      ></p>
+
+      <section
+        id="synced"
+        hidden
+        class="mt-4 flex w-full flex-col gap-2 text-left"
+      >
+        <h2 class="text-sm font-semibold">Bookmark backups</h2>
+        <ul
+          id="synced-list"
+          class="divide-y divide-neutral-200 rounded-lg border border-neutral-200 dark:divide-neutral-700 dark:border-neutral-700"
+        ></ul>
+        <p
+          id="synced-empty"
+          hidden
+          class="text-sm text-neutral-500 dark:text-neutral-400"
+        >
+          No bookmark backups yet. Backups from your other devices appear here
+          once Firefox Sync has run.
+        </p>
+      </section>
     </main>
     <script src="restore.js"></script>
   </body>
