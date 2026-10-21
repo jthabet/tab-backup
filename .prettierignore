@@ -2,3 +2,6 @@
 build
 coverage
 node_modules
+
+# Generated sample backups must stay byte-for-byte as formats.js writes them
+samples/three-tabs.*

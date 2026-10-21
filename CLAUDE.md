@@ -19,7 +19,7 @@ pnpm exec web-ext run # run an existing dist/ build in Developer Edition (webExt
 make                  # clean + build + package
 ```
 
-There is no automated test suite. Verify changes by loading `dist/manifest.json` via `about:debugging` → This Firefox → Load Temporary Add-on (Reload after each rebuild), and running the smoke test in `README.md`. Use **Inspect** on `about:debugging` for runtime errors.
+There is no automated test suite. Sample backups of three tabs in every format live in `samples/` for testing restore. Verify changes by loading `dist/manifest.json` via `about:debugging` → This Firefox → Load Temporary Add-on (Reload after each rebuild), and running the smoke test in `README.md`. Use **Inspect** on `about:debugging` for runtime errors.
 
 The `webExt` key in `package.json` must keep `sourceDir: "dist"`; `src/` imports CSS that only webpack can resolve, so web-ext cannot lint or load it.
 

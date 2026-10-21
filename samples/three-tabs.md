@@ -1,0 +1,3 @@
+- [The Go Programming Language](<https://go.dev/>)
+- [GitHub · Change is constant. GitHub keeps you ahead. · GitHub · GitHub](<https://github.com/>)
+- [Overview - Claude Code Docs](<https://code.claude.com/docs/en/overview>)
