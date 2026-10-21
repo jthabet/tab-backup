@@ -35,50 +35,116 @@
       </svg>
 
       <h1 class="text-xl font-semibold">Restore tabs</h1>
-      <p class="text-sm text-neutral-500 dark:text-neutral-400">
-        Choose a backup file saved with Tab Backup. Its tabs open in this
-        window.
-      </p>
+      <div id="start-view" class="flex w-full flex-col items-center gap-4">
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          Choose a backup file saved with Tab Backup. You can pick which tabs to
+          open before they open in this window.
+        </p>
 
-      <!-- The native input is visually hidden; the label below is its button. -->
-      <input
-        class="peer sr-only"
-        type="file"
-        id="input"
-        accept=".json,.md,.txt,.html,application/json,text/markdown,text/plain,text/html"
-      />
-      <label
-        for="input"
-        class="mt-2 inline-flex h-12 cursor-pointer items-center rounded-lg bg-neutral-800 px-5 font-semibold text-white peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-neutral-800 hover:bg-neutral-700 dark:bg-neutral-100 dark:text-neutral-900 dark:peer-focus-visible:outline-neutral-100 dark:hover:bg-neutral-300"
+        <!-- The native input is visually hidden; the label below is its button. -->
+        <input
+          class="peer sr-only"
+          type="file"
+          id="input"
+          accept=".json,.md,.txt,.html,application/json,text/markdown,text/plain,text/html"
+        />
+        <label
+          for="input"
+          class="mt-2 inline-flex h-12 cursor-pointer items-center rounded-lg bg-neutral-800 px-5 font-semibold text-white peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-neutral-800 hover:bg-neutral-700 dark:bg-neutral-100 dark:text-neutral-900 dark:peer-focus-visible:outline-neutral-100 dark:hover:bg-neutral-300"
+        >
+          Choose backup file…
+        </label>
+
+        <section
+          id="synced"
+          hidden
+          class="mt-4 flex w-full flex-col gap-2 text-left"
+        >
+          <h2 class="text-sm font-semibold">Bookmark backups</h2>
+          <ul
+            id="synced-list"
+            class="divide-y divide-neutral-200 rounded-lg border border-neutral-200 dark:divide-neutral-700 dark:border-neutral-700"
+          ></ul>
+          <p
+            id="synced-empty"
+            hidden
+            class="text-sm text-neutral-500 dark:text-neutral-400"
+          >
+            No bookmark backups yet. Backups from your other devices appear here
+            once Firefox Sync has run.
+          </p>
+        </section>
+      </div>
+
+      <section
+        id="preview"
+        hidden
+        aria-labelledby="preview-title"
+        class="flex w-full flex-col gap-3 text-left"
       >
-        Choose backup file…
-      </label>
+        <div class="flex flex-col">
+          <h2 id="preview-title" class="truncate text-sm font-semibold"></h2>
+          <p
+            id="preview-summary"
+            class="text-sm text-neutral-500 dark:text-neutral-400"
+          ></p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+          <button
+            type="button"
+            id="select-all"
+            class="cursor-pointer text-neutral-600 underline-offset-2 hover:underline dark:text-neutral-300"
+          >
+            Select all
+          </button>
+          <button
+            type="button"
+            id="select-none"
+            class="cursor-pointer text-neutral-600 underline-offset-2 hover:underline dark:text-neutral-300"
+          >
+            Select none
+          </button>
+          <label
+            id="skip-open-label"
+            class="ml-auto flex cursor-pointer items-center gap-2"
+          >
+            <input
+              type="checkbox"
+              id="skip-open"
+              checked
+              class="accent-neutral-800 dark:accent-neutral-100"
+            />
+            Skip tabs that are already open
+          </label>
+        </div>
+
+        <ul
+          id="preview-list"
+          class="max-h-[60vh] divide-y divide-neutral-200 overflow-y-auto rounded-lg border border-neutral-200 dark:divide-neutral-700 dark:border-neutral-700"
+        ></ul>
+
+        <div class="flex justify-end gap-2">
+          <button
+            type="button"
+            id="preview-cancel"
+            class="h-9 cursor-pointer rounded-md border border-neutral-300 px-4 text-sm font-medium hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-800"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            id="preview-open"
+            class="h-9 cursor-pointer rounded-md bg-neutral-800 px-4 text-sm font-medium text-white hover:bg-neutral-700 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
+          ></button>
+        </div>
+      </section>
 
       <p
         id="status"
         role="status"
         class="min-h-5 text-sm text-neutral-500 dark:text-neutral-400"
       ></p>
-
-      <section
-        id="synced"
-        hidden
-        class="mt-4 flex w-full flex-col gap-2 text-left"
-      >
-        <h2 class="text-sm font-semibold">Bookmark backups</h2>
-        <ul
-          id="synced-list"
-          class="divide-y divide-neutral-200 rounded-lg border border-neutral-200 dark:divide-neutral-700 dark:border-neutral-700"
-        ></ul>
-        <p
-          id="synced-empty"
-          hidden
-          class="text-sm text-neutral-500 dark:text-neutral-400"
-        >
-          No bookmark backups yet. Backups from your other devices appear here
-          once Firefox Sync has run.
-        </p>
-      </section>
     </main>
     <script src="restore.js"></script>
   </body>

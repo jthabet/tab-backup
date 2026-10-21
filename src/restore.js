@@ -6,6 +6,14 @@ import {
 } from "./bookmark-backups.js";
 
 const status = document.getElementById("status");
+const startView = document.getElementById("start-view");
+const preview = document.getElementById("preview");
+const previewList = document.getElementById("preview-list");
+const openButton = document.getElementById("preview-open");
+const skipOpen = document.getElementById("skip-open");
+
+// The backup shown in the preview: [{ title, url, openable, alreadyOpen, checkbox }]
+let previewEntries = [];
 
 document.getElementById("input").addEventListener("change", (event) => {
   const input = event.target;
@@ -14,12 +22,12 @@ document.getElementById("input").addEventListener("change", (event) => {
   file
     .text()
     .then((text) => {
-      const urls = parseBackup(text);
-      if (urls.length === 0) {
+      const entries = parseBackup(text);
+      if (entries.length === 0) {
         status.textContent = "No tabs found in this file.";
         return;
       }
-      return openUrls(urls);
+      return showPreview(file.name, entries);
     })
     .catch((err) => {
       console.error(err);
@@ -31,7 +39,140 @@ document.getElementById("input").addEventListener("change", (event) => {
     });
 });
 
+document.getElementById("select-all").addEventListener("click", () => {
+  for (const entry of selectable()) entry.checkbox.checked = true;
+  updateOpenButton();
+});
+
+document.getElementById("select-none").addEventListener("click", () => {
+  for (const entry of selectable()) entry.checkbox.checked = false;
+  updateOpenButton();
+});
+
+skipOpen.addEventListener("change", () => {
+  for (const entry of selectable()) {
+    if (entry.alreadyOpen) entry.checkbox.checked = !skipOpen.checked;
+  }
+  updateOpenButton();
+});
+
+document.getElementById("preview-cancel").addEventListener("click", () => {
+  hidePreview();
+  status.textContent = "";
+});
+
+openButton.addEventListener("click", async () => {
+  const urls = selectable()
+    .filter((entry) => entry.checkbox.checked)
+    .map((entry) => entry.url);
+  if (urls.length === 0) {
+    status.textContent = "Select at least one tab to open.";
+    return;
+  }
+  hidePreview();
+  await openUrls(urls);
+});
+
 initBookmarkBackups();
+
+async function showPreview(title, entries) {
+  const openTabs = await browser.tabs.query({});
+  const openTabUrls = new Set(openTabs.map((tab) => tab.url));
+
+  previewEntries = entries.map(({ title, url }) => ({
+    title: title || url,
+    url,
+    openable: toCreateProperties(url) !== null,
+    // New tab pages are never treated as duplicates.
+    alreadyOpen: !NEW_TAB_URLS.has(url) && openTabUrls.has(url),
+  }));
+
+  previewList.replaceChildren(...previewEntries.map(renderPreviewRow));
+
+  const openCount = previewEntries.filter((e) => e.alreadyOpen).length;
+  const blockedCount = previewEntries.filter((e) => !e.openable).length;
+  document.getElementById("preview-title").textContent = title;
+  document.getElementById("preview-summary").textContent = [
+    plural(previewEntries.length, "tab"),
+    openCount && `${openCount} already open`,
+    blockedCount && `${blockedCount} can't be opened`,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+  document.getElementById("skip-open-label").hidden = openCount === 0;
+  skipOpen.checked = true;
+
+  status.textContent = "";
+  startView.hidden = true;
+  preview.hidden = false;
+  updateOpenButton();
+  openButton.focus();
+}
+
+function renderPreviewRow(entry) {
+  const item = document.createElement("li");
+
+  const row = document.createElement("label");
+  row.className = entry.openable
+    ? "flex cursor-pointer items-center gap-3 px-3 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-800"
+    : "flex items-center gap-3 px-3 py-2 text-neutral-400 dark:text-neutral-500";
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.className = "shrink-0 accent-neutral-800 dark:accent-neutral-100";
+  if (entry.openable) {
+    checkbox.checked = !entry.alreadyOpen;
+    checkbox.addEventListener("change", updateOpenButton);
+    entry.checkbox = checkbox;
+  } else {
+    // Keeps the text aligned with the other rows; there's nothing to toggle.
+    checkbox.classList.add("invisible");
+    checkbox.setAttribute("aria-hidden", "true");
+  }
+
+  const text = document.createElement("span");
+  text.className = "flex min-w-0 flex-1 flex-col";
+  const title = document.createElement("span");
+  title.className = "truncate text-sm";
+  title.textContent = entry.title;
+  title.title = entry.title;
+  const url = document.createElement("span");
+  url.className = "truncate text-xs text-neutral-500 dark:text-neutral-400";
+  url.textContent = displayUrl(entry.url);
+  url.title = entry.url;
+  text.append(title, url);
+
+  row.append(checkbox, text);
+
+  const note = entry.openable
+    ? entry.alreadyOpen && "Already open"
+    : "Can't be opened";
+  if (note) {
+    const badge = document.createElement("span");
+    badge.className = "shrink-0 text-xs text-neutral-500 dark:text-neutral-400";
+    badge.textContent = note;
+    row.append(badge);
+  }
+
+  item.append(row);
+  return item;
+}
+
+function selectable() {
+  return previewEntries.filter((entry) => entry.openable);
+}
+
+function updateOpenButton() {
+  const count = selectable().filter((entry) => entry.checkbox.checked).length;
+  openButton.textContent = `Open ${plural(count, "tab")}`;
+}
+
+function hidePreview() {
+  preview.hidden = true;
+  startView.hidden = false;
+  previewEntries = [];
+  previewList.replaceChildren();
+}
 
 // Opens the URLs as background tabs and reports the result.
 async function openUrls(urls) {
@@ -49,7 +190,7 @@ async function openUrls(urls) {
 
   const opened = results.length - failed.length;
   status.textContent =
-    `Opened ${opened} ${opened === 1 ? "tab" : "tabs"}` +
+    `Opened ${plural(opened, "tab")}` +
     (failed.length ? `, skipped ${failed.length} that can't be opened.` : ".");
 }
 
@@ -89,8 +230,11 @@ async function renderBookmarkBackups() {
       restore.type = "button";
       restore.className =
         "h-8 cursor-pointer rounded-md border border-neutral-300 px-3 text-sm font-medium hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-800";
-      restore.textContent = "Restore";
-      restore.addEventListener("click", () => openUrls(backup.urls));
+      restore.textContent = "Restore…";
+      restore.setAttribute("aria-label", `Restore ${backup.title}`);
+      restore.addEventListener("click", () =>
+        showPreview(backup.title, backup.entries),
+      );
 
       const remove = document.createElement("button");
       remove.type = "button";
@@ -110,26 +254,77 @@ async function renderBookmarkBackups() {
   );
 }
 
-// Returns the URLs in a backup. JSON backups ([{title, url}]) keep every
-// entry, including about: pages and duplicates; Markdown, plain-text and
-// HTML-bookmark backups only carry their http(s) links, read once each.
+// Returns the tabs in a backup as [{ title, url }]. JSON backups keep every
+// entry, including about: pages and duplicates. Markdown, plain-text and
+// HTML-bookmark backups carry only their http(s) links, read once each,
+// with the link text as the title where there is one.
 function parseBackup(text) {
   let data;
   try {
     data = JSON.parse(text);
   } catch {
-    // Bookmark files escape & as &amp; in hrefs, so read them as HTML.
-    const links = /<a\s[^>]*href=/i.test(text)
-      ? [...new DOMParser().parseFromString(text, "text/html").links]
-          .map((link) => link.getAttribute("href"))
-          .filter((href) => /^https?:\/\//i.test(href))
-      : (text.match(/https?:\/\/[^\s"'<>]+/g) ?? []);
-    return [...new Set(links)];
+    return dedupe(
+      /<a\s[^>]*href=/i.test(text)
+        ? parseHtmlLinks(text)
+        : parseTextLinks(text),
+    );
   }
   if (!Array.isArray(data)) return [];
   return data
     .filter((entry) => entry && typeof entry.url === "string" && entry.url)
-    .map((entry) => entry.url);
+    .map((entry) => ({
+      title: typeof entry.title === "string" ? entry.title : "",
+      url: entry.url,
+    }));
+}
+
+// Bookmark files escape & as &amp; in hrefs, so read them as HTML.
+function parseHtmlLinks(text) {
+  return [...new DOMParser().parseFromString(text, "text/html").links]
+    .map((link) => ({
+      title: link.textContent.trim(),
+      url: link.getAttribute("href"),
+    }))
+    .filter(({ url }) => /^https?:\/\//i.test(url));
+}
+
+// Markdown links ([title](<url>) or [title](url)) first, then bare URLs in
+// the rest of the text (plain-text backups have one URL per line).
+function parseTextLinks(text) {
+  const entries = [];
+  const markdownLink = /\[((?:\\.|[^\]\\])*)\]\((?:<([^>]+)>|([^\s)]+))\)/g;
+  for (const [, title, angled, plain] of text.matchAll(markdownLink)) {
+    const url = angled ?? plain;
+    if (/^https?:\/\//i.test(url)) {
+      entries.push({ title: title.replace(/\\(.)/g, "$1"), url });
+    }
+  }
+  const rest = text.replace(markdownLink, " ");
+  for (const url of rest.match(/https?:\/\/[^\s"'<>]+/g) ?? []) {
+    entries.push({ title: "", url });
+  }
+  return entries;
+}
+
+function dedupe(entries) {
+  const seen = new Map();
+  for (const entry of entries) {
+    if (!seen.has(entry.url)) seen.set(entry.url, entry);
+  }
+  return [...seen.values()];
+}
+
+function displayUrl(url) {
+  try {
+    const { host, pathname } = new URL(url);
+    return host ? host + (pathname === "/" ? "" : pathname) : url;
+  } catch {
+    return url;
+  }
+}
+
+function plural(count, word) {
+  return `${count} ${count === 1 ? word : `${word}s`}`;
 }
 
 const NEW_TAB_URLS = new Set([

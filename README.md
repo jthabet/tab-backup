@@ -95,7 +95,9 @@ everyday browsing.
 2. Open the extension popup and confirm the current window's tabs are listed.
 3. Select a tab title and confirm Firefox activates that tab.
 4. Select **Back up** and confirm a timestamped JSON file is saved.
-5. Select **Restore…**, choose the exported file, and confirm its tabs reopen.
+5. Select **Restore…**, choose the exported file, confirm the preview lists
+   its tabs with already-open ones unchecked, then select **Open** and confirm
+   the checked tabs reopen.
 6. Open settings with the gear button, pick another format and file name
    pattern, and confirm the next backup uses them and still restores.
 7. In settings, choose **Bookmarks**, allow bookmark access, select

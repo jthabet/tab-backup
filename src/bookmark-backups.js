@@ -63,9 +63,9 @@ export async function listBookmarkBackups() {
         id: node.id,
         title: node.title,
         dateAdded: node.dateAdded ?? 0,
-        urls: (node.children ?? [])
+        entries: (node.children ?? [])
           .filter((child) => child.url)
-          .map((child) => child.url),
+          .map(({ title, url }) => ({ title, url })),
       });
     }
   }
