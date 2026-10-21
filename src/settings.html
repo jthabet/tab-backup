@@ -65,8 +65,8 @@
           <span class="flex flex-col">
             <span class="text-sm font-medium">Bookmarks</span>
             <span class="text-sm text-neutral-500 dark:text-neutral-400">
-              A dated folder in Other Bookmarks › Tab Backup, synced to your
-              other devices by Firefox Sync.
+              A dated folder in Other Bookmarks, synced to your other devices by
+              Firefox Sync.
             </span>
           </span>
         </label>
@@ -100,9 +100,35 @@
           />
           <span>bookmark backups</span>
         </div>
+
+        <div class="mt-2 flex flex-col gap-1">
+          <label for="folder-name" class="text-sm">Bookmark folder name</label>
+          <input
+            id="folder-name"
+            type="text"
+            spellcheck="false"
+            autocomplete="off"
+            aria-describedby="folder-name-hint folder-name-error"
+            class="h-9 rounded-md border border-neutral-300 bg-transparent px-3 text-sm focus:outline-2 focus:outline-offset-1 focus:outline-neutral-800 dark:border-neutral-600 dark:focus:outline-neutral-100"
+          />
+          <p
+            id="folder-name-error"
+            class="text-xs text-red-700 empty:hidden dark:text-red-400"
+          ></p>
+          <p
+            id="folder-name-hint"
+            class="text-xs text-neutral-500 dark:text-neutral-400"
+          >
+            Created in Other Bookmarks. Changing the name renames the folder;
+            your backups stay in it.
+          </p>
+        </div>
+
         <p class="text-xs text-neutral-500 dark:text-neutral-400">
-          Older ones are deleted. Saving to bookmarks asks for permission to
-          read and change your bookmarks.
+          Older backups are deleted.
+          Saving to bookmarks asks for permission to read and change your
+          bookmarks. Tab Backup only touches its own folder, marked by an "About
+          these backups" bookmark inside it.
         </p>
       </fieldset>
 

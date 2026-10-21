@@ -7,6 +7,7 @@ import {
 } from "./settings-store.js";
 import {
   hasBookmarksPermission,
+  renameBackupFolder,
   requestBookmarksPermission,
 } from "./bookmark-backups.js";
 
@@ -14,6 +15,8 @@ const destinationInputs = document.querySelectorAll(
   'input[name="destination"]',
 );
 const keepInput = document.getElementById("keep");
+const folderNameInput = document.getElementById("folder-name");
+const folderNameError = document.getElementById("folder-name-error");
 const formatInputs = document.querySelectorAll('input[name="format"]');
 const filenameInput = document.getElementById("filename");
 const preview = document.getElementById("filename-preview");
@@ -22,6 +25,7 @@ const status = document.getElementById("status");
 let statusTimer;
 let saveTimer;
 let keepTimer;
+let folderTimer;
 
 init();
 
@@ -37,6 +41,7 @@ async function init() {
     input.checked = input.value === destination;
   }
   keepInput.value = settings.keepBookmarkBackups;
+  folderNameInput.value = settings.bookmarkFolderName;
   for (const input of formatInputs) {
     input.checked = input.value === settings.format;
   }
@@ -66,6 +71,25 @@ async function init() {
       });
     });
   }
+
+  folderNameInput.addEventListener("input", () => {
+    clearTimeout(folderTimer);
+    const name = folderNameInput.value.trim();
+    if (!name) {
+      folderNameError.textContent = "Enter a folder name.";
+      folderNameInput.setAttribute("aria-invalid", "true");
+      return;
+    }
+    folderNameError.textContent = "";
+    folderNameInput.removeAttribute("aria-invalid");
+    folderTimer = setTimeout(async () => {
+      await save({ bookmarkFolderName: name });
+      // Rename the existing folder too, if bookmark backups are in use.
+      if (await hasBookmarksPermission()) {
+        await renameBackupFolder(name).catch((err) => console.error(err));
+      }
+    }, 600);
+  });
 
   keepInput.addEventListener("input", () => {
     const keep = Math.round(Number(keepInput.value));

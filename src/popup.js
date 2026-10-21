@@ -64,11 +64,10 @@ async function exportCurrentTabs() {
       if (!(await hasBookmarksPermission())) {
         throw new Error("bookmark access was removed in about:addons");
       }
-      const skipped = await saveBookmarkBackup(
-        tabs,
-        now,
-        settings.keepBookmarkBackups,
-      );
+      const skipped = await saveBookmarkBackup(tabs, now, {
+        keep: settings.keepBookmarkBackups,
+        folderName: settings.bookmarkFolderName,
+      });
       if (skipped)
         console.warn(`Skipped ${skipped} tabs that can't be bookmarked`);
     } catch (error) {

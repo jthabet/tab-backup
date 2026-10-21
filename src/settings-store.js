@@ -6,6 +6,7 @@ export const DEFAULT_SETTINGS = {
   // "file", "bookmarks" or "both"
   destination: "file",
   keepBookmarkBackups: 20,
+  bookmarkFolderName: "Tab Backup",
 };
 
 // Missing keys fall back to their defaults.
