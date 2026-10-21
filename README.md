@@ -96,7 +96,7 @@ everyday browsing.
 3. Select a tab title and confirm Firefox activates that tab.
 4. Select **Back up** and confirm a timestamped JSON file is saved.
 5. Select **Restore…**, choose the exported file, and confirm its tabs reopen.
-6. Open settings with the sliders button, pick another format and file name
+6. Open settings with the gear button, pick another format and file name
    pattern, and confirm the next backup uses them and still restores.
 7. In settings, choose **Bookmarks**, allow bookmark access, select
    **Back up**, and confirm a dated folder appears in Other Bookmarks › Tab
