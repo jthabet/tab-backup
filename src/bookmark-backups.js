@@ -77,6 +77,12 @@ export async function listBookmarkBackups() {
   return backups.sort((a, b) => b.dateAdded - a.dateAdded);
 }
 
+// The backups that saving one more would delete, oldest last.
+export async function backupsDeletedByNextSave(keep) {
+  const backups = await listBookmarkBackups();
+  return backups.slice(Math.max(keep - 1, 0));
+}
+
 export function deleteBookmarkBackup(id) {
   return browser.bookmarks.removeTree(id);
 }

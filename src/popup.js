@@ -2,11 +2,35 @@ import "./main.css";
 import { FORMATS, formatFilename } from "./formats.js";
 import { getSettings } from "./settings-store.js";
 import {
+  backupsDeletedByNextSave,
   hasBookmarksPermission,
   saveBookmarkBackup,
 } from "./bookmark-backups.js";
 
-document.getElementById("backup").addEventListener("click", exportCurrentTabs);
+const limitNotice = document.getElementById("limit-notice");
+
+document
+  .getElementById("backup")
+  .addEventListener("click", () => exportCurrentTabs());
+
+document.getElementById("limit-confirm").addEventListener("click", () => {
+  limitNotice.hidden = true;
+  exportCurrentTabs({ confirmedDeletion: true });
+});
+
+document.getElementById("limit-cancel").addEventListener("click", () => {
+  limitNotice.hidden = true;
+  document.getElementById("backup").focus();
+});
+
+document.getElementById("limit-settings").addEventListener("click", () => {
+  browser.runtime.openOptionsPage().catch((err) => console.error(err));
+  window.close();
+});
+
+limitNotice.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") document.getElementById("limit-cancel").click();
+});
 
 document.getElementById("restore").addEventListener("click", () => {
   browser.tabs
@@ -51,7 +75,7 @@ function getCurrentWindowTabs() {
   return browser.tabs.query({ currentWindow: true });
 }
 
-async function exportCurrentTabs() {
+async function exportCurrentTabs({ confirmedDeletion = false } = {}) {
   const [tabs, settings] = await Promise.all([
     getCurrentWindowTabs(),
     getSettings(),
@@ -63,6 +87,15 @@ async function exportCurrentTabs() {
     try {
       if (!(await hasBookmarksPermission())) {
         throw new Error("bookmark access was removed in about:addons");
+      }
+      if (!confirmedDeletion) {
+        const doomed = await backupsDeletedByNextSave(
+          settings.keepBookmarkBackups,
+        );
+        if (doomed.length > 0) {
+          showLimitNotice(settings.keepBookmarkBackups, doomed);
+          return;
+        }
       }
       const skipped = await saveBookmarkBackup(tabs, now, {
         keep: settings.keepBookmarkBackups,
@@ -82,6 +115,34 @@ async function exportCurrentTabs() {
   } else {
     window.close();
   }
+}
+
+// Asks before a bookmark backup deletes older ones to stay within the limit.
+function showLimitNotice(keep, doomed) {
+  document.getElementById("limit-title").textContent =
+    `You've reached your limit of ${keep} bookmark ${keep === 1 ? "backup" : "backups"}`;
+  document.getElementById("limit-text").textContent =
+    doomed.length === 1
+      ? "Backing up now deletes your oldest backup:"
+      : `Backing up now deletes your ${doomed.length} oldest backups:`;
+
+  const shown = doomed.slice(-3).reverse(); // oldest first
+  const items = shown.map((backup) => {
+    const item = document.createElement("li");
+    item.className = "truncate";
+    item.textContent = backup.title;
+    item.title = backup.title;
+    return item;
+  });
+  if (doomed.length > shown.length) {
+    const more = document.createElement("li");
+    more.textContent = `and ${doomed.length - shown.length} more`;
+    items.push(more);
+  }
+  document.getElementById("limit-list").replaceChildren(...items);
+
+  limitNotice.hidden = false;
+  document.getElementById("limit-confirm").focus();
 }
 
 async function downloadBackup(tabs, settings, now) {
