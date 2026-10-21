@@ -150,10 +150,10 @@ folder contains bundled and minified code built by webpack from `src`.
 Replace `0.7.0` with the new version in every command. Each release needs a
 version higher than the one already on Firefox Add-ons.
 
-1. Start from an up-to-date `main`:
+1. Start from an up-to-date `master`:
 
    ```sh
-   git switch main
+   git switch master
    git pull --ff-only
    pnpm install --frozen-lockfile
    ```
@@ -178,7 +178,7 @@ version higher than the one already on Firefox Add-ons.
    git add src/manifest.json
    git commit -m "release: 0.7.0"
    git tag v0.7.0
-   git push origin main v0.7.0
+   git push origin master v0.7.0
    ```
 
 6. Package the extension and zip the source code for Mozilla's reviewers:
@@ -198,12 +198,6 @@ version higher than the one already on Firefox Add-ons.
 
 8. Check the review status and add release notes in the
    [Add-on Developer Hub](https://addons.mozilla.org/developers/addons).
-9. Bring `wip` up to date before continuing work:
-
-   ```sh
-   git switch wip
-   git merge --ff-only main
-   ```
 
 ## Assets
 
