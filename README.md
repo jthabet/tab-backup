@@ -2,21 +2,22 @@
 
 ![Tab Backup folder icon](./src/icons/folder_10773696-@128px.png)
 
-A Firefox extension for exporting the tabs in the current window to a JSON
-file and restoring tabs from a previous export.
+A Firefox extension for backing up the tabs in the current window to a file
+(JSON, Markdown, plain text or HTML bookmarks) and restoring tabs from a
+previous backup.
 
 [Install Tab Backup from Firefox Add-ons](https://addons.mozilla.org/en-GB/firefox/addon/tab-backup/)
 
 ## Requirements
 
-- A current Node.js LTS release
-- [pnpm](https://pnpm.io/installation)
+- Node.js 22 or later
+- [pnpm](https://pnpm.io/installation) 12
 - Firefox or Firefox Developer Edition
 
 ## Install dependencies
 
 ```sh
-pnpm install
+pnpm install --frozen-lockfile
 ```
 
 ## Test in Firefox
@@ -126,8 +127,85 @@ temporary installation workflow above for local development.
 The `web-ext` configuration is in `package.json` and the webpack integration is
 in `webpack.config.mjs`.
 
+## Build from source
+
+These steps reproduce the files submitted to Firefox Add-ons. The `dist`
+folder contains bundled and minified code built by webpack from `src`.
+
+1. Install Node.js 22 or later and pnpm 12.
+2. Install the exact dependency versions from `pnpm-lock.yaml`:
+
+   ```sh
+   pnpm install --frozen-lockfile
+   ```
+
+3. Build the extension into `dist`:
+
+   ```sh
+   pnpm build
+   ```
+
+## Release to Firefox Add-ons
+
+Replace `0.7.0` with the new version in every command. Each release needs a
+version higher than the one already on Firefox Add-ons.
+
+1. Start from an up-to-date `main`:
+
+   ```sh
+   git switch main
+   git pull --ff-only
+   pnpm install --frozen-lockfile
+   ```
+
+2. Run the [smoke test](#suggested-smoke-test) with `pnpm dev`, then press
+   `Ctrl+C`.
+3. Set the new version in `src/manifest.json`:
+
+   ```sh
+   sed -i '' -E 's/"version": "[^"]+"/"version": "0.7.0"/' src/manifest.json
+   ```
+
+4. Build and lint. This must report 0 errors:
+
+   ```sh
+   pnpm lint
+   ```
+
+5. Commit, tag and push the release:
+
+   ```sh
+   git add src/manifest.json
+   git commit -m "release: 0.7.0"
+   git tag v0.7.0
+   git push origin main v0.7.0
+   ```
+
+6. Package the extension and zip the source code for Mozilla's reviewers:
+
+   ```sh
+   pnpm build-extension
+   git archive --format=zip -o web-ext-artifacts/tab_backup-0.7.0-source.zip v0.7.0
+   ```
+
+7. Submit the new version. This reads the AMO API key and secret from
+   1Password, then waits up to 15 minutes for approval; if it times out, the
+   submission still went through.
+
+   ```sh
+   pnpm exec web-ext sign --channel=listed --api-key="$(op read 'op://dev/Firefox add-on/username')" --api-secret="$(op read 'op://dev/Firefox add-on/credential')" --upload-source-code=web-ext-artifacts/tab_backup-0.7.0-source.zip
+   ```
+
+8. Check the review status and add release notes in the
+   [Add-on Developer Hub](https://addons.mozilla.org/developers/addons).
+9. Bring `wip` up to date before continuing work:
+
+   ```sh
+   git switch wip
+   git merge --ff-only main
+   ```
+
 ## Assets
 
-The interface icons come from [Tabler Icons](https://github.com/tabler/tabler-icons).
-The folder icon is by
+The button and page icons are drawn for Tab Backup. The folder icon is by
 [Smashicons on Freepik](https://www.freepik.com/icon/folder_10773696).

@@ -37,4 +37,5 @@ The `webExt` key in `package.json` must keep `sourceDir: "dist"`; `src/` imports
 ## Versioning and release
 
 - The extension version and add-on ID (`browser_specific_settings.gecko.id`, public on AMO) live in `src/manifest.json`; `package.json`'s version is unrelated.
+- The full release procedure (version bump, tag, source zip for AMO reviewers, `web-ext sign --channel=listed --upload-source-code`) is in the README's "Release to Firefox Add-ons" section. `pnpm-lock.yaml` is committed so reviewers can reproduce the build with `pnpm install --frozen-lockfile`.
 - `make sign-extension` builds and signs `dist/`, reading the AMO API key/secret from 1Password via `op read`; `.env.example` holds the same `op://` references. In Makefile recipes, shell command substitution must be written `$$(...)`. Never inline real secrets.
