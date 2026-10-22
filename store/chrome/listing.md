@@ -109,6 +109,6 @@ A contact email must be set and verified before the first submission.
 
 ## Version history
 
-| Version | Date       | Changes                                                                              | Status |
-| ------- | ---------- | ------------------------------------------------------------------------------------ | ------ |
-| 0.8.0   | 2026-10-22 | First Chrome Web Store release: file and bookmark backups, restore preview, settings | Draft  |
+| Version | Date       | Changes                                                                              | Status    |
+| ------- | ---------- | ------------------------------------------------------------------------------------ | --------- |
+| 0.8.0   | 2026-10-22 | First Chrome Web Store release: file and bookmark backups, restore preview, settings | Submitted |
