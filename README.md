@@ -119,6 +119,23 @@ For more detail, see Mozilla's guides to
 [temporary installation](https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/)
 and [`web-ext`](https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/).
 
+## Test in Chrome and other Chromium browsers
+
+The same sources build a Chromium version into `dist-chrome/`:
+
+```sh
+pnpm build:chrome   # one-off build
+pnpm dev:chrome     # watch + launch Google Chrome Dev with a temporary profile
+```
+
+To load it by hand, open `chrome://extensions`, turn on **Developer mode**,
+click **Load unpacked** and pick `dist-chrome/` (it works the same in Brave,
+Edge and other Chromium browsers). Reader View pages restore as normal pages,
+since Chromium has no Reader View.
+
+`pnpm build-extension:chrome` packages `dist-chrome/` as a zip for the Chrome
+Web Store in `web-ext-artifacts/`.
+
 ## Build a package
 
 ```sh

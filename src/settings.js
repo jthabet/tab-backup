@@ -50,25 +50,29 @@ async function init() {
 
   let currentDestination = destination;
   for (const input of destinationInputs) {
-    input.addEventListener("change", () => {
+    input.addEventListener("change", async () => {
       if (input.value === "file") {
         currentDestination = "file";
         save({ destination: "file" });
         return;
       }
-      // Firefox only shows the permission prompt for a direct user action,
+      // Browsers only show the permission prompt for a direct user action,
       // so request it before awaiting anything else.
-      requestBookmarksPermission().then((granted) => {
-        if (granted) {
-          currentDestination = input.value;
-          save({ destination: input.value });
-        } else {
-          for (const other of destinationInputs) {
-            other.checked = other.value === currentDestination;
-          }
-          showStatus("Bookmark backups need access to your bookmarks.");
+      let granted = false;
+      try {
+        granted = await requestBookmarksPermission();
+      } catch (err) {
+        console.error(err);
+      }
+      if (granted) {
+        currentDestination = input.value;
+        save({ destination: input.value });
+      } else {
+        for (const other of destinationInputs) {
+          other.checked = other.value === currentDestination;
         }
-      });
+        showStatus("Bookmark backups need access to your bookmarks.");
+      }
     });
   }
 

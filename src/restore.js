@@ -15,28 +15,24 @@ const skipOpen = document.getElementById("skip-open");
 // The backup shown in the preview: [{ title, url, openable, alreadyOpen, checkbox }]
 let previewEntries = [];
 
-document.getElementById("input").addEventListener("change", (event) => {
+document.getElementById("input").addEventListener("change", async (event) => {
   const input = event.target;
   const file = input.files[0];
   if (!file) return;
-  file
-    .text()
-    .then((text) => {
-      const entries = parseBackup(text);
-      if (entries.length === 0) {
-        status.textContent = "No tabs found in this file.";
-        return;
-      }
-      return showPreview(file.name, entries);
-    })
-    .catch((err) => {
-      console.error(err);
-      status.textContent = "Couldn't read this file.";
-    })
+  try {
+    const entries = parseBackup(await file.text());
+    if (entries.length === 0) {
+      status.textContent = "No tabs found in this file.";
+      return;
+    }
+    await showPreview(file.name, entries);
+  } catch (err) {
+    console.error(err);
+    status.textContent = "Couldn't read this file.";
+  } finally {
     // Allow choosing the same file again to re-trigger the change event.
-    .finally(() => {
-      input.value = "";
-    });
+    input.value = "";
+  }
 });
 
 document.getElementById("select-all").addEventListener("click", () => {
@@ -195,7 +191,16 @@ async function openUrls(urls) {
 }
 
 async function initBookmarkBackups() {
-  if (!(await hasBookmarksPermission())) return;
+  if (!(await hasBookmarksPermission())) {
+    // Show the backups as soon as access is granted in settings.
+    const onAdded = ({ permissions = [] }) => {
+      if (!permissions.includes("bookmarks")) return;
+      browser.permissions.onAdded.removeListener(onAdded);
+      initBookmarkBackups();
+    };
+    browser.permissions.onAdded.addListener(onAdded);
+    return;
+  }
   document.getElementById("synced").hidden = false;
   await renderBookmarkBackups();
 
@@ -331,6 +336,7 @@ const NEW_TAB_URLS = new Set([
   "about:newtab",
   "about:home",
   "about:privatebrowsing",
+  "chrome://newtab/",
 ]);
 
 // Schemes tabs.create rejects as "Illegal URL" (about:blank is the one
@@ -345,7 +351,11 @@ function toCreateProperties(url) {
     const original = new URLSearchParams(url.slice("about:reader?".length)).get(
       "url",
     );
-    return original ? { url: original, openInReaderMode: true } : null;
+    if (!original) return null;
+    // Chromium has no Reader View and rejects unknown properties.
+    return process.env.BROWSER === "firefox"
+      ? { url: original, openInReaderMode: true }
+      : { url: original };
   }
   if (url === "about:blank") return { url };
   if (PRIVILEGED_SCHEMES.test(url)) return null;

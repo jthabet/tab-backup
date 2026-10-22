@@ -6,3 +6,4 @@ dist
 
 .agents
 skills-lock.json
+dist-chrome

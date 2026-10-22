@@ -1,14 +1,17 @@
 // Bookmark backups: each backup is a folder of bookmarks inside a root
-// folder under Other Bookmarks, so Firefox Sync carries it to the user's
-// other devices. Needs the optional "bookmarks" permission.
+// folder under Other Bookmarks, so the browser's sync carries it to the
+// user's other devices. Needs the optional "bookmarks" permission.
 //
 // The root is recognized by a marker bookmark inside it, never by its name,
 // so a folder the user created with the same name is never listed, adopted
 // or pruned. The marker also survives renaming, moving and syncing.
 
-const OTHER_BOOKMARKS_ID = "unfiled_____";
+// Firefox and Chromium bookmarks never sync with each other, so each build
+// has its own marker. Neither may change after release.
 const MARKER_URL =
-  "https://addons.mozilla.org/firefox/addon/tab-backup/?src=backup-folder";
+  process.env.BROWSER === "firefox"
+    ? "https://addons.mozilla.org/firefox/addon/tab-backup/?src=backup-folder"
+    : "https://github.com/jthabet/tab-backup?src=backup-folder";
 const MARKER_TITLE =
   "About these backups: the oldest are deleted when you reach your limit";
 
@@ -63,7 +66,7 @@ export async function listBookmarkBackups() {
   for (const root of await findRoots()) {
     const [tree] = await browser.bookmarks.getSubTree(root.id);
     for (const node of tree.children ?? []) {
-      if (node.type !== "folder") continue;
+      if (!isFolder(node)) continue;
       backups.push({
         id: node.id,
         title: node.title,
@@ -114,7 +117,7 @@ async function findRoots() {
   ];
   if (parentIds.length === 0) return [];
   const parents = await browser.bookmarks.get(parentIds);
-  return parents.filter((node) => node.type === "folder");
+  return parents.filter(isFolder);
 }
 
 async function getOrCreateRoot(folderName) {
@@ -122,12 +125,13 @@ async function getOrCreateRoot(folderName) {
   if (existing) return existing;
 
   // Don't create a second folder that looks like one the user already has.
-  const siblings = await browser.bookmarks.getChildren(OTHER_BOOKMARKS_ID);
+  const parentId = await otherBookmarksId();
+  const siblings = await browser.bookmarks.getChildren(parentId);
   const taken = siblings.some(
-    (node) => node.type === "folder" && node.title === folderName,
+    (node) => isFolder(node) && node.title === folderName,
   );
   const root = await browser.bookmarks.create({
-    parentId: OTHER_BOOKMARKS_ID,
+    parentId,
     title: taken ? `${folderName} (backups)` : folderName,
   });
   await browser.bookmarks.create({
@@ -137,6 +141,20 @@ async function getOrCreateRoot(folderName) {
     url: MARKER_URL,
   });
   return root;
+}
+
+async function otherBookmarksId() {
+  if (process.env.BROWSER === "firefox") return "unfiled_____";
+  // Chromium 134+ labels the top-level folders, and may hold both a local
+  // and a synced (account) copy of each; prefer the synced one.
+  const top = await browser.bookmarks.getChildren("0");
+  const other = top.filter((node) => node.folderType === "other");
+  return (other.find((node) => node.syncing) ?? other[0])?.id ?? "2";
+}
+
+// Firefox sets node.type; Chromium only leaves out url on folders.
+function isFolder(node) {
+  return node.type ? node.type === "folder" : !node.url;
 }
 
 function formatDate(date) {

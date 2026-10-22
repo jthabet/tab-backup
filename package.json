@@ -34,10 +34,14 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack -w --env launchFirefox=false",
+    "start": "webpack -w --env launchBrowser=false",
     "dev": "webpack -w",
+    "build:chrome": "webpack --mode production --env target=chrome",
+    "start:chrome": "webpack -w --env target=chrome --env launchBrowser=false",
+    "dev:chrome": "webpack -w --env target=chrome",
     "lint": "pnpm build && web-ext lint",
     "build-extension": "web-ext build",
+    "build-extension:chrome": "pnpm build:chrome && web-ext build -s dist-chrome --filename tab_backup-chrome-{version}.zip",
     "sign-extension": "make sign-extension"
   },
   "webExt": {
