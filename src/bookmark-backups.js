@@ -15,6 +15,8 @@ const MARKER_URL =
 const MARKER_TITLE =
   "About these backups: the oldest are deleted when you reach your limit";
 
+import { saveSettings } from "./settings-store.js";
+
 const PERMISSION = { permissions: ["bookmarks"] };
 
 export function hasBookmarksPermission() {
@@ -90,6 +92,13 @@ export function deleteBookmarkBackup(id) {
   return browser.bookmarks.removeTree(id);
 }
 
+// The backup folder's current name, or null if there's none yet. It can
+// differ from the setting if the user renamed the folder themselves.
+export async function getBackupFolderName() {
+  const [root] = await findRoots();
+  return root?.title ?? null;
+}
+
 // Renames every marked root, e.g. after the folder name setting changes.
 export async function renameBackupFolder(name) {
   for (const root of await findRoots()) {
@@ -130,10 +139,10 @@ async function getOrCreateRoot(folderName) {
   const taken = siblings.some(
     (node) => isFolder(node) && node.title === folderName,
   );
-  const root = await browser.bookmarks.create({
-    parentId,
-    title: taken ? `${folderName} (backups)` : folderName,
-  });
+  const title = taken ? `${folderName} (backups)` : folderName;
+  const root = await browser.bookmarks.create({ parentId, title });
+  // Keep the setting in step with the name the folder actually got.
+  if (title !== folderName) await saveSettings({ bookmarkFolderName: title });
   await browser.bookmarks.create({
     parentId: root.id,
     index: 0,

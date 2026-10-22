@@ -6,6 +6,7 @@ import {
   saveSettings,
 } from "./settings-store.js";
 import {
+  getBackupFolderName,
   hasBookmarksPermission,
   renameBackupFolder,
   requestBookmarksPermission,
@@ -42,6 +43,7 @@ async function init() {
   }
   keepInput.value = settings.keepBookmarkBackups;
   folderNameInput.value = settings.bookmarkFolderName;
+  if (destination !== "file") showActualFolderName(settings.bookmarkFolderName);
   for (const input of formatInputs) {
     input.checked = input.value === settings.format;
   }
@@ -136,6 +138,28 @@ function updatePreview() {
   const name = formatFilename(filenameInput.value, new Date(), 12);
   preview.textContent = `${name}.${selectedFormat().extension}`;
 }
+
+// Shows the backup folder's real name, which differs from the setting if a
+// folder of that name already existed or the user renamed it.
+async function showActualFolderName(saved) {
+  try {
+    const actual = await getBackupFolderName();
+    if (actual && actual !== saved) {
+      folderNameInput.value = actual;
+      await saveSettings({ bookmarkFolderName: actual });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// A backup made while this page is open may rename the folder.
+browser.storage.sync.onChanged.addListener((changes) => {
+  const name = changes.bookmarkFolderName?.newValue;
+  if (name && document.activeElement !== folderNameInput) {
+    folderNameInput.value = name;
+  }
+});
 
 async function save(changes) {
   try {
