@@ -222,6 +222,28 @@ version higher than the one already on Firefox Add-ons.
 8. Check the review status and add release notes in the
    [Add-on Developer Hub](https://addons.mozilla.org/developers/addons).
 
+## Release to the Chrome Web Store
+
+The same version number is used for both stores. After the Firefox release
+steps above (version bump, tag):
+
+1. Build and package the Chromium version:
+
+   ```sh
+   pnpm build-extension:chrome
+   ```
+
+   This creates `web-ext-artifacts/tab_backup-chrome-<version>.zip`.
+
+2. Load `dist-chrome/` with **Load unpacked** on `chrome://extensions` and run
+   the [smoke test](#suggested-smoke-test).
+3. In the [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole),
+   open Tab Backup, go to **Package** and upload the zip.
+4. Update the store listing and privacy answers if anything changed. All the
+   text and graphics are in [`store/chrome/listing.md`](store/chrome/listing.md);
+   the privacy policy is [`PRIVACY.md`](PRIVACY.md).
+5. Click **Submit for review**. Reviews usually take a few days.
+
 ## Assets
 
 The button and page icons are drawn for Tab Backup. The folder icon is by

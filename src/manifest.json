@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "version": "0.8.0",
   "name": "Tab Backup",
-  "description": "Import and export tabs in a file.",
+  "description": "Back up the tabs in your window to a file or a bookmark folder, then preview and restore them.",
   "permissions": [
     "tabs",
     "downloads",

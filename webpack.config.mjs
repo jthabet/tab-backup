@@ -16,6 +16,11 @@ const CHROME_COPY = {
       /signed in to Firefox and\s+add-on sync is on\./,
       "signed in to your browser with sync on.",
     ],
+    // Chromium has no Reader View.
+    [
+      /including new tab and\s+Reader View\s+pages\./,
+      "including new tab pages.",
+    ],
   ],
   "restore.html": [
     [/once\s+Firefox Sync has run\./, "once your browser has synced."],
