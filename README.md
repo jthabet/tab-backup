@@ -2,250 +2,42 @@
 
 ![Tab Backup folder icon](./src/icons/folder_10773696-@128px.png)
 
-A Firefox and Chrome extension for backing up the tabs in the current window
-to a file (JSON, Markdown, plain text or HTML bookmarks) or a synced bookmark
-folder, and restoring tabs from a previous backup.
+Back up every tab in the current window in one click, and bring them back
+whenever you need them. Works in Firefox and Chrome (and Brave, Edge and other
+Chromium browsers).
 
-- [Install Tab Backup from Firefox Add-ons](https://addons.mozilla.org/en-GB/firefox/addon/tab-backup/)
-- [Install Tab Backup from the Chrome Web Store](https://chromewebstore.google.com/detail/gapfigidccddefbabbcfcnapckpcdeap) (also works in Brave and Edge)
+- [Install from Firefox Add-ons](https://addons.mozilla.org/en-GB/firefox/addon/tab-backup/)
+- [Install from the Chrome Web Store](https://chromewebstore.google.com/detail/gapfigidccddefbabbcfcnapckpcdeap)
 
-## Requirements
+## Features
 
-- Node.js 22 or later
-- [pnpm](https://pnpm.io/installation) 12
-- Firefox or Firefox Developer Edition
+- **Back up** to a file (JSON, Markdown, plain text or HTML bookmarks), to a
+  bookmark folder that your browser syncs to your other devices, or both.
+- **Restore** from any backup with a preview: choose which tabs come back, and
+  tabs that are already open are left out.
+- **Settings** for the file format, file name pattern, bookmark folder name and
+  how many bookmark backups to keep.
 
-## Install dependencies
-
-```sh
-pnpm install --frozen-lockfile
-```
-
-## Test in Firefox
-
-Firefox must load the compiled extension from `dist`. The files in `src`
-import CSS that webpack compiles with Tailwind, so they cannot be loaded
-directly.
-
-### Manual testing
-
-This workflow works with any local Firefox installation:
-
-1. Build the extension:
-
-   ```sh
-   pnpm build
-   ```
-
-2. Open `about:debugging` in Firefox.
-3. Select **This Firefox**.
-4. Select **Load Temporary Add-on**.
-5. Choose `dist/manifest.json` from this repository.
-
-The temporary extension remains installed until it is removed or Firefox is
-restarted. After changing the source, run `pnpm build` again and select
-**Reload** next to Tab Backup on the `about:debugging` page.
-
-### Watch mode
-
-To rebuild `dist` whenever a source file changes, run:
-
-```sh
-pnpm start
-```
-
-Load `dist/manifest.json` using the [manual testing](#manual-testing) workflow.
-After a rebuild, select **Reload** next to Tab Backup on `about:debugging`.
-Press `Ctrl+C` to stop watching.
-
-### Firefox Developer Edition
-
-To rebuild on changes and also launch Firefox Developer Edition with the
-extension installed and reloaded automatically, run:
-
-```sh
-pnpm dev
-```
-
-The temporary profile does not contain your usual tabs, accounts, settings, or
-installed add-ons, and its changes are discarded when the process stops. The
-Firefox executable is configured in `webpack.config.mjs`.
-
-To run `web-ext` directly against an existing build (it reads the `webExt`
-settings in `package.json`, which point at `dist` and Developer Edition):
-
-```sh
-pnpm exec web-ext run --devtools
-```
-
-To test Tab Backup with your existing Firefox profile and real tabs, keep your
-normal Firefox window open and use the [manual testing](#manual-testing)
-workflow instead. Loading `dist/manifest.json` from `about:debugging` installs
-the extension temporarily in that running profile without configuring webpack
-to write to your everyday profile.
-
-If `pnpm dev` reports that a profile is already in use, close the
-Firefox window previously opened by the command and run it again. A dedicated
-reusable development profile can also be selected with the `firefoxProfile`
-option in `webpack.config.mjs`, but it should not point to a profile used for
-everyday browsing.
-
-### Suggested smoke test
-
-1. Confirm the toolbar badge shows the number of open tabs.
-2. Open the extension popup and confirm the current window's tabs are listed.
-3. Select a tab title and confirm Firefox activates that tab.
-4. Select **Back up** and confirm a timestamped JSON file is saved.
-5. Select **Restore…**, choose the exported file, confirm the preview lists
-   its tabs with already-open ones unchecked, then select **Open** and confirm
-   the checked tabs reopen.
-6. Open settings with the gear button, pick another format and file name
-   pattern, and confirm the next backup uses them and still restores.
-7. In settings, choose **Bookmarks**, allow bookmark access, select
-   **Back up**, and confirm a dated folder appears in Other Bookmarks › Tab
-   Backup and in the list on the restore page, where **Restore** and
-   **Delete** work.
-8. Open and close a tab and confirm the badge count changes.
-
-To inspect runtime errors, find Tab Backup on `about:debugging` and select
-**Inspect**.
-
-To check the built extension with Mozilla's add-on linter, run:
-
-```sh
-pnpm lint
-```
-
-For more detail, see Mozilla's guides to
-[temporary installation](https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/)
-and [`web-ext`](https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/).
-
-## Test in Chrome and other Chromium browsers
-
-The same sources build a Chromium version into `dist-chrome/`:
-
-```sh
-pnpm build:chrome   # one-off build
-pnpm dev:chrome     # watch + launch Google Chrome Dev with a temporary profile
-```
-
-To load it by hand, open `chrome://extensions`, turn on **Developer mode**,
-click **Load unpacked** and pick `dist-chrome/` (it works the same in Brave,
-Edge and other Chromium browsers). Reader View pages restore as normal pages,
-since Chromium has no Reader View.
-
-`pnpm build-extension:chrome` packages `dist-chrome/` as a zip for the Chrome
-Web Store in `web-ext-artifacts/`.
-
-## Build a package
-
-```sh
-pnpm build
-pnpm build-extension
-```
-
-The packaged extension is written to `web-ext-artifacts`. Regular Firefox
-builds require extensions to be signed for permanent installation; use the
-temporary installation workflow above for local development.
-
-The `web-ext` configuration is in `package.json` and the webpack integration is
-in `webpack.config.mjs`.
+Tab Backup doesn't collect or send any data. See the
+[privacy policy](PRIVACY.md).
 
 ## Build from source
 
-These steps reproduce the files submitted to Firefox Add-ons. The `dist`
-folder contains bundled and minified code built by webpack from `src`.
+Requires Node.js 22 or later and [pnpm](https://pnpm.io/installation) 12.
 
-1. Install Node.js 22 or later and pnpm 12.
-2. Install the exact dependency versions from `pnpm-lock.yaml`:
+```sh
+pnpm install --frozen-lockfile
+pnpm build          # Firefox build in dist/
+pnpm build:chrome   # Chromium build in dist-chrome/
+```
 
-   ```sh
-   pnpm install --frozen-lockfile
-   ```
+These steps reproduce the files submitted to the stores. The built folders
+contain bundled, minified code built by webpack from `src/`.
 
-3. Build the extension into `dist`:
+- [Development and testing](docs/DEVELOPMENT.md)
+- [Releasing a new version](docs/RELEASE.md)
 
-   ```sh
-   pnpm build
-   ```
-
-## Release to Firefox Add-ons
-
-Replace `0.7.0` with the new version in every command. Each release needs a
-version higher than the one already on Firefox Add-ons.
-
-1. Start from an up-to-date `master`:
-
-   ```sh
-   git switch master
-   git pull --ff-only
-   pnpm install --frozen-lockfile
-   ```
-
-2. Run the [smoke test](#suggested-smoke-test) with `pnpm dev`, then press
-   `Ctrl+C`.
-3. Set the new version in `src/manifest.json`:
-
-   ```sh
-   sed -i '' -E 's/"version": "[^"]+"/"version": "0.7.0"/' src/manifest.json
-   ```
-
-4. Build and lint. This must report 0 errors:
-
-   ```sh
-   pnpm lint
-   ```
-
-5. Commit, tag and push the release:
-
-   ```sh
-   git add src/manifest.json
-   git commit -m "release: 0.7.0"
-   git tag v0.7.0
-   git push origin master v0.7.0
-   ```
-
-6. Package the extension and zip the source code for Mozilla's reviewers:
-
-   ```sh
-   pnpm build-extension
-   git archive --format=zip -o web-ext-artifacts/tab_backup-0.7.0-source.zip v0.7.0
-   ```
-
-7. Submit the new version. This reads the AMO API key and secret from
-   1Password, then waits up to 15 minutes for approval; if it times out, the
-   submission still went through.
-
-   ```sh
-   pnpm exec web-ext sign --channel=listed --api-key="$(op read 'op://dev/Firefox add-on/username')" --api-secret="$(op read 'op://dev/Firefox add-on/credential')" --upload-source-code=web-ext-artifacts/tab_backup-0.7.0-source.zip
-   ```
-
-8. Check the review status and add release notes in the
-   [Add-on Developer Hub](https://addons.mozilla.org/developers/addons).
-
-## Release to the Chrome Web Store
-
-The same version number is used for both stores. After the Firefox release
-steps above (version bump, tag):
-
-1. Build and package the Chromium version:
-
-   ```sh
-   pnpm build-extension:chrome
-   ```
-
-   This creates `web-ext-artifacts/tab_backup-chrome-<version>.zip`.
-
-2. Load `dist-chrome/` with **Load unpacked** on `chrome://extensions` and run
-   the [smoke test](#suggested-smoke-test).
-3. In the [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole),
-   open Tab Backup, go to **Package** and upload the zip.
-4. Update the store listing and privacy answers if anything changed. All the
-   text and graphics are in [`store/chrome/listing.md`](store/chrome/listing.md);
-   the privacy policy is [`PRIVACY.md`](PRIVACY.md).
-5. Click **Submit for review**. Reviews usually take a few days.
-
-## Assets
+## Credits
 
 The button and page icons are drawn for Tab Backup. The folder icon is by
 [Smashicons on Freepik](https://www.freepik.com/icon/folder_10773696).

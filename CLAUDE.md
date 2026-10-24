@@ -20,7 +20,7 @@ make                  # clean + build + package
 pnpm build:chrome     # Chromium build into dist-chrome/ (also start:chrome, dev:chrome, build-extension:chrome)
 ```
 
-There is no automated test suite. Sample backups of three tabs in every format live in `samples/` for testing restore. Verify changes by loading `dist/manifest.json` via `about:debugging` → This Firefox → Load Temporary Add-on (Reload after each rebuild), and running the smoke test in `README.md`. Use **Inspect** on `about:debugging` for runtime errors.
+There is no automated test suite. Sample backups of three tabs in every format live in `samples/` for testing restore. Verify changes by loading `dist/manifest.json` via `about:debugging` → This Firefox → Load Temporary Add-on (Reload after each rebuild), and running the smoke test in `docs/DEVELOPMENT.md`. Use **Inspect** on `about:debugging` for runtime errors.
 
 The `webExt` key in `package.json` must keep `sourceDir: "dist"`; `src/` imports CSS that only webpack can resolve, so web-ext cannot lint or load it.
 
@@ -41,6 +41,7 @@ The `webExt` key in `package.json` must keep `sourceDir: "dist"`; `src/` imports
 
 - The extension version and add-on ID (`browser_specific_settings.gecko.id`, public on AMO) live in `src/manifest.json`; `package.json`'s version is unrelated.
 - Minimum versions: `gecko.strict_min_version` 140.0 (current ESR; Tailwind v4 needs 128+, `data_collection_permissions` 140+) and `gecko_android.strict_min_version` 142.0 (Android gained `data_collection_permissions` in 142). Don't use web platform features newer than these.
+- Docs: `README.md` is for users (features, install links, build from source, which AMO reviewers rely on); developer setup and testing live in `docs/DEVELOPMENT.md`, releases in `docs/RELEASE.md`.
 - Store listings: `store/listing.md` + `store/screenshots/` (Firefox Add-ons) and `store/chrome/listing.md` + `store/chrome/` (Chrome Web Store; screenshots rendered from the Chromium build so the wording matches). `PRIVACY.md` is the privacy policy linked from both stores; keep it in step with permissions. The manifest `description` is the Chrome Web Store summary (132 characters max).
-- The full release procedure (version bump, tag, source zip for AMO reviewers, `web-ext sign --channel=listed --upload-source-code`) is in the README's "Release to Firefox Add-ons" section. `pnpm-lock.yaml` is committed so reviewers can reproduce the build with `pnpm install --frozen-lockfile`.
+- The full release procedure (version bump, tag, source zip for AMO reviewers, `web-ext sign --channel=listed --upload-source-code`, Chrome Web Store upload) is in `docs/RELEASE.md`, covering both stores. `pnpm-lock.yaml` is committed so reviewers can reproduce the build with `pnpm install --frozen-lockfile`.
 - `make sign-extension` builds and signs `dist/`, reading the AMO API key/secret from 1Password via `op read`; `.env.example` holds the same `op://` references. In Makefile recipes, shell command substitution must be written `$$(...)`. Never inline real secrets.
