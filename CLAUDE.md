@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Tab Backup is a Firefox (Manifest V3) extension that backs up the current window's tabs to a file (JSON, Markdown, plain text or HTML bookmarks) and/or a synced bookmark folder, and reopens tabs from either. Published on Firefox Add-ons. Plain DOM JavaScript (no UI framework) + Tailwind CSS v4, bundled with webpack/Babel. Package manager is **pnpm**.
+Tab Backup is a Firefox (Manifest V3) extension that backs up the current window's tabs to a file (JSON, Markdown, plain text or HTML bookmarks) and/or a synced bookmark folder, and reopens tabs from either. Published on Firefox Add-ons and the Chrome Web Store (ID `gapfigidccddefbabbcfcnapckpcdeap`), built from the same sources. Plain DOM JavaScript (no UI framework) + Tailwind CSS v4, bundled with webpack/Babel. Package manager is **pnpm**.
 
 ## Commands
 

@@ -1,5 +1,7 @@
 # Chrome Web Store listing
 
+Live at https://chromewebstore.google.com/detail/gapfigidccddefbabbcfcnapckpcdeap
+
 Text and assets for the Chrome Web Store Developer Dashboard
 (https://chrome.google.com/webstore/devconsole). Upload
 `web-ext-artifacts/tab_backup-chrome-<version>.zip` from
@@ -111,4 +113,4 @@ A contact email must be set and verified before the first submission.
 
 | Version | Date       | Changes                                                                              | Status    |
 | ------- | ---------- | ------------------------------------------------------------------------------------ | --------- |
-| 0.8.0   | 2026-10-22 | First Chrome Web Store release: file and bookmark backups, restore preview, settings | Submitted |
+| 0.8.0   | 2026-10-22 | First Chrome Web Store release: file and bookmark backups, restore preview, settings | Published |

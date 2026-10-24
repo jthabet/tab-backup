@@ -2,11 +2,12 @@
 
 ![Tab Backup folder icon](./src/icons/folder_10773696-@128px.png)
 
-A Firefox extension for backing up the tabs in the current window to a file
-(JSON, Markdown, plain text or HTML bookmarks) and restoring tabs from a
-previous backup.
+A Firefox and Chrome extension for backing up the tabs in the current window
+to a file (JSON, Markdown, plain text or HTML bookmarks) or a synced bookmark
+folder, and restoring tabs from a previous backup.
 
-[Install Tab Backup from Firefox Add-ons](https://addons.mozilla.org/en-GB/firefox/addon/tab-backup/)
+- [Install Tab Backup from Firefox Add-ons](https://addons.mozilla.org/en-GB/firefox/addon/tab-backup/)
+- [Install Tab Backup from the Chrome Web Store](https://chromewebstore.google.com/detail/gapfigidccddefbabbcfcnapckpcdeap) (also works in Brave and Edge)
 
 ## Requirements
 
