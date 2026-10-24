@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "0.8.0",
+  "version": "0.9.0",
   "name": "Tab Backup",
   "description": "Back up the tabs in your window to a file or a bookmark folder, then preview and restore them.",
   "permissions": [
