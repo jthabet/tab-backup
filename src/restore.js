@@ -4,6 +4,9 @@ import {
   hasBookmarksPermission,
   listBookmarkBackups,
 } from "./bookmark-backups.js";
+import { localizePage, plural, t } from "./i18n.js";
+
+localizePage();
 
 const status = document.getElementById("status");
 const startView = document.getElementById("start-view");
@@ -22,13 +25,13 @@ document.getElementById("input").addEventListener("change", async (event) => {
   try {
     const entries = parseBackup(await file.text());
     if (entries.length === 0) {
-      status.textContent = "No tabs found in this file.";
+      status.textContent = t("noTabsInFile");
       return;
     }
     await showPreview(file.name, entries);
   } catch (err) {
     console.error(err);
-    status.textContent = "Couldn't read this file.";
+    status.textContent = t("cantReadFile");
   } finally {
     // Allow choosing the same file again to re-trigger the change event.
     input.value = "";
@@ -62,7 +65,7 @@ openButton.addEventListener("click", async () => {
     .filter((entry) => entry.checkbox.checked)
     .map((entry) => entry.url);
   if (urls.length === 0) {
-    status.textContent = "Select at least one tab to open.";
+    status.textContent = t("selectAtLeastOne");
     return;
   }
   hidePreview();
@@ -89,9 +92,9 @@ async function showPreview(title, entries) {
   const blockedCount = previewEntries.filter((e) => !e.openable).length;
   document.getElementById("preview-title").textContent = title;
   document.getElementById("preview-summary").textContent = [
-    plural(previewEntries.length, "tab"),
-    openCount && `${openCount} already open`,
-    blockedCount && `${blockedCount} can't be opened`,
+    plural("tabCount", previewEntries.length),
+    openCount && plural("alreadyOpenCount", openCount),
+    blockedCount && plural("cantOpenCount", blockedCount),
   ]
     .filter(Boolean)
     .join(" · ");
@@ -141,8 +144,8 @@ function renderPreviewRow(entry) {
   row.append(checkbox, text);
 
   const note = entry.openable
-    ? entry.alreadyOpen && "Already open"
-    : "Can't be opened";
+    ? entry.alreadyOpen && t("alreadyOpen")
+    : t("cantBeOpened");
   if (note) {
     const badge = document.createElement("span");
     badge.className = "shrink-0 text-xs text-neutral-500 dark:text-neutral-400";
@@ -160,7 +163,7 @@ function selectable() {
 
 function updateOpenButton() {
   const count = selectable().filter((entry) => entry.checkbox.checked).length;
-  openButton.textContent = `Open ${plural(count, "tab")}`;
+  openButton.textContent = plural("openTabs", count);
 }
 
 function hidePreview() {
@@ -185,9 +188,12 @@ async function openUrls(urls) {
   for (const { reason } of failed) console.warn(`Skipped: ${reason}`);
 
   const opened = results.length - failed.length;
-  status.textContent =
-    `Opened ${plural(opened, "tab")}` +
-    (failed.length ? `, skipped ${failed.length} that can't be opened.` : ".");
+  status.textContent = [
+    plural("openedTabs", opened),
+    failed.length && plural("skippedTabs", failed.length),
+  ]
+    .filter(Boolean)
+    .join(" ");
 }
 
 async function initBookmarkBackups() {
@@ -204,7 +210,7 @@ async function initBookmarkBackups() {
   document.getElementById("synced").hidden = false;
   await renderBookmarkBackups();
 
-  // Refresh when Firefox Sync brings in or removes backups.
+  // Refresh when the browser's sync brings in or removes backups.
   let timer;
   const refresh = () => {
     clearTimeout(timer);
@@ -235,8 +241,8 @@ async function renderBookmarkBackups() {
       restore.type = "button";
       restore.className =
         "h-8 cursor-pointer rounded-md border border-neutral-300 px-3 text-sm font-medium hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-800";
-      restore.textContent = "Restore…";
-      restore.setAttribute("aria-label", `Restore ${backup.title}`);
+      restore.textContent = t("restore");
+      restore.setAttribute("aria-label", t("restoreBackupLabel", backup.title));
       restore.addEventListener("click", () =>
         showPreview(backup.title, backup.entries),
       );
@@ -245,10 +251,10 @@ async function renderBookmarkBackups() {
       remove.type = "button";
       remove.className =
         "h-8 cursor-pointer rounded-md px-3 text-sm text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100";
-      remove.textContent = "Delete";
-      remove.setAttribute("aria-label", `Delete ${backup.title}`);
+      remove.textContent = t("delete");
+      remove.setAttribute("aria-label", t("deleteBackupLabel", backup.title));
       remove.addEventListener("click", async () => {
-        if (!window.confirm(`Delete the backup "${backup.title}"?`)) return;
+        if (!window.confirm(t("confirmDelete", backup.title))) return;
         await deleteBookmarkBackup(backup.id);
         await renderBookmarkBackups();
       });
@@ -326,10 +332,6 @@ function displayUrl(url) {
   } catch {
     return url;
   }
-}
-
-function plural(count, word) {
-  return `${count} ${count === 1 ? word : `${word}s`}`;
 }
 
 const NEW_TAB_URLS = new Set([

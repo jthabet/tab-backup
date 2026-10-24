@@ -9,18 +9,23 @@ Text and assets for the Chrome Web Store Developer Dashboard
 
 ## Package
 
-The store shows the manifest's `name` and `description` as the extension's
-name and summary, so they come from `src/manifest.json`:
+The store shows the manifest's name and description as the extension's name
+and summary in each language. They come from the Chromium build's
+`extensionName` and `extensionDescription` messages in
+`src/_locales/<language>/messages.json`, so they're set by the upload:
 
-- **Name:** Tab Backup
-- **Summary (132 characters max):** Back up the tabs in your window to a file
-  or a bookmark folder, then preview and restore them.
+| Language | Summary (132 characters max)                                                                                           |
+| -------- | ---------------------------------------------------------------------------------------------------------------------- |
+| English  | Back up the tabs in your window to a file or a bookmark folder, then preview and restore them.                         |
+| French   | Sauvegardez les onglets de votre fenêtre dans un fichier ou un dossier de favoris, puis restaurez-les après un aperçu. |
 
 ## Store listing tab
 
 **Category:** Productivity → Tools
 
-**Language:** English
+**Language:** English (default), plus a French listing: in the dashboard's
+**Store listing** tab, pick **French** in the language menu and paste the
+French description below. Screenshots can stay the English ones.
 
 **Description** (plain text; the store doesn't render Markdown or HTML):
 
@@ -47,6 +52,33 @@ PERMISSIONS
 
 Source code and support: https://github.com/jthabet/tab-backup
 Folder icon by Smashicons on Freepik: https://www.freepik.com/icon/folder_10773696
+```
+
+**French description:**
+
+```text
+Sauvegardez tous les onglets de la fenêtre en un clic, et retrouvez-les quand vous en avez besoin.
+
+SAUVEGARDER
+• Dans un fichier : JSON, Markdown, texte brut, ou un fichier de favoris HTML à importer dans n’importe quel navigateur.
+• Ou dans un dossier de favoris que la synchronisation de votre navigateur emporte sur vos autres appareils.
+• Nommez vos fichiers avec la date, l’heure et le nombre d’onglets.
+
+RESTAURER
+• Prévisualisez une sauvegarde avant que quoi que ce soit ne s’ouvre, et choisissez les onglets à rouvrir.
+• Les onglets déjà ouverts sont écartés automatiquement.
+• Restaurez depuis n’importe quel format de sauvegarde, ou directement depuis une sauvegarde dans les favoris.
+
+RESPECT DE LA VIE PRIVÉE
+Tab Backup ne collecte et n’envoie aucune donnée. Vos sauvegardes restent dans votre dossier de téléchargements ou dans vos propres favoris. L’accès aux favoris n’est demandé que si vous activez les sauvegardes dans les favoris, et Tab Backup ne touche qu’à son propre dossier.
+
+AUTORISATIONS
+• « Consulter votre historique de navigation » : nécessaire pour lister les titres et adresses des onglets que vous sauvegardez. Rien n’est envoyé nulle part.
+• « Gérer vos téléchargements » : enregistre le fichier de sauvegarde.
+• « Consulter et modifier vos favoris » (uniquement si vous activez les sauvegardes dans les favoris) : crée et fait le ménage dans le dossier de sauvegardes.
+
+Code source et assistance : https://github.com/jthabet/tab-backup
+Icône de dossier par Smashicons sur Freepik : https://www.freepik.com/icon/folder_10773696
 ```
 
 **Graphics** (in `store/chrome/`):
@@ -111,6 +143,7 @@ A contact email must be set and verified before the first submission.
 
 ## Version history
 
-| Version | Date       | Changes                                                                              | Status    |
-| ------- | ---------- | ------------------------------------------------------------------------------------ | --------- |
-| 0.8.0   | 2026-10-22 | First Chrome Web Store release: file and bookmark backups, restore preview, settings | Published |
+| Version | Date       | Changes                                                                                        | Status        |
+| ------- | ---------- | ---------------------------------------------------------------------------------------------- | ------------- |
+| next    | —          | Translations: Dutch, French, German, Italian, Japanese, Russian, Turkish; French store listing | Not submitted |
+| 0.8.0   | 2026-10-22 | First Chrome Web Store release: file and bookmark backups, restore preview, settings           | Published     |

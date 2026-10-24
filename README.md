@@ -18,7 +18,7 @@ Chromium browsers).
 - **Settings** for the file format, file name pattern, bookmark folder name and
   how many bookmark backups to keep.
 
-Tab Backup doesn't collect or send any data. See the
+Available in English, Dutch, French, German, Italian, Japanese, Russian and Turkish. Tab Backup doesn't collect or send any data. See the
 [privacy policy](PRIVACY.md).
 
 ## Build from source

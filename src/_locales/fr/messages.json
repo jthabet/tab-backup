@@ -1,0 +1,378 @@
+{
+  "languageTag": {
+    "message": "fr",
+    "description": "BCP 47 tag of this translation, used for plural rules. Don't translate; set it to the folder's language."
+  },
+  "extensionName": {
+    "message": "Tab Backup",
+    "description": "Extension name. Product name, normally not translated."
+  },
+  "extensionDescription__firefox": {
+    "message": "Sauvegardez les onglets de votre fenêtre dans un fichier ou un dossier de marque-pages, puis restaurez-les après un aperçu.",
+    "description": "Store summary and add-ons manager description. 132 characters at most. (Firefox build)"
+  },
+  "extensionDescription__chrome": {
+    "message": "Sauvegardez les onglets de votre fenêtre dans un fichier ou un dossier de favoris, puis restaurez-les après un aperçu.",
+    "description": "Store summary and add-ons manager description. 132 characters at most. (Chrome build)"
+  },
+  "cancel": {
+    "message": "Annuler",
+    "description": "Button that closes a confirmation or preview without doing anything."
+  },
+  "settings": {
+    "message": "Paramètres",
+    "description": "Settings button label and page heading."
+  },
+  "tabCount_one": {
+    "message": "$1 onglet",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "tabCount_other": {
+    "message": "$1 onglets",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "backUp": {
+    "message": "Sauvegarder",
+    "description": "Popup button that saves the current window's tabs."
+  },
+  "restore": {
+    "message": "Restaurer…",
+    "description": "Popup button that opens the restore page; also the button that restores one bookmark backup."
+  },
+  "limitTitle_one__firefox": {
+    "message": "Vous avez atteint votre limite de $1 sauvegarde dans les marque-pages",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit. (Firefox build)"
+  },
+  "limitTitle_one__chrome": {
+    "message": "Vous avez atteint votre limite de $1 sauvegarde dans les favoris",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit. (Chrome build)"
+  },
+  "limitTitle_other__firefox": {
+    "message": "Vous avez atteint votre limite de $1 sauvegardes dans les marque-pages",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit. (Firefox build)"
+  },
+  "limitTitle_other__chrome": {
+    "message": "Vous avez atteint votre limite de $1 sauvegardes dans les favoris",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit. (Chrome build)"
+  },
+  "limitText_one": {
+    "message": "Sauvegarder maintenant supprimera votre plus ancienne sauvegarde :",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitText_other": {
+    "message": "Sauvegarder maintenant supprimera vos $1 plus anciennes sauvegardes :",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitMore_one": {
+    "message": "et $1 autre",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "limitMore_other": {
+    "message": "et $1 autres",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "changeLimit": {
+    "message": "Modifier la limite",
+    "description": "Link-style button that opens settings to change how many bookmark backups are kept."
+  },
+  "backUpAnyway": {
+    "message": "Sauvegarder quand même",
+    "description": "Confirms a backup that deletes the oldest bookmark backups."
+  },
+  "restorePageTitle": {
+    "message": "Restaurer des onglets | Tab Backup",
+    "description": "Browser tab title of the restore page."
+  },
+  "restoreHeading": {
+    "message": "Restaurer des onglets",
+    "description": "Restore page heading."
+  },
+  "restoreIntro": {
+    "message": "Choisissez un fichier de sauvegarde créé avec Tab Backup. Vous pourrez choisir les onglets à ouvrir avant qu’ils s’ouvrent dans cette fenêtre.",
+    "description": "Restore page introduction."
+  },
+  "chooseFile": {
+    "message": "Choisir un fichier de sauvegarde…",
+    "description": "Button that opens the file picker."
+  },
+  "bookmarkBackups__firefox": {
+    "message": "Sauvegardes dans les marque-pages",
+    "description": "Heading of the list of bookmark backups on the restore page. (Firefox build)"
+  },
+  "bookmarkBackups__chrome": {
+    "message": "Sauvegardes dans les favoris",
+    "description": "Heading of the list of bookmark backups on the restore page. (Chrome build)"
+  },
+  "noBookmarkBackups__firefox": {
+    "message": "Aucune sauvegarde dans les marque-pages pour l’instant. Les sauvegardes de vos autres appareils apparaîtront ici après la synchronisation de Firefox.",
+    "description": "Shown when there are no bookmark backups yet. (Firefox build)"
+  },
+  "noBookmarkBackups__chrome": {
+    "message": "Aucune sauvegarde dans les favoris pour l’instant. Les sauvegardes de vos autres appareils apparaîtront ici après la synchronisation de votre navigateur.",
+    "description": "Shown when there are no bookmark backups yet. (Chrome build)"
+  },
+  "selectAll": {
+    "message": "Tout sélectionner",
+    "description": "Checks every tab in the restore preview."
+  },
+  "selectNone": {
+    "message": "Tout désélectionner",
+    "description": "Unchecks every tab in the restore preview."
+  },
+  "skipOpenTabs": {
+    "message": "Ignorer les onglets déjà ouverts",
+    "description": "Checkbox in the restore preview."
+  },
+  "alreadyOpenCount_one": {
+    "message": "$1 déjà ouvert",
+    "description": "Part of the restore preview summary, e.g. “3 tabs · 1 already open”. $1 is the count."
+  },
+  "alreadyOpenCount_other": {
+    "message": "$1 déjà ouverts",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "cantOpenCount_one": {
+    "message": "$1 ne peut pas être ouvert",
+    "description": "Part of the restore preview summary. $1 is the count of tabs the browser won't let extensions open."
+  },
+  "cantOpenCount_other": {
+    "message": "$1 ne peuvent pas être ouverts",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "alreadyOpen": {
+    "message": "Déjà ouvert",
+    "description": "Note next to a tab in the restore preview."
+  },
+  "cantBeOpened": {
+    "message": "Impossible à ouvrir",
+    "description": "Note next to a tab the browser won't let extensions open."
+  },
+  "openTabs_one": {
+    "message": "Ouvrir $1 onglet",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openTabs_other": {
+    "message": "Ouvrir $1 onglets",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openedTabs_one": {
+    "message": "$1 onglet ouvert.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "openedTabs_other": {
+    "message": "$1 onglets ouverts.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "skippedTabs_one": {
+    "message": "$1 ignoré car impossible à ouvrir.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "skippedTabs_other": {
+    "message": "$1 ignorés car impossibles à ouvrir.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "noTabsInFile": {
+    "message": "Aucun onglet trouvé dans ce fichier.",
+    "description": "Shown when a chosen file has no tabs."
+  },
+  "cantReadFile": {
+    "message": "Impossible de lire ce fichier.",
+    "description": "Shown when a chosen file can't be read."
+  },
+  "selectAtLeastOne": {
+    "message": "Sélectionnez au moins un onglet à ouvrir.",
+    "description": "Shown when Open is pressed with nothing checked."
+  },
+  "restoreBackupLabel": {
+    "message": "Restaurer $1",
+    "description": "Screen reader label of a bookmark backup's Restore button. $1 is the backup's name."
+  },
+  "delete": {
+    "message": "Supprimer",
+    "description": "Deletes one bookmark backup."
+  },
+  "deleteBackupLabel": {
+    "message": "Supprimer $1",
+    "description": "Screen reader label of a bookmark backup's Delete button. $1 is the backup's name."
+  },
+  "confirmDelete": {
+    "message": "Supprimer la sauvegarde « $1 » ?",
+    "description": "Confirmation before deleting a bookmark backup. $1 is the backup's name."
+  },
+  "backupFolderTitle_one": {
+    "message": "$2 · $1 onglet",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "backupFolderTitle_other": {
+    "message": "$2 · $1 onglets",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "settingsPageTitle": {
+    "message": "Paramètres | Tab Backup",
+    "description": "Browser tab title of the settings page."
+  },
+  "saveBackupsTo": {
+    "message": "Enregistrer les sauvegardes dans",
+    "description": "Heading of the destination choices."
+  },
+  "destinationFile": {
+    "message": "Un fichier",
+    "description": "Destination choice."
+  },
+  "destinationFileHint": {
+    "message": "Téléchargé au format choisi ci-dessous.",
+    "description": "Explains the file destination."
+  },
+  "destinationBookmarks__firefox": {
+    "message": "Marque-pages",
+    "description": "Destination choice. (Firefox build)"
+  },
+  "destinationBookmarks__chrome": {
+    "message": "Favoris",
+    "description": "Destination choice. (Chrome build)"
+  },
+  "destinationBookmarksHint__firefox": {
+    "message": "Un dossier daté dans Autres marque-pages, synchronisé sur vos autres appareils par Firefox Sync.",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Firefox build)"
+  },
+  "destinationBookmarksHint__chrome": {
+    "message": "Un dossier daté dans Autres favoris, synchronisé sur vos autres appareils par la synchronisation de votre navigateur.",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Chrome build)"
+  },
+  "destinationBoth": {
+    "message": "Les deux",
+    "description": "Destination choice."
+  },
+  "destinationBothHint__firefox": {
+    "message": "Un fichier et un dossier de marque-pages.",
+    "description": "Explains the both destination. (Firefox build)"
+  },
+  "destinationBothHint__chrome": {
+    "message": "Un fichier et un dossier de favoris.",
+    "description": "Explains the both destination. (Chrome build)"
+  },
+  "keepBefore": {
+    "message": "Conserver les",
+    "description": "Text before the number field in “Keep the last [20] bookmark backups”."
+  },
+  "keepAfter__firefox": {
+    "message": "dernières sauvegardes dans les marque-pages",
+    "description": "Text after the number field in “Keep the last [20] bookmark backups”. (Firefox build)"
+  },
+  "keepAfter__chrome": {
+    "message": "dernières sauvegardes dans les favoris",
+    "description": "Text after the number field in “Keep the last [20] bookmark backups”. (Chrome build)"
+  },
+  "folderName__firefox": {
+    "message": "Nom du dossier de marque-pages",
+    "description": "Label of the bookmark folder name field. (Firefox build)"
+  },
+  "folderName__chrome": {
+    "message": "Nom du dossier de favoris",
+    "description": "Label of the bookmark folder name field. (Chrome build)"
+  },
+  "folderNameHint__firefox": {
+    "message": "Créé dans Autres marque-pages. Changer le nom renomme le dossier ; vos sauvegardes y restent.",
+    "description": "Explains the folder name field. (Firefox build)"
+  },
+  "folderNameHint__chrome": {
+    "message": "Créé dans Autres favoris. Changer le nom renomme le dossier ; vos sauvegardes y restent.",
+    "description": "Explains the folder name field. (Chrome build)"
+  },
+  "enterFolderName": {
+    "message": "Saisissez un nom de dossier.",
+    "description": "Error when the folder name is empty."
+  },
+  "bookmarksNote__firefox": {
+    "message": "Quand vous atteignez la limite, Sauvegarder demande confirmation avant de supprimer les plus anciennes. L’enregistrement dans les marque-pages demande l’autorisation de lire et de modifier vos marque-pages. Tab Backup ne touche qu’à son propre dossier, repéré par un marque-page « About these backups » à l’intérieur.",
+    "description": "Explains bookmark backups. Keep “About these backups” in English: it's the name of a bookmark that never changes. (Firefox build)"
+  },
+  "bookmarksNote__chrome": {
+    "message": "Quand vous atteignez la limite, Sauvegarder demande confirmation avant de supprimer les plus anciennes. L’enregistrement dans les favoris demande l’autorisation de lire et de modifier vos favoris. Tab Backup ne touche qu’à son propre dossier, repéré par un favori « About these backups » à l’intérieur.",
+    "description": "Explains bookmark backups. Keep “About these backups” in English: it's the name of a bookmark that never changes. (Chrome build)"
+  },
+  "needBookmarkAccess__firefox": {
+    "message": "Les sauvegardes dans les marque-pages ont besoin d’accéder à vos marque-pages.",
+    "description": "Shown when bookmark access was refused. (Firefox build)"
+  },
+  "needBookmarkAccess__chrome": {
+    "message": "Les sauvegardes dans les favoris ont besoin d’accéder à vos favoris.",
+    "description": "Shown when bookmark access was refused. (Chrome build)"
+  },
+  "fileFormat": {
+    "message": "Format du fichier",
+    "description": "Heading of the format choices."
+  },
+  "formatJsonHint__firefox": {
+    "message": "Restaure chaque onglet à l’identique, y compris les nouveaux onglets et les pages en mode lecture.",
+    "description": "Explains the JSON format. (Firefox build)"
+  },
+  "formatJsonHint__chrome": {
+    "message": "Restaure chaque onglet à l’identique, y compris les nouveaux onglets.",
+    "description": "Explains the JSON format. (Chrome build)"
+  },
+  "formatMarkdownHint": {
+    "message": "Une liste de liens avec leur titre, pour vos notes et documents.",
+    "description": "Explains the Markdown format."
+  },
+  "formatText": {
+    "message": "Texte brut",
+    "description": "Format choice."
+  },
+  "formatTextHint": {
+    "message": "Une URL par ligne.",
+    "description": "Explains the plain text format."
+  },
+  "formatHtml__firefox": {
+    "message": "Marque-pages HTML",
+    "description": "Format choice: a bookmarks file in HTML. (Firefox build)"
+  },
+  "formatHtml__chrome": {
+    "message": "Favoris HTML",
+    "description": "Format choice: a bookmarks file in HTML. (Chrome build)"
+  },
+  "formatHtmlHint__firefox": {
+    "message": "À importer dans les marque-pages de n’importe quel navigateur.",
+    "description": "Explains the HTML bookmarks format. (Firefox build)"
+  },
+  "formatHtmlHint__chrome": {
+    "message": "À importer dans les favoris de n’importe quel navigateur.",
+    "description": "Explains the HTML bookmarks format. (Chrome build)"
+  },
+  "formatNote": {
+    "message": "La restauration lit les quatre formats. Markdown, texte brut et HTML ne restaurent que les liens web.",
+    "description": "Note below the format choices."
+  },
+  "fileName": {
+    "message": "Nom du fichier",
+    "description": "Label of the file name pattern field."
+  },
+  "fileNameHint": {
+    "message": "Utilisez {YYYY} {MM} {DD} {HH} {mm} {ss} pour la date et l’heure, et {count} pour le nombre d’onglets. L’extension du fichier est ajoutée automatiquement.",
+    "description": "Explains the file name pattern. Keep the {…} tokens exactly as they are."
+  },
+  "reset": {
+    "message": "Réinitialiser",
+    "description": "Restores the default file name pattern."
+  },
+  "preview": {
+    "message": "Aperçu :",
+    "description": "Label before the example file name."
+  },
+  "saved": {
+    "message": "Enregistré",
+    "description": "Shown briefly after a setting is saved."
+  },
+  "saveFailed": {
+    "message": "Impossible d’enregistrer vos paramètres. Réessayez.",
+    "description": "Shown when settings couldn't be saved."
+  },
+  "settingsSyncNote__firefox": {
+    "message": "Les paramètres sont synchronisés sur vos appareils si vous êtes connecté à Firefox et que la synchronisation des modules complémentaires est activée.",
+    "description": "Footer of the settings page. (Firefox build)"
+  },
+  "settingsSyncNote__chrome": {
+    "message": "Les paramètres sont synchronisés sur vos appareils si vous êtes connecté à votre navigateur avec la synchronisation activée.",
+    "description": "Footer of the settings page. (Chrome build)"
+  }
+}

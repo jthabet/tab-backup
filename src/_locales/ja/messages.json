@@ -1,0 +1,290 @@
+{
+  "languageTag": {
+    "message": "ja",
+    "description": "BCP 47 tag of this translation, used for plural rules. Don't translate; set it to the folder's language."
+  },
+  "extensionName": {
+    "message": "Tab Backup",
+    "description": "Extension name. Product name, normally not translated."
+  },
+  "extensionDescription": {
+    "message": "ウィンドウのタブをファイルまたはブックマークフォルダーにバックアップし、プレビューしてから復元できます。",
+    "description": "Store summary and add-ons manager description. 132 characters at most."
+  },
+  "cancel": {
+    "message": "キャンセル",
+    "description": "Button that closes a confirmation or preview without doing anything."
+  },
+  "settings": {
+    "message": "設定",
+    "description": "Settings button label and page heading."
+  },
+  "tabCount_other": {
+    "message": "$1 個のタブ",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "backUp": {
+    "message": "バックアップ",
+    "description": "Popup button that saves the current window's tabs."
+  },
+  "restore": {
+    "message": "復元…",
+    "description": "Popup button that opens the restore page; also the button that restores one bookmark backup."
+  },
+  "limitTitle_other": {
+    "message": "ブックマークのバックアップが上限の $1 件に達しました",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit."
+  },
+  "limitText_other": {
+    "message": "今バックアップすると、古いバックアップ $1 件が削除されます：",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitMore_other": {
+    "message": "ほか $1 件",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "changeLimit": {
+    "message": "上限を変更",
+    "description": "Link-style button that opens settings to change how many bookmark backups are kept."
+  },
+  "backUpAnyway": {
+    "message": "それでもバックアップ",
+    "description": "Confirms a backup that deletes the oldest bookmark backups."
+  },
+  "restorePageTitle": {
+    "message": "タブの復元 | Tab Backup",
+    "description": "Browser tab title of the restore page."
+  },
+  "restoreHeading": {
+    "message": "タブの復元",
+    "description": "Restore page heading."
+  },
+  "restoreIntro": {
+    "message": "Tab Backup で保存したバックアップファイルを選択してください。このウィンドウで開く前に、開くタブを選べます。",
+    "description": "Restore page introduction."
+  },
+  "chooseFile": {
+    "message": "バックアップファイルを選択…",
+    "description": "Button that opens the file picker."
+  },
+  "bookmarkBackups": {
+    "message": "ブックマークのバックアップ",
+    "description": "Heading of the list of bookmark backups on the restore page."
+  },
+  "noBookmarkBackups__firefox": {
+    "message": "ブックマークのバックアップはまだありません。Firefox Sync が実行されると、他のデバイスのバックアップがここに表示されます。",
+    "description": "Shown when there are no bookmark backups yet. (Firefox build)"
+  },
+  "noBookmarkBackups__chrome": {
+    "message": "ブックマークのバックアップはまだありません。ブラウザーの同期が完了すると、他のデバイスのバックアップがここに表示されます。",
+    "description": "Shown when there are no bookmark backups yet. (Chrome build)"
+  },
+  "selectAll": {
+    "message": "すべて選択",
+    "description": "Checks every tab in the restore preview."
+  },
+  "selectNone": {
+    "message": "選択を解除",
+    "description": "Unchecks every tab in the restore preview."
+  },
+  "skipOpenTabs": {
+    "message": "開いているタブをスキップ",
+    "description": "Checkbox in the restore preview."
+  },
+  "alreadyOpenCount_other": {
+    "message": "$1 個は開いています",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "cantOpenCount_other": {
+    "message": "$1 個は開けません",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "alreadyOpen": {
+    "message": "開いています",
+    "description": "Note next to a tab in the restore preview."
+  },
+  "cantBeOpened": {
+    "message": "開けません",
+    "description": "Note next to a tab the browser won't let extensions open."
+  },
+  "openTabs_other": {
+    "message": "$1 個のタブを開く",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openedTabs_other": {
+    "message": "$1 個のタブを開きました。",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "skippedTabs_other": {
+    "message": "開けないタブ $1 個をスキップしました。",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "noTabsInFile": {
+    "message": "このファイルにタブが見つかりません。",
+    "description": "Shown when a chosen file has no tabs."
+  },
+  "cantReadFile": {
+    "message": "このファイルを読み込めませんでした。",
+    "description": "Shown when a chosen file can't be read."
+  },
+  "selectAtLeastOne": {
+    "message": "開くタブを 1 つ以上選択してください。",
+    "description": "Shown when Open is pressed with nothing checked."
+  },
+  "restoreBackupLabel": {
+    "message": "$1 を復元",
+    "description": "Screen reader label of a bookmark backup's Restore button. $1 is the backup's name."
+  },
+  "delete": {
+    "message": "削除",
+    "description": "Deletes one bookmark backup."
+  },
+  "deleteBackupLabel": {
+    "message": "$1 を削除",
+    "description": "Screen reader label of a bookmark backup's Delete button. $1 is the backup's name."
+  },
+  "confirmDelete": {
+    "message": "バックアップ「$1」を削除しますか？",
+    "description": "Confirmation before deleting a bookmark backup. $1 is the backup's name."
+  },
+  "backupFolderTitle_other": {
+    "message": "$2 · タブ $1 個",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "settingsPageTitle": {
+    "message": "設定 | Tab Backup",
+    "description": "Browser tab title of the settings page."
+  },
+  "saveBackupsTo": {
+    "message": "バックアップの保存先",
+    "description": "Heading of the destination choices."
+  },
+  "destinationFile": {
+    "message": "ファイル",
+    "description": "Destination choice."
+  },
+  "destinationFileHint": {
+    "message": "下で選んだ形式でダウンロードされます。",
+    "description": "Explains the file destination."
+  },
+  "destinationBookmarks": {
+    "message": "ブックマーク",
+    "description": "Destination choice."
+  },
+  "destinationBookmarksHint__firefox": {
+    "message": "「他のブックマーク」内に日付入りのフォルダーを作成し、Firefox Sync で他のデバイスと同期します。",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Firefox build)"
+  },
+  "destinationBookmarksHint__chrome": {
+    "message": "「その他のブックマーク」内に日付入りのフォルダーを作成し、ブラウザーの同期で他のデバイスと同期します。",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Chrome build)"
+  },
+  "destinationBoth": {
+    "message": "両方",
+    "description": "Destination choice."
+  },
+  "destinationBothHint": {
+    "message": "ファイルとブックマークフォルダー。",
+    "description": "Explains the both destination."
+  },
+  "keepBefore": {
+    "message": "ブックマークのバックアップを最新",
+    "description": "Text before the number field in “Keep the last [20] bookmark backups”."
+  },
+  "keepAfter": {
+    "message": "件まで保持",
+    "description": "Text after the number field in “Keep the last [20] bookmark backups”."
+  },
+  "folderName": {
+    "message": "ブックマークフォルダー名",
+    "description": "Label of the bookmark folder name field."
+  },
+  "folderNameHint__firefox": {
+    "message": "「他のブックマーク」内に作成されます。名前を変更するとフォルダー名も変わり、バックアップはそのまま残ります。",
+    "description": "Explains the folder name field. (Firefox build)"
+  },
+  "folderNameHint__chrome": {
+    "message": "「その他のブックマーク」内に作成されます。名前を変更するとフォルダー名も変わり、バックアップはそのまま残ります。",
+    "description": "Explains the folder name field. (Chrome build)"
+  },
+  "enterFolderName": {
+    "message": "フォルダー名を入力してください。",
+    "description": "Error when the folder name is empty."
+  },
+  "bookmarksNote": {
+    "message": "上限に達すると、古いものを削除する前に確認します。ブックマークへの保存には、ブックマークの読み取りと変更の許可が必要です。Tab Backup が変更するのは、中に「About these backups」ブックマークがある自身のフォルダーだけです。",
+    "description": "Explains bookmark backups. Keep “About these backups” in English: it's the name of a bookmark that never changes."
+  },
+  "needBookmarkAccess": {
+    "message": "ブックマークのバックアップには、ブックマークへのアクセスが必要です。",
+    "description": "Shown when bookmark access was refused."
+  },
+  "fileFormat": {
+    "message": "ファイル形式",
+    "description": "Heading of the format choices."
+  },
+  "formatJsonHint__firefox": {
+    "message": "新しいタブやリーダービューのページも含め、すべてのタブを正確に復元します。",
+    "description": "Explains the JSON format. (Firefox build)"
+  },
+  "formatJsonHint__chrome": {
+    "message": "新しいタブも含め、すべてのタブを正確に復元します。",
+    "description": "Explains the JSON format. (Chrome build)"
+  },
+  "formatMarkdownHint": {
+    "message": "メモやドキュメント向けの、タイトル付きリンクの一覧です。",
+    "description": "Explains the Markdown format."
+  },
+  "formatText": {
+    "message": "プレーンテキスト",
+    "description": "Format choice."
+  },
+  "formatTextHint": {
+    "message": "1 行に 1 つの URL。",
+    "description": "Explains the plain text format."
+  },
+  "formatHtml": {
+    "message": "HTML ブックマーク",
+    "description": "Format choice: a bookmarks file in HTML."
+  },
+  "formatHtmlHint": {
+    "message": "どのブラウザーのブックマークにもインポートできます。",
+    "description": "Explains the HTML bookmarks format."
+  },
+  "formatNote": {
+    "message": "復元は 4 つの形式すべてに対応しています。Markdown、プレーンテキスト、HTML ではウェブリンクのみが復元されます。",
+    "description": "Note below the format choices."
+  },
+  "fileName": {
+    "message": "ファイル名",
+    "description": "Label of the file name pattern field."
+  },
+  "fileNameHint": {
+    "message": "日付と時刻には {YYYY} {MM} {DD} {HH} {mm} {ss}、タブの数には {count} を使います。拡張子は自動で付きます。",
+    "description": "Explains the file name pattern. Keep the {…} tokens exactly as they are."
+  },
+  "reset": {
+    "message": "リセット",
+    "description": "Restores the default file name pattern."
+  },
+  "preview": {
+    "message": "プレビュー：",
+    "description": "Label before the example file name."
+  },
+  "saved": {
+    "message": "保存しました",
+    "description": "Shown briefly after a setting is saved."
+  },
+  "saveFailed": {
+    "message": "設定を保存できませんでした。もう一度お試しください。",
+    "description": "Shown when settings couldn't be saved."
+  },
+  "settingsSyncNote__firefox": {
+    "message": "Firefox にログインしてアドオンの同期を有効にすると、設定がデバイス間で同期されます。",
+    "description": "Footer of the settings page. (Firefox build)"
+  },
+  "settingsSyncNote__chrome": {
+    "message": "ブラウザーにログインして同期を有効にすると、設定がデバイス間で同期されます。",
+    "description": "Footer of the settings page. (Chrome build)"
+  }
+}

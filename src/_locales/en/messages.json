@@ -1,0 +1,330 @@
+{
+  "languageTag": {
+    "message": "en",
+    "description": "BCP 47 tag of this translation, used for plural rules. Don't translate; set it to the folder's language."
+  },
+  "extensionName": {
+    "message": "Tab Backup",
+    "description": "Extension name. Product name, normally not translated."
+  },
+  "extensionDescription": {
+    "message": "Back up the tabs in your window to a file or a bookmark folder, then preview and restore them.",
+    "description": "Store summary and add-ons manager description. 132 characters at most."
+  },
+  "cancel": {
+    "message": "Cancel",
+    "description": "Button that closes a confirmation or preview without doing anything."
+  },
+  "settings": {
+    "message": "Settings",
+    "description": "Settings button label and page heading."
+  },
+  "tabCount_one": {
+    "message": "$1 tab",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "tabCount_other": {
+    "message": "$1 tabs",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "backUp": {
+    "message": "Back up",
+    "description": "Popup button that saves the current window's tabs."
+  },
+  "restore": {
+    "message": "Restore…",
+    "description": "Popup button that opens the restore page; also the button that restores one bookmark backup."
+  },
+  "limitTitle_one": {
+    "message": "You've reached your limit of $1 bookmark backup",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit."
+  },
+  "limitTitle_other": {
+    "message": "You've reached your limit of $1 bookmark backups",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit."
+  },
+  "limitText_one": {
+    "message": "Backing up now deletes your oldest backup:",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitText_other": {
+    "message": "Backing up now deletes your $1 oldest backups:",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitMore_one": {
+    "message": "and $1 more",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "limitMore_other": {
+    "message": "and $1 more",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "changeLimit": {
+    "message": "Change limit",
+    "description": "Link-style button that opens settings to change how many bookmark backups are kept."
+  },
+  "backUpAnyway": {
+    "message": "Back up anyway",
+    "description": "Confirms a backup that deletes the oldest bookmark backups."
+  },
+  "restorePageTitle": {
+    "message": "Restore tabs | Tab Backup",
+    "description": "Browser tab title of the restore page."
+  },
+  "restoreHeading": {
+    "message": "Restore tabs",
+    "description": "Restore page heading."
+  },
+  "restoreIntro": {
+    "message": "Choose a backup file saved with Tab Backup. You can pick which tabs to open before they open in this window.",
+    "description": "Restore page introduction."
+  },
+  "chooseFile": {
+    "message": "Choose backup file…",
+    "description": "Button that opens the file picker."
+  },
+  "bookmarkBackups": {
+    "message": "Bookmark backups",
+    "description": "Heading of the list of bookmark backups on the restore page."
+  },
+  "noBookmarkBackups__firefox": {
+    "message": "No bookmark backups yet. Backups from your other devices appear here once Firefox Sync has run.",
+    "description": "Shown when there are no bookmark backups yet. (Firefox build)"
+  },
+  "noBookmarkBackups__chrome": {
+    "message": "No bookmark backups yet. Backups from your other devices appear here once your browser has synced.",
+    "description": "Shown when there are no bookmark backups yet. (Chrome build)"
+  },
+  "selectAll": {
+    "message": "Select all",
+    "description": "Checks every tab in the restore preview."
+  },
+  "selectNone": {
+    "message": "Select none",
+    "description": "Unchecks every tab in the restore preview."
+  },
+  "skipOpenTabs": {
+    "message": "Skip tabs that are already open",
+    "description": "Checkbox in the restore preview."
+  },
+  "alreadyOpenCount_one": {
+    "message": "$1 already open",
+    "description": "Part of the restore preview summary, e.g. “3 tabs · 1 already open”. $1 is the count."
+  },
+  "alreadyOpenCount_other": {
+    "message": "$1 already open",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "cantOpenCount_one": {
+    "message": "$1 can't be opened",
+    "description": "Part of the restore preview summary. $1 is the count of tabs the browser won't let extensions open."
+  },
+  "cantOpenCount_other": {
+    "message": "$1 can't be opened",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "alreadyOpen": {
+    "message": "Already open",
+    "description": "Note next to a tab in the restore preview."
+  },
+  "cantBeOpened": {
+    "message": "Can't be opened",
+    "description": "Note next to a tab the browser won't let extensions open."
+  },
+  "openTabs_one": {
+    "message": "Open $1 tab",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openTabs_other": {
+    "message": "Open $1 tabs",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openedTabs_one": {
+    "message": "Opened $1 tab.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "openedTabs_other": {
+    "message": "Opened $1 tabs.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "skippedTabs_one": {
+    "message": "Skipped $1 that can't be opened.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "skippedTabs_other": {
+    "message": "Skipped $1 that can't be opened.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "noTabsInFile": {
+    "message": "No tabs found in this file.",
+    "description": "Shown when a chosen file has no tabs."
+  },
+  "cantReadFile": {
+    "message": "Couldn't read this file.",
+    "description": "Shown when a chosen file can't be read."
+  },
+  "selectAtLeastOne": {
+    "message": "Select at least one tab to open.",
+    "description": "Shown when Open is pressed with nothing checked."
+  },
+  "restoreBackupLabel": {
+    "message": "Restore $1",
+    "description": "Screen reader label of a bookmark backup's Restore button. $1 is the backup's name."
+  },
+  "delete": {
+    "message": "Delete",
+    "description": "Deletes one bookmark backup."
+  },
+  "deleteBackupLabel": {
+    "message": "Delete $1",
+    "description": "Screen reader label of a bookmark backup's Delete button. $1 is the backup's name."
+  },
+  "confirmDelete": {
+    "message": "Delete the backup \"$1\"?",
+    "description": "Confirmation before deleting a bookmark backup. $1 is the backup's name."
+  },
+  "backupFolderTitle_one": {
+    "message": "$2 · $1 tab",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "backupFolderTitle_other": {
+    "message": "$2 · $1 tabs",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "settingsPageTitle": {
+    "message": "Settings | Tab Backup",
+    "description": "Browser tab title of the settings page."
+  },
+  "saveBackupsTo": {
+    "message": "Save backups to",
+    "description": "Heading of the destination choices."
+  },
+  "destinationFile": {
+    "message": "A file",
+    "description": "Destination choice."
+  },
+  "destinationFileHint": {
+    "message": "Downloaded in the format below.",
+    "description": "Explains the file destination."
+  },
+  "destinationBookmarks": {
+    "message": "Bookmarks",
+    "description": "Destination choice."
+  },
+  "destinationBookmarksHint__firefox": {
+    "message": "A dated folder in Other Bookmarks, synced to your other devices by Firefox Sync.",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Firefox build)"
+  },
+  "destinationBookmarksHint__chrome": {
+    "message": "A dated folder in Other bookmarks, synced to your other devices by your browser's sync.",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Chrome build)"
+  },
+  "destinationBoth": {
+    "message": "Both",
+    "description": "Destination choice."
+  },
+  "destinationBothHint": {
+    "message": "A file and a bookmark folder.",
+    "description": "Explains the both destination."
+  },
+  "keepBefore": {
+    "message": "Keep the last",
+    "description": "Text before the number field in “Keep the last [20] bookmark backups”."
+  },
+  "keepAfter": {
+    "message": "bookmark backups",
+    "description": "Text after the number field in “Keep the last [20] bookmark backups”."
+  },
+  "folderName": {
+    "message": "Bookmark folder name",
+    "description": "Label of the bookmark folder name field."
+  },
+  "folderNameHint__firefox": {
+    "message": "Created in Other Bookmarks. Changing the name renames the folder; your backups stay in it.",
+    "description": "Explains the folder name field. (Firefox build)"
+  },
+  "folderNameHint__chrome": {
+    "message": "Created in Other bookmarks. Changing the name renames the folder; your backups stay in it.",
+    "description": "Explains the folder name field. (Chrome build)"
+  },
+  "enterFolderName": {
+    "message": "Enter a folder name.",
+    "description": "Error when the folder name is empty."
+  },
+  "bookmarksNote": {
+    "message": "When you reach the limit, Back up asks before deleting the oldest. Saving to bookmarks asks for permission to read and change your bookmarks. Tab Backup only touches its own folder, marked by an \"About these backups\" bookmark inside it.",
+    "description": "Explains bookmark backups. Keep “About these backups” in English: it's the name of a bookmark that never changes."
+  },
+  "needBookmarkAccess": {
+    "message": "Bookmark backups need access to your bookmarks.",
+    "description": "Shown when bookmark access was refused."
+  },
+  "fileFormat": {
+    "message": "File format",
+    "description": "Heading of the format choices."
+  },
+  "formatJsonHint__firefox": {
+    "message": "Restores every tab exactly, including new tab and Reader View pages.",
+    "description": "Explains the JSON format. (Firefox build)"
+  },
+  "formatJsonHint__chrome": {
+    "message": "Restores every tab exactly, including new tab pages.",
+    "description": "Explains the JSON format. (Chrome build)"
+  },
+  "formatMarkdownHint": {
+    "message": "A list of titled links for notes and docs.",
+    "description": "Explains the Markdown format."
+  },
+  "formatText": {
+    "message": "Plain text",
+    "description": "Format choice."
+  },
+  "formatTextHint": {
+    "message": "One URL per line.",
+    "description": "Explains the plain text format."
+  },
+  "formatHtml": {
+    "message": "HTML bookmarks",
+    "description": "Format choice: a bookmarks file in HTML."
+  },
+  "formatHtmlHint": {
+    "message": "Import into the bookmarks of any browser.",
+    "description": "Explains the HTML bookmarks format."
+  },
+  "formatNote": {
+    "message": "Restore reads all four. Markdown, plain text and HTML bring back web links only.",
+    "description": "Note below the format choices."
+  },
+  "fileName": {
+    "message": "File name",
+    "description": "Label of the file name pattern field."
+  },
+  "fileNameHint": {
+    "message": "Use {YYYY} {MM} {DD} {HH} {mm} {ss} for the date and time, and {count} for the number of tabs. The extension is added for you.",
+    "description": "Explains the file name pattern. Keep the {…} tokens exactly as they are."
+  },
+  "reset": {
+    "message": "Reset",
+    "description": "Restores the default file name pattern."
+  },
+  "preview": {
+    "message": "Preview:",
+    "description": "Label before the example file name."
+  },
+  "saved": {
+    "message": "Saved",
+    "description": "Shown briefly after a setting is saved."
+  },
+  "saveFailed": {
+    "message": "Couldn't save your settings. Try again.",
+    "description": "Shown when settings couldn't be saved."
+  },
+  "settingsSyncNote__firefox": {
+    "message": "Settings sync across your devices when you're signed in to Firefox and add-on sync is on.",
+    "description": "Footer of the settings page. (Firefox build)"
+  },
+  "settingsSyncNote__chrome": {
+    "message": "Settings sync across your devices when you're signed in to your browser with sync on.",
+    "description": "Footer of the settings page. (Chrome build)"
+  }
+}

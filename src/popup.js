@@ -1,11 +1,14 @@
 import "./main.css";
 import { FORMATS, formatFilename } from "./formats.js";
 import { getSettings } from "./settings-store.js";
+import { localizePage, plural } from "./i18n.js";
 import {
   backupsDeletedByNextSave,
   hasBookmarksPermission,
   saveBookmarkBackup,
 } from "./bookmark-backups.js";
+
+localizePage();
 
 const limitNotice = document.getElementById("limit-notice");
 
@@ -119,12 +122,14 @@ async function exportCurrentTabs({ confirmedDeletion = false } = {}) {
 
 // Asks before a bookmark backup deletes older ones to stay within the limit.
 function showLimitNotice(keep, doomed) {
-  document.getElementById("limit-title").textContent =
-    `You've reached your limit of ${keep} bookmark ${keep === 1 ? "backup" : "backups"}`;
-  document.getElementById("limit-text").textContent =
-    doomed.length === 1
-      ? "Backing up now deletes your oldest backup:"
-      : `Backing up now deletes your ${doomed.length} oldest backups:`;
+  document.getElementById("limit-title").textContent = plural(
+    "limitTitle",
+    keep,
+  );
+  document.getElementById("limit-text").textContent = plural(
+    "limitText",
+    doomed.length,
+  );
 
   const shown = doomed.slice(-3).reverse(); // oldest first
   const items = shown.map((backup) => {
@@ -136,7 +141,7 @@ function showLimitNotice(keep, doomed) {
   });
   if (doomed.length > shown.length) {
     const more = document.createElement("li");
-    more.textContent = `and ${doomed.length - shown.length} more`;
+    more.textContent = plural("limitMore", doomed.length - shown.length);
     items.push(more);
   }
   document.getElementById("limit-list").replaceChildren(...items);

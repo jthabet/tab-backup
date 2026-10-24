@@ -39,7 +39,8 @@
     "build:chrome": "webpack --mode production --env target=chrome",
     "start:chrome": "webpack -w --env target=chrome --env launchBrowser=false",
     "dev:chrome": "webpack -w --env target=chrome",
-    "lint": "pnpm build && web-ext lint",
+    "check-locales": "node scripts/check-locales.mjs",
+    "lint": "pnpm check-locales && pnpm build && web-ext lint",
     "build-extension": "web-ext build",
     "build-extension:chrome": "pnpm build:chrome && web-ext build -s dist-chrome --filename tab_backup-chrome-{version}.zip",
     "sign-extension": "make sign-extension"

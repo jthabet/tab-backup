@@ -61,13 +61,42 @@ browsers. Sample backups of three tabs in every format are in
    dated folder in Other Bookmarks › Tab Backup, which is listed on the restore
    page, where **Restore…** and **Delete** work.
 
+## Translations
+
+Every piece of text the user sees lives in
+`src/_locales/<language>/messages.json`; English (`en`) is the default and
+the fallback. To change or add text:
+
+- **In a page**, put `data-i18n="key"` on the element (or
+  `data-i18n-title` / `data-i18n-aria-label` for those attributes) and keep
+  the English text in the HTML.
+- **In a script**, use `t("key")`, or `plural("key", count)` for text that
+  depends on a number: add `key_one` and `key_other` (and any other plural
+  forms the language needs, such as `key_few`), with the count as `$1`.
+- **If the wording differs per browser**, add `key__firefox` and
+  `key__chrome` instead of `key`; the build keeps the right one.
+
+Add the message to every language, then run:
+
+```sh
+pnpm check-locales
+```
+
+To add a language, copy `src/_locales/en` to `src/_locales/<code>` (for
+example `de`), translate each `message` (the `description` explains where it
+appears), and set `languageTag` to the code. Keep `$1`, `$2` and the
+`{YYYY}`-style tokens exactly as they are.
+
+To see a translation, switch the browser's language, or start Chrome in it:
+`pnpm exec web-ext run -t chromium -s dist-chrome --arg=--lang=fr --arg=-AppleLanguages --arg="(fr)"`.
+
 ## Lint
 
 ```sh
 pnpm lint
 ```
 
-Builds `dist/` and runs Mozilla's add-on linter on it. It must report 0 errors
+Checks the translations, builds `dist/` and runs Mozilla's add-on linter on it. It must report 0 errors
 before a Firefox release. There is no equivalent for Chrome.
 
 ## Package

@@ -1,0 +1,326 @@
+{
+  "languageTag": {
+    "message": "de",
+    "description": "BCP 47 tag of this translation, used for plural rules. Don't translate; set it to the folder's language."
+  },
+  "extensionName": {
+    "message": "Tab Backup",
+    "description": "Extension name. Product name, normally not translated."
+  },
+  "extensionDescription": {
+    "message": "Sichern Sie die Tabs Ihres Fensters in einer Datei oder einem Lesezeichen-Ordner und stellen Sie sie nach einer Vorschau wieder her.",
+    "description": "Store summary and add-ons manager description. 132 characters at most."
+  },
+  "cancel": {
+    "message": "Abbrechen",
+    "description": "Button that closes a confirmation or preview without doing anything."
+  },
+  "settings": {
+    "message": "Einstellungen",
+    "description": "Settings button label and page heading."
+  },
+  "tabCount_one": {
+    "message": "$1 Tab",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "tabCount_other": {
+    "message": "$1 Tabs",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "backUp": {
+    "message": "Sichern",
+    "description": "Popup button that saves the current window's tabs."
+  },
+  "restore": {
+    "message": "Wiederherstellen…",
+    "description": "Popup button that opens the restore page; also the button that restores one bookmark backup."
+  },
+  "limitTitle_one": {
+    "message": "Sie haben Ihr Limit von $1 Lesezeichen-Sicherung erreicht",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit."
+  },
+  "limitTitle_other": {
+    "message": "Sie haben Ihr Limit von $1 Lesezeichen-Sicherungen erreicht",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit."
+  },
+  "limitText_one": {
+    "message": "Wenn Sie jetzt sichern, wird Ihre älteste Sicherung gelöscht:",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitText_other": {
+    "message": "Wenn Sie jetzt sichern, werden Ihre $1 ältesten Sicherungen gelöscht:",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitMore_one": {
+    "message": "und $1 weitere",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "limitMore_other": {
+    "message": "und $1 weitere",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "changeLimit": {
+    "message": "Limit ändern",
+    "description": "Link-style button that opens settings to change how many bookmark backups are kept."
+  },
+  "backUpAnyway": {
+    "message": "Trotzdem sichern",
+    "description": "Confirms a backup that deletes the oldest bookmark backups."
+  },
+  "restorePageTitle": {
+    "message": "Tabs wiederherstellen | Tab Backup",
+    "description": "Browser tab title of the restore page."
+  },
+  "restoreHeading": {
+    "message": "Tabs wiederherstellen",
+    "description": "Restore page heading."
+  },
+  "restoreIntro": {
+    "message": "Wählen Sie eine mit Tab Backup gespeicherte Sicherungsdatei. Vor dem Öffnen können Sie auswählen, welche Tabs in diesem Fenster geöffnet werden.",
+    "description": "Restore page introduction."
+  },
+  "chooseFile": {
+    "message": "Sicherungsdatei auswählen…",
+    "description": "Button that opens the file picker."
+  },
+  "bookmarkBackups": {
+    "message": "Lesezeichen-Sicherungen",
+    "description": "Heading of the list of bookmark backups on the restore page."
+  },
+  "noBookmarkBackups__firefox": {
+    "message": "Noch keine Lesezeichen-Sicherungen. Sicherungen von Ihren anderen Geräten erscheinen hier, sobald Firefox Sync gelaufen ist.",
+    "description": "Shown when there are no bookmark backups yet. (Firefox build)"
+  },
+  "noBookmarkBackups__chrome": {
+    "message": "Noch keine Lesezeichen-Sicherungen. Sicherungen von Ihren anderen Geräten erscheinen hier, sobald Ihr Browser synchronisiert hat.",
+    "description": "Shown when there are no bookmark backups yet. (Chrome build)"
+  },
+  "selectAll": {
+    "message": "Alle auswählen",
+    "description": "Checks every tab in the restore preview."
+  },
+  "selectNone": {
+    "message": "Keine auswählen",
+    "description": "Unchecks every tab in the restore preview."
+  },
+  "skipOpenTabs": {
+    "message": "Bereits geöffnete Tabs überspringen",
+    "description": "Checkbox in the restore preview."
+  },
+  "alreadyOpenCount_one": {
+    "message": "$1 bereits geöffnet",
+    "description": "Part of the restore preview summary, e.g. “3 tabs · 1 already open”. $1 is the count."
+  },
+  "alreadyOpenCount_other": {
+    "message": "$1 bereits geöffnet",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "cantOpenCount_one": {
+    "message": "$1 kann nicht geöffnet werden",
+    "description": "Part of the restore preview summary. $1 is the count of tabs the browser won't let extensions open."
+  },
+  "cantOpenCount_other": {
+    "message": "$1 können nicht geöffnet werden",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "alreadyOpen": {
+    "message": "Bereits geöffnet",
+    "description": "Note next to a tab in the restore preview."
+  },
+  "cantBeOpened": {
+    "message": "Kann nicht geöffnet werden",
+    "description": "Note next to a tab the browser won't let extensions open."
+  },
+  "openTabs_one": {
+    "message": "$1 Tab öffnen",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openTabs_other": {
+    "message": "$1 Tabs öffnen",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openedTabs_one": {
+    "message": "$1 Tab geöffnet.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "openedTabs_other": {
+    "message": "$1 Tabs geöffnet.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "skippedTabs_one": {
+    "message": "$1 übersprungen, da er nicht geöffnet werden kann.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "skippedTabs_other": {
+    "message": "$1 übersprungen, da sie nicht geöffnet werden können.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "noTabsInFile": {
+    "message": "Keine Tabs in dieser Datei gefunden.",
+    "description": "Shown when a chosen file has no tabs."
+  },
+  "cantReadFile": {
+    "message": "Diese Datei konnte nicht gelesen werden.",
+    "description": "Shown when a chosen file can't be read."
+  },
+  "selectAtLeastOne": {
+    "message": "Wählen Sie mindestens einen Tab zum Öffnen aus.",
+    "description": "Shown when Open is pressed with nothing checked."
+  },
+  "restoreBackupLabel": {
+    "message": "$1 wiederherstellen",
+    "description": "Screen reader label of a bookmark backup's Restore button. $1 is the backup's name."
+  },
+  "delete": {
+    "message": "Löschen",
+    "description": "Deletes one bookmark backup."
+  },
+  "deleteBackupLabel": {
+    "message": "$1 löschen",
+    "description": "Screen reader label of a bookmark backup's Delete button. $1 is the backup's name."
+  },
+  "confirmDelete": {
+    "message": "Die Sicherung „$1“ löschen?",
+    "description": "Confirmation before deleting a bookmark backup. $1 is the backup's name."
+  },
+  "backupFolderTitle_one": {
+    "message": "$2 · $1 Tab",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "backupFolderTitle_other": {
+    "message": "$2 · $1 Tabs",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "settingsPageTitle": {
+    "message": "Einstellungen | Tab Backup",
+    "description": "Browser tab title of the settings page."
+  },
+  "saveBackupsTo": {
+    "message": "Sicherungen speichern in",
+    "description": "Heading of the destination choices."
+  },
+  "destinationFile": {
+    "message": "Einer Datei",
+    "description": "Destination choice."
+  },
+  "destinationFileHint": {
+    "message": "Wird im unten gewählten Format heruntergeladen.",
+    "description": "Explains the file destination."
+  },
+  "destinationBookmarks": {
+    "message": "Lesezeichen",
+    "description": "Destination choice."
+  },
+  "destinationBookmarksHint__firefox": {
+    "message": "Ein datierter Ordner in „Weitere Lesezeichen“, den Firefox Sync auf Ihre anderen Geräte überträgt.",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Firefox build)"
+  },
+  "destinationBookmarksHint__chrome": {
+    "message": "Ein datierter Ordner in „Weitere Lesezeichen“, den die Synchronisierung Ihres Browsers auf Ihre anderen Geräte überträgt.",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Chrome build)"
+  },
+  "destinationBoth": {
+    "message": "Beidem",
+    "description": "Destination choice."
+  },
+  "destinationBothHint": {
+    "message": "Eine Datei und ein Lesezeichen-Ordner.",
+    "description": "Explains the both destination."
+  },
+  "keepBefore": {
+    "message": "Die letzten",
+    "description": "Text before the number field in “Keep the last [20] bookmark backups”."
+  },
+  "keepAfter": {
+    "message": "Lesezeichen-Sicherungen behalten",
+    "description": "Text after the number field in “Keep the last [20] bookmark backups”."
+  },
+  "folderName": {
+    "message": "Name des Lesezeichen-Ordners",
+    "description": "Label of the bookmark folder name field."
+  },
+  "folderNameHint": {
+    "message": "Wird in „Weitere Lesezeichen“ erstellt. Eine Namensänderung benennt den Ordner um; Ihre Sicherungen bleiben darin.",
+    "description": "Explains the folder name field."
+  },
+  "enterFolderName": {
+    "message": "Geben Sie einen Ordnernamen ein.",
+    "description": "Error when the folder name is empty."
+  },
+  "bookmarksNote": {
+    "message": "Wenn Sie das Limit erreichen, fragt „Sichern“ nach, bevor die ältesten gelöscht werden. Zum Speichern in Lesezeichen wird die Berechtigung angefragt, Ihre Lesezeichen zu lesen und zu ändern. Tab Backup verändert nur seinen eigenen Ordner, erkennbar an einem Lesezeichen „About these backups“ darin.",
+    "description": "Explains bookmark backups. Keep “About these backups” in English: it's the name of a bookmark that never changes."
+  },
+  "needBookmarkAccess": {
+    "message": "Lesezeichen-Sicherungen benötigen Zugriff auf Ihre Lesezeichen.",
+    "description": "Shown when bookmark access was refused."
+  },
+  "fileFormat": {
+    "message": "Dateiformat",
+    "description": "Heading of the format choices."
+  },
+  "formatJsonHint__firefox": {
+    "message": "Stellt jeden Tab genau wieder her, auch neue Tabs und Seiten in der Leseansicht.",
+    "description": "Explains the JSON format. (Firefox build)"
+  },
+  "formatJsonHint__chrome": {
+    "message": "Stellt jeden Tab genau wieder her, auch neue Tabs.",
+    "description": "Explains the JSON format. (Chrome build)"
+  },
+  "formatMarkdownHint": {
+    "message": "Eine Liste von Links mit Titeln für Notizen und Dokumente.",
+    "description": "Explains the Markdown format."
+  },
+  "formatText": {
+    "message": "Reiner Text",
+    "description": "Format choice."
+  },
+  "formatTextHint": {
+    "message": "Eine URL pro Zeile.",
+    "description": "Explains the plain text format."
+  },
+  "formatHtml": {
+    "message": "HTML-Lesezeichen",
+    "description": "Format choice: a bookmarks file in HTML."
+  },
+  "formatHtmlHint": {
+    "message": "Zum Importieren in die Lesezeichen jedes Browsers.",
+    "description": "Explains the HTML bookmarks format."
+  },
+  "formatNote": {
+    "message": "Die Wiederherstellung liest alle vier. Markdown, reiner Text und HTML stellen nur Weblinks wieder her.",
+    "description": "Note below the format choices."
+  },
+  "fileName": {
+    "message": "Dateiname",
+    "description": "Label of the file name pattern field."
+  },
+  "fileNameHint": {
+    "message": "Verwenden Sie {YYYY} {MM} {DD} {HH} {mm} {ss} für Datum und Uhrzeit und {count} für die Anzahl der Tabs. Die Dateiendung wird automatisch ergänzt.",
+    "description": "Explains the file name pattern. Keep the {…} tokens exactly as they are."
+  },
+  "reset": {
+    "message": "Zurücksetzen",
+    "description": "Restores the default file name pattern."
+  },
+  "preview": {
+    "message": "Vorschau:",
+    "description": "Label before the example file name."
+  },
+  "saved": {
+    "message": "Gespeichert",
+    "description": "Shown briefly after a setting is saved."
+  },
+  "saveFailed": {
+    "message": "Ihre Einstellungen konnten nicht gespeichert werden. Versuchen Sie es erneut.",
+    "description": "Shown when settings couldn't be saved."
+  },
+  "settingsSyncNote__firefox": {
+    "message": "Einstellungen werden auf Ihren Geräten synchronisiert, wenn Sie in Firefox angemeldet sind und die Synchronisierung von Add-ons aktiviert ist.",
+    "description": "Footer of the settings page. (Firefox build)"
+  },
+  "settingsSyncNote__chrome": {
+    "message": "Einstellungen werden auf Ihren Geräten synchronisiert, wenn Sie in Ihrem Browser angemeldet sind und die Synchronisierung aktiviert ist.",
+    "description": "Footer of the settings page. (Chrome build)"
+  }
+}

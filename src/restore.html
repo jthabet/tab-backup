@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="color-scheme" content="light dark" />
-    <title>Restore tabs | Tab Backup</title>
+    <title data-i18n="restorePageTitle">Restore tabs | Tab Backup</title>
   </head>
   <body
     class="grid min-h-screen place-items-center bg-white text-neutral-900 dark:bg-neutral-900 dark:text-white"
@@ -34,9 +34,14 @@
         <path d="M9.9 13.1c.8-.8 1.4-1.4 2.2-2 .7.8 1.3 1.4 2 2.2" />
       </svg>
 
-      <h1 class="text-xl font-semibold">Restore tabs</h1>
+      <h1 class="text-xl font-semibold" data-i18n="restoreHeading">
+        Restore tabs
+      </h1>
       <div id="start-view" class="flex w-full flex-col items-center gap-4">
-        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+        <p
+          class="text-sm text-neutral-500 dark:text-neutral-400"
+          data-i18n="restoreIntro"
+        >
           Choose a backup file saved with Tab Backup. You can pick which tabs to
           open before they open in this window.
         </p>
@@ -51,6 +56,7 @@
         <label
           for="input"
           class="mt-2 inline-flex h-12 cursor-pointer items-center rounded-lg bg-neutral-800 px-5 font-semibold text-white peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-neutral-800 hover:bg-neutral-700 dark:bg-neutral-100 dark:text-neutral-900 dark:peer-focus-visible:outline-neutral-100 dark:hover:bg-neutral-300"
+          data-i18n="chooseFile"
         >
           Choose backup file…
         </label>
@@ -60,7 +66,9 @@
           hidden
           class="mt-4 flex w-full flex-col gap-2 text-left"
         >
-          <h2 class="text-sm font-semibold">Bookmark backups</h2>
+          <h2 class="text-sm font-semibold" data-i18n="bookmarkBackups">
+            Bookmark backups
+          </h2>
           <ul
             id="synced-list"
             class="divide-y divide-neutral-200 rounded-lg border border-neutral-200 dark:divide-neutral-700 dark:border-neutral-700"
@@ -68,6 +76,7 @@
           <p
             id="synced-empty"
             hidden
+            data-i18n="noBookmarkBackups"
             class="text-sm text-neutral-500 dark:text-neutral-400"
           >
             No bookmark backups yet. Backups from your other devices appear here
@@ -94,6 +103,7 @@
           <button
             type="button"
             id="select-all"
+            data-i18n="selectAll"
             class="cursor-pointer text-neutral-600 underline-offset-2 hover:underline dark:text-neutral-300"
           >
             Select all
@@ -101,6 +111,7 @@
           <button
             type="button"
             id="select-none"
+            data-i18n="selectNone"
             class="cursor-pointer text-neutral-600 underline-offset-2 hover:underline dark:text-neutral-300"
           >
             Select none
@@ -115,7 +126,9 @@
               checked
               class="accent-neutral-800 dark:accent-neutral-100"
             />
-            Skip tabs that are already open
+            <span data-i18n="skipOpenTabs"
+              >Skip tabs that are already open</span
+            >
           </label>
         </div>
 
@@ -128,6 +141,7 @@
           <button
             type="button"
             id="preview-cancel"
+            data-i18n="cancel"
             class="h-9 cursor-pointer rounded-md border border-neutral-300 px-4 text-sm font-medium hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-800"
           >
             Cancel

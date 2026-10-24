@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="color-scheme" content="light dark" />
-    <title>Settings | Tab Backup</title>
+    <title data-i18n="settingsPageTitle">Settings | Tab Backup</title>
   </head>
   <body
     class="min-h-screen bg-white text-neutral-900 dark:bg-neutral-900 dark:text-white"
@@ -30,11 +30,13 @@
             d="M15.06 12C15.07 12.71 14.67 13.67 14.16 14.16C13.65 14.66 12.71 14.99 12 14.98C11.29 14.97 10.4 14.6 9.9 14.1C9.39 13.61 8.95 12.7 8.95 12C8.95 11.3 9.39 10.39 9.9 9.9C10.4 9.41 11.3 9.05 12 9.05C12.7 9.05 13.59 9.41 14.1 9.9C14.61 10.39 15.05 11.29 15.06 12Z"
           />
         </svg>
-        <h1 class="text-xl font-semibold">Settings</h1>
+        <h1 class="text-xl font-semibold" data-i18n="settings">Settings</h1>
       </header>
 
       <fieldset class="flex flex-col gap-2">
-        <legend class="mb-2 text-sm font-semibold">Save backups to</legend>
+        <legend class="mb-2 text-sm font-semibold" data-i18n="saveBackupsTo">
+          Save backups to
+        </legend>
 
         <label
           class="flex cursor-pointer gap-3 rounded-lg border border-neutral-200 p-3 has-checked:border-neutral-800 has-checked:bg-neutral-50 dark:border-neutral-700 dark:has-checked:border-neutral-200 dark:has-checked:bg-neutral-800"
@@ -46,8 +48,13 @@
             class="mt-1 accent-neutral-800 dark:accent-neutral-100"
           />
           <span class="flex flex-col">
-            <span class="text-sm font-medium">A file</span>
-            <span class="text-sm text-neutral-500 dark:text-neutral-400">
+            <span class="text-sm font-medium" data-i18n="destinationFile"
+              >A file</span
+            >
+            <span
+              class="text-sm text-neutral-500 dark:text-neutral-400"
+              data-i18n="destinationFileHint"
+            >
               Downloaded in the format below.
             </span>
           </span>
@@ -63,8 +70,13 @@
             class="mt-1 accent-neutral-800 dark:accent-neutral-100"
           />
           <span class="flex flex-col">
-            <span class="text-sm font-medium">Bookmarks</span>
-            <span class="text-sm text-neutral-500 dark:text-neutral-400">
+            <span class="text-sm font-medium" data-i18n="destinationBookmarks"
+              >Bookmarks</span
+            >
+            <span
+              class="text-sm text-neutral-500 dark:text-neutral-400"
+              data-i18n="destinationBookmarksHint"
+            >
               A dated folder in Other Bookmarks, synced to your other devices by
               Firefox Sync.
             </span>
@@ -81,15 +93,20 @@
             class="mt-1 accent-neutral-800 dark:accent-neutral-100"
           />
           <span class="flex flex-col">
-            <span class="text-sm font-medium">Both</span>
-            <span class="text-sm text-neutral-500 dark:text-neutral-400">
+            <span class="text-sm font-medium" data-i18n="destinationBoth"
+              >Both</span
+            >
+            <span
+              class="text-sm text-neutral-500 dark:text-neutral-400"
+              data-i18n="destinationBothHint"
+            >
               A file and a bookmark folder.
             </span>
           </span>
         </label>
 
-        <div class="mt-1 flex items-center gap-2 text-sm">
-          <label for="keep">Keep the last</label>
+        <div class="mt-1 flex flex-wrap items-center gap-2 text-sm">
+          <label for="keep" data-i18n="keepBefore">Keep the last</label>
           <input
             id="keep"
             type="number"
@@ -98,11 +115,13 @@
             step="1"
             class="h-8 w-16 rounded-md border border-neutral-300 bg-transparent px-2 text-sm focus:outline-2 focus:outline-offset-1 focus:outline-neutral-800 dark:border-neutral-600 dark:focus:outline-neutral-100"
           />
-          <span>bookmark backups</span>
+          <span data-i18n="keepAfter">bookmark backups</span>
         </div>
 
         <div class="mt-2 flex flex-col gap-1">
-          <label for="folder-name" class="text-sm">Bookmark folder name</label>
+          <label for="folder-name" class="text-sm" data-i18n="folderName"
+            >Bookmark folder name</label
+          >
           <input
             id="folder-name"
             type="text"
@@ -117,6 +136,7 @@
           ></p>
           <p
             id="folder-name-hint"
+            data-i18n="folderNameHint"
             class="text-xs text-neutral-500 dark:text-neutral-400"
           >
             Created in Other Bookmarks. Changing the name renames the folder;
@@ -124,7 +144,10 @@
           </p>
         </div>
 
-        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+        <p
+          class="text-xs text-neutral-500 dark:text-neutral-400"
+          data-i18n="bookmarksNote"
+        >
           When you reach the limit, Back up asks before deleting the oldest.
           Saving to bookmarks asks for permission to read and change your
           bookmarks. Tab Backup only touches its own folder, marked by an "About
@@ -133,7 +156,9 @@
       </fieldset>
 
       <fieldset class="flex flex-col gap-2">
-        <legend class="mb-2 text-sm font-semibold">File format</legend>
+        <legend class="mb-2 text-sm font-semibold" data-i18n="fileFormat">
+          File format
+        </legend>
 
         <label
           class="flex cursor-pointer gap-3 rounded-lg border border-neutral-200 p-3 has-checked:border-neutral-800 has-checked:bg-neutral-50 dark:border-neutral-700 dark:has-checked:border-neutral-200 dark:has-checked:bg-neutral-800"
@@ -146,7 +171,10 @@
           />
           <span class="flex flex-col">
             <span class="text-sm font-medium">JSON</span>
-            <span class="text-sm text-neutral-500 dark:text-neutral-400">
+            <span
+              class="text-sm text-neutral-500 dark:text-neutral-400"
+              data-i18n="formatJsonHint"
+            >
               Restores every tab exactly, including new tab and Reader View
               pages.
             </span>
@@ -164,7 +192,10 @@
           />
           <span class="flex flex-col">
             <span class="text-sm font-medium">Markdown</span>
-            <span class="text-sm text-neutral-500 dark:text-neutral-400">
+            <span
+              class="text-sm text-neutral-500 dark:text-neutral-400"
+              data-i18n="formatMarkdownHint"
+            >
               A list of titled links for notes and docs.
             </span>
           </span>
@@ -180,8 +211,13 @@
             class="mt-1 accent-neutral-800 dark:accent-neutral-100"
           />
           <span class="flex flex-col">
-            <span class="text-sm font-medium">Plain text</span>
-            <span class="text-sm text-neutral-500 dark:text-neutral-400">
+            <span class="text-sm font-medium" data-i18n="formatText"
+              >Plain text</span
+            >
+            <span
+              class="text-sm text-neutral-500 dark:text-neutral-400"
+              data-i18n="formatTextHint"
+            >
               One URL per line.
             </span>
           </span>
@@ -197,23 +233,34 @@
             class="mt-1 accent-neutral-800 dark:accent-neutral-100"
           />
           <span class="flex flex-col">
-            <span class="text-sm font-medium">HTML bookmarks</span>
-            <span class="text-sm text-neutral-500 dark:text-neutral-400">
+            <span class="text-sm font-medium" data-i18n="formatHtml"
+              >HTML bookmarks</span
+            >
+            <span
+              class="text-sm text-neutral-500 dark:text-neutral-400"
+              data-i18n="formatHtmlHint"
+            >
               Import into the bookmarks of any browser.
             </span>
           </span>
         </label>
 
-        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+        <p
+          class="text-xs text-neutral-500 dark:text-neutral-400"
+          data-i18n="formatNote"
+        >
           Restore reads all four. Markdown, plain text and HTML bring back web
           links only.
         </p>
       </fieldset>
 
       <div class="flex flex-col gap-2">
-        <label for="filename" class="text-sm font-semibold">File name</label>
+        <label for="filename" class="text-sm font-semibold" data-i18n="fileName"
+          >File name</label
+        >
         <p
           id="filename-hint"
+          data-i18n="fileNameHint"
           class="text-sm text-neutral-500 dark:text-neutral-400"
         >
           Use {YYYY} {MM} {DD} {HH} {mm} {ss} for the date and time, and {count}
@@ -231,13 +278,18 @@
           <button
             type="button"
             id="filename-reset"
+            data-i18n="reset"
             class="h-9 cursor-pointer rounded-md border border-neutral-300 px-3 text-sm font-medium hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-800"
           >
             Reset
           </button>
         </div>
         <p class="text-sm">
-          <span class="text-neutral-500 dark:text-neutral-400">Preview:</span>
+          <span
+            class="text-neutral-500 dark:text-neutral-400"
+            data-i18n="preview"
+            >Preview:</span
+          >
           <span id="filename-preview" class="font-mono break-all"></span>
         </p>
       </div>
@@ -248,7 +300,10 @@
           role="status"
           class="h-5 text-sm text-neutral-500 dark:text-neutral-400"
         ></p>
-        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+        <p
+          class="text-xs text-neutral-500 dark:text-neutral-400"
+          data-i18n="settingsSyncNote"
+        >
           Settings sync across your devices when you're signed in to Firefox and
           add-on sync is on.
         </p>

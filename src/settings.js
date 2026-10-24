@@ -11,6 +11,9 @@ import {
   renameBackupFolder,
   requestBookmarksPermission,
 } from "./bookmark-backups.js";
+import { localizePage, t } from "./i18n.js";
+
+localizePage();
 
 const destinationInputs = document.querySelectorAll(
   'input[name="destination"]',
@@ -73,7 +76,7 @@ async function init() {
         for (const other of destinationInputs) {
           other.checked = other.value === currentDestination;
         }
-        showStatus("Bookmark backups need access to your bookmarks.");
+        showStatus(t("needBookmarkAccess"));
       }
     });
   }
@@ -82,7 +85,7 @@ async function init() {
     clearTimeout(folderTimer);
     const name = folderNameInput.value.trim();
     if (!name) {
-      folderNameError.textContent = "Enter a folder name.";
+      folderNameError.textContent = t("enterFolderName");
       folderNameInput.setAttribute("aria-invalid", "true");
       return;
     }
@@ -164,10 +167,10 @@ browser.storage.sync.onChanged.addListener((changes) => {
 async function save(changes) {
   try {
     await saveSettings(changes);
-    showStatus("Saved");
+    showStatus(t("saved"));
   } catch (error) {
     console.error(error);
-    showStatus("Couldn't save your settings. Try again.");
+    showStatus(t("saveFailed"));
   }
 }
 

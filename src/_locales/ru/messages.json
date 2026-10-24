@@ -1,0 +1,406 @@
+{
+  "languageTag": {
+    "message": "ru",
+    "description": "BCP 47 tag of this translation, used for plural rules. Don't translate; set it to the folder's language."
+  },
+  "extensionName": {
+    "message": "Tab Backup",
+    "description": "Extension name. Product name, normally not translated."
+  },
+  "extensionDescription": {
+    "message": "Сохраняйте вкладки окна в файл или папку закладок, а затем просматривайте и восстанавливайте их.",
+    "description": "Store summary and add-ons manager description. 132 characters at most."
+  },
+  "cancel": {
+    "message": "Отмена",
+    "description": "Button that closes a confirmation or preview without doing anything."
+  },
+  "settings": {
+    "message": "Настройки",
+    "description": "Settings button label and page heading."
+  },
+  "tabCount_one": {
+    "message": "$1 вкладка",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "tabCount_few": {
+    "message": "$1 вкладки",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "tabCount_many": {
+    "message": "$1 вкладок",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "tabCount_other": {
+    "message": "$1 вкладки",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "backUp": {
+    "message": "Сохранить",
+    "description": "Popup button that saves the current window's tabs."
+  },
+  "restore": {
+    "message": "Восстановить…",
+    "description": "Popup button that opens the restore page; also the button that restores one bookmark backup."
+  },
+  "limitTitle_one": {
+    "message": "Достигнут лимит: $1 резервная копия в закладках",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit."
+  },
+  "limitTitle_few": {
+    "message": "Достигнут лимит: $1 резервные копии в закладках",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit."
+  },
+  "limitTitle_many": {
+    "message": "Достигнут лимит: $1 резервных копий в закладках",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit."
+  },
+  "limitTitle_other": {
+    "message": "Достигнут лимит: $1 резервной копии в закладках",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit."
+  },
+  "limitText_one": {
+    "message": "Если сохранить сейчас, будет удалена $1 самая старая копия:",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitText_few": {
+    "message": "Если сохранить сейчас, будут удалены $1 самые старые копии:",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitText_many": {
+    "message": "Если сохранить сейчас, будут удалены $1 самых старых копий:",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitText_other": {
+    "message": "Если сохранить сейчас, будут удалены самые старые копии ($1):",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitMore_one": {
+    "message": "и ещё $1",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "limitMore_few": {
+    "message": "и ещё $1",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "limitMore_many": {
+    "message": "и ещё $1",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "limitMore_other": {
+    "message": "и ещё $1",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "changeLimit": {
+    "message": "Изменить лимит",
+    "description": "Link-style button that opens settings to change how many bookmark backups are kept."
+  },
+  "backUpAnyway": {
+    "message": "Всё равно сохранить",
+    "description": "Confirms a backup that deletes the oldest bookmark backups."
+  },
+  "restorePageTitle": {
+    "message": "Восстановление вкладок | Tab Backup",
+    "description": "Browser tab title of the restore page."
+  },
+  "restoreHeading": {
+    "message": "Восстановление вкладок",
+    "description": "Restore page heading."
+  },
+  "restoreIntro": {
+    "message": "Выберите файл резервной копии, сохранённый Tab Backup. Перед открытием вы сможете выбрать, какие вкладки открыть в этом окне.",
+    "description": "Restore page introduction."
+  },
+  "chooseFile": {
+    "message": "Выбрать файл резервной копии…",
+    "description": "Button that opens the file picker."
+  },
+  "bookmarkBackups": {
+    "message": "Резервные копии в закладках",
+    "description": "Heading of the list of bookmark backups on the restore page."
+  },
+  "noBookmarkBackups__firefox": {
+    "message": "Резервных копий в закладках пока нет. Копии с других ваших устройств появятся здесь после синхронизации Firefox Sync.",
+    "description": "Shown when there are no bookmark backups yet. (Firefox build)"
+  },
+  "noBookmarkBackups__chrome": {
+    "message": "Резервных копий в закладках пока нет. Копии с других ваших устройств появятся здесь после синхронизации браузера.",
+    "description": "Shown when there are no bookmark backups yet. (Chrome build)"
+  },
+  "selectAll": {
+    "message": "Выбрать все",
+    "description": "Checks every tab in the restore preview."
+  },
+  "selectNone": {
+    "message": "Снять выбор",
+    "description": "Unchecks every tab in the restore preview."
+  },
+  "skipOpenTabs": {
+    "message": "Пропускать уже открытые вкладки",
+    "description": "Checkbox in the restore preview."
+  },
+  "alreadyOpenCount_one": {
+    "message": "$1 уже открыта",
+    "description": "Part of the restore preview summary, e.g. “3 tabs · 1 already open”. $1 is the count."
+  },
+  "alreadyOpenCount_few": {
+    "message": "$1 уже открыты",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "alreadyOpenCount_many": {
+    "message": "$1 уже открыто",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "alreadyOpenCount_other": {
+    "message": "$1 уже открыто",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "cantOpenCount_one": {
+    "message": "$1 нельзя открыть",
+    "description": "Part of the restore preview summary. $1 is the count of tabs the browser won't let extensions open."
+  },
+  "cantOpenCount_few": {
+    "message": "$1 нельзя открыть",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "cantOpenCount_many": {
+    "message": "$1 нельзя открыть",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "cantOpenCount_other": {
+    "message": "$1 нельзя открыть",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "alreadyOpen": {
+    "message": "Уже открыта",
+    "description": "Note next to a tab in the restore preview."
+  },
+  "cantBeOpened": {
+    "message": "Нельзя открыть",
+    "description": "Note next to a tab the browser won't let extensions open."
+  },
+  "openTabs_one": {
+    "message": "Открыть $1 вкладку",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openTabs_few": {
+    "message": "Открыть $1 вкладки",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openTabs_many": {
+    "message": "Открыть $1 вкладок",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openTabs_other": {
+    "message": "Открыть $1 вкладки",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openedTabs_one": {
+    "message": "Открыта $1 вкладка.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "openedTabs_few": {
+    "message": "Открыты $1 вкладки.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "openedTabs_many": {
+    "message": "Открыто $1 вкладок.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "openedTabs_other": {
+    "message": "Открыто $1 вкладки.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "skippedTabs_one": {
+    "message": "Пропущена $1 вкладка, которую нельзя открыть.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "skippedTabs_few": {
+    "message": "Пропущены $1 вкладки, которые нельзя открыть.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "skippedTabs_many": {
+    "message": "Пропущено $1 вкладок, которые нельзя открыть.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "skippedTabs_other": {
+    "message": "Пропущено $1 вкладки, которые нельзя открыть.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "noTabsInFile": {
+    "message": "В этом файле не найдено вкладок.",
+    "description": "Shown when a chosen file has no tabs."
+  },
+  "cantReadFile": {
+    "message": "Не удалось прочитать этот файл.",
+    "description": "Shown when a chosen file can't be read."
+  },
+  "selectAtLeastOne": {
+    "message": "Выберите хотя бы одну вкладку.",
+    "description": "Shown when Open is pressed with nothing checked."
+  },
+  "restoreBackupLabel": {
+    "message": "Восстановить $1",
+    "description": "Screen reader label of a bookmark backup's Restore button. $1 is the backup's name."
+  },
+  "delete": {
+    "message": "Удалить",
+    "description": "Deletes one bookmark backup."
+  },
+  "deleteBackupLabel": {
+    "message": "Удалить $1",
+    "description": "Screen reader label of a bookmark backup's Delete button. $1 is the backup's name."
+  },
+  "confirmDelete": {
+    "message": "Удалить резервную копию «$1»?",
+    "description": "Confirmation before deleting a bookmark backup. $1 is the backup's name."
+  },
+  "backupFolderTitle_one": {
+    "message": "$2 · $1 вкладка",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "backupFolderTitle_few": {
+    "message": "$2 · $1 вкладки",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "backupFolderTitle_many": {
+    "message": "$2 · $1 вкладок",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "backupFolderTitle_other": {
+    "message": "$2 · $1 вкладки",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "settingsPageTitle": {
+    "message": "Настройки | Tab Backup",
+    "description": "Browser tab title of the settings page."
+  },
+  "saveBackupsTo": {
+    "message": "Где сохранять резервные копии",
+    "description": "Heading of the destination choices."
+  },
+  "destinationFile": {
+    "message": "В файл",
+    "description": "Destination choice."
+  },
+  "destinationFileHint": {
+    "message": "Скачивается в формате, выбранном ниже.",
+    "description": "Explains the file destination."
+  },
+  "destinationBookmarks": {
+    "message": "В закладки",
+    "description": "Destination choice."
+  },
+  "destinationBookmarksHint__firefox": {
+    "message": "Папка с датой в «Других закладках», которую Firefox Sync переносит на другие ваши устройства.",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Firefox build)"
+  },
+  "destinationBookmarksHint__chrome": {
+    "message": "Папка с датой в «Других закладках», которую синхронизация браузера переносит на другие ваши устройства.",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Chrome build)"
+  },
+  "destinationBoth": {
+    "message": "Оба варианта",
+    "description": "Destination choice."
+  },
+  "destinationBothHint": {
+    "message": "Файл и папка закладок.",
+    "description": "Explains the both destination."
+  },
+  "keepBefore": {
+    "message": "Хранить последние",
+    "description": "Text before the number field in “Keep the last [20] bookmark backups”."
+  },
+  "keepAfter": {
+    "message": "резервных копий в закладках",
+    "description": "Text after the number field in “Keep the last [20] bookmark backups”."
+  },
+  "folderName": {
+    "message": "Название папки закладок",
+    "description": "Label of the bookmark folder name field."
+  },
+  "folderNameHint": {
+    "message": "Создаётся в «Других закладках». При изменении названия папка переименовывается, резервные копии остаются в ней.",
+    "description": "Explains the folder name field."
+  },
+  "enterFolderName": {
+    "message": "Введите название папки.",
+    "description": "Error when the folder name is empty."
+  },
+  "bookmarksNote": {
+    "message": "При достижении лимита «Сохранить» спросит подтверждение, прежде чем удалить самые старые копии. Для сохранения в закладки запрашивается разрешение на чтение и изменение закладок. Tab Backup изменяет только свою папку, отмеченную закладкой «About these backups» внутри неё.",
+    "description": "Explains bookmark backups. Keep “About these backups” in English: it's the name of a bookmark that never changes."
+  },
+  "needBookmarkAccess": {
+    "message": "Для резервных копий в закладках нужен доступ к закладкам.",
+    "description": "Shown when bookmark access was refused."
+  },
+  "fileFormat": {
+    "message": "Формат файла",
+    "description": "Heading of the format choices."
+  },
+  "formatJsonHint__firefox": {
+    "message": "Восстанавливает каждую вкладку в точности, включая новые вкладки и страницы в режиме чтения.",
+    "description": "Explains the JSON format. (Firefox build)"
+  },
+  "formatJsonHint__chrome": {
+    "message": "Восстанавливает каждую вкладку в точности, включая новые вкладки.",
+    "description": "Explains the JSON format. (Chrome build)"
+  },
+  "formatMarkdownHint": {
+    "message": "Список ссылок с заголовками для заметок и документов.",
+    "description": "Explains the Markdown format."
+  },
+  "formatText": {
+    "message": "Обычный текст",
+    "description": "Format choice."
+  },
+  "formatTextHint": {
+    "message": "Один URL на строку.",
+    "description": "Explains the plain text format."
+  },
+  "formatHtml": {
+    "message": "HTML-закладки",
+    "description": "Format choice: a bookmarks file in HTML."
+  },
+  "formatHtmlHint": {
+    "message": "Можно импортировать в закладки любого браузера.",
+    "description": "Explains the HTML bookmarks format."
+  },
+  "formatNote": {
+    "message": "Восстановление читает все четыре формата. Markdown, обычный текст и HTML восстанавливают только веб-ссылки.",
+    "description": "Note below the format choices."
+  },
+  "fileName": {
+    "message": "Имя файла",
+    "description": "Label of the file name pattern field."
+  },
+  "fileNameHint": {
+    "message": "Используйте {YYYY} {MM} {DD} {HH} {mm} {ss} для даты и времени и {count} для количества вкладок. Расширение добавляется автоматически.",
+    "description": "Explains the file name pattern. Keep the {…} tokens exactly as they are."
+  },
+  "reset": {
+    "message": "Сбросить",
+    "description": "Restores the default file name pattern."
+  },
+  "preview": {
+    "message": "Пример:",
+    "description": "Label before the example file name."
+  },
+  "saved": {
+    "message": "Сохранено",
+    "description": "Shown briefly after a setting is saved."
+  },
+  "saveFailed": {
+    "message": "Не удалось сохранить настройки. Попробуйте ещё раз.",
+    "description": "Shown when settings couldn't be saved."
+  },
+  "settingsSyncNote__firefox": {
+    "message": "Настройки синхронизируются между устройствами, если вы вошли в Firefox и включена синхронизация дополнений.",
+    "description": "Footer of the settings page. (Firefox build)"
+  },
+  "settingsSyncNote__chrome": {
+    "message": "Настройки синхронизируются между устройствами, если вы вошли в браузер и включена синхронизация.",
+    "description": "Footer of the settings page. (Chrome build)"
+  }
+}

@@ -16,6 +16,7 @@ const MARKER_TITLE =
   "About these backups: the oldest are deleted when you reach your limit";
 
 import { saveSettings } from "./settings-store.js";
+import { plural } from "./i18n.js";
 
 const PERMISSION = { permissions: ["bookmarks"] };
 
@@ -53,7 +54,7 @@ export async function saveBookmarkBackup(tabs, date, { keep, folderName }) {
   }
   const saved = tabs.length - skipped;
   await browser.bookmarks.update(folder.id, {
-    title: `${formatDate(date)} · ${saved} ${saved === 1 ? "tab" : "tabs"}`,
+    title: plural("backupFolderTitle", saved, formatDate(date)),
   });
 
   await pruneBackups(keep);

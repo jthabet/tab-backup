@@ -1,0 +1,378 @@
+{
+  "languageTag": {
+    "message": "tr",
+    "description": "BCP 47 tag of this translation, used for plural rules. Don't translate; set it to the folder's language."
+  },
+  "extensionName": {
+    "message": "Tab Backup",
+    "description": "Extension name. Product name, normally not translated."
+  },
+  "extensionDescription__firefox": {
+    "message": "Penceredeki sekmeleri bir dosyaya veya yer imi klasörüne yedekleyin, ardından önizleyip geri yükleyin.",
+    "description": "Store summary and add-ons manager description. 132 characters at most. (Firefox build)"
+  },
+  "extensionDescription__chrome": {
+    "message": "Penceredeki sekmeleri bir dosyaya veya yer işareti klasörüne yedekleyin, ardından önizleyip geri yükleyin.",
+    "description": "Store summary and add-ons manager description. 132 characters at most. (Chrome build)"
+  },
+  "cancel": {
+    "message": "İptal",
+    "description": "Button that closes a confirmation or preview without doing anything."
+  },
+  "settings": {
+    "message": "Ayarlar",
+    "description": "Settings button label and page heading."
+  },
+  "tabCount_one": {
+    "message": "$1 sekme",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "tabCount_other": {
+    "message": "$1 sekme",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "backUp": {
+    "message": "Yedekle",
+    "description": "Popup button that saves the current window's tabs."
+  },
+  "restore": {
+    "message": "Geri yükle…",
+    "description": "Popup button that opens the restore page; also the button that restores one bookmark backup."
+  },
+  "limitTitle_one__firefox": {
+    "message": "$1 yer imi yedeği sınırına ulaştınız",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit. (Firefox build)"
+  },
+  "limitTitle_one__chrome": {
+    "message": "$1 yer işareti yedeği sınırına ulaştınız",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit. (Chrome build)"
+  },
+  "limitTitle_other__firefox": {
+    "message": "$1 yer imi yedeği sınırına ulaştınız",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit. (Firefox build)"
+  },
+  "limitTitle_other__chrome": {
+    "message": "$1 yer işareti yedeği sınırına ulaştınız",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit. (Chrome build)"
+  },
+  "limitText_one": {
+    "message": "Şimdi yedeklerseniz en eski yedeğiniz silinecek:",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitText_other": {
+    "message": "Şimdi yedeklerseniz en eski $1 yedeğiniz silinecek:",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitMore_one": {
+    "message": "ve $1 tane daha",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "limitMore_other": {
+    "message": "ve $1 tane daha",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "changeLimit": {
+    "message": "Sınırı değiştir",
+    "description": "Link-style button that opens settings to change how many bookmark backups are kept."
+  },
+  "backUpAnyway": {
+    "message": "Yine de yedekle",
+    "description": "Confirms a backup that deletes the oldest bookmark backups."
+  },
+  "restorePageTitle": {
+    "message": "Sekmeleri geri yükle | Tab Backup",
+    "description": "Browser tab title of the restore page."
+  },
+  "restoreHeading": {
+    "message": "Sekmeleri geri yükle",
+    "description": "Restore page heading."
+  },
+  "restoreIntro": {
+    "message": "Tab Backup ile kaydedilmiş bir yedek dosyası seçin. Bu pencerede açılmadan önce hangi sekmelerin açılacağını seçebilirsiniz.",
+    "description": "Restore page introduction."
+  },
+  "chooseFile": {
+    "message": "Yedek dosyası seç…",
+    "description": "Button that opens the file picker."
+  },
+  "bookmarkBackups__firefox": {
+    "message": "Yer imi yedekleri",
+    "description": "Heading of the list of bookmark backups on the restore page. (Firefox build)"
+  },
+  "bookmarkBackups__chrome": {
+    "message": "Yer işareti yedekleri",
+    "description": "Heading of the list of bookmark backups on the restore page. (Chrome build)"
+  },
+  "noBookmarkBackups__firefox": {
+    "message": "Henüz yer imi yedeği yok. Diğer cihazlarınızdaki yedekler, Firefox Sync çalıştıktan sonra burada görünür.",
+    "description": "Shown when there are no bookmark backups yet. (Firefox build)"
+  },
+  "noBookmarkBackups__chrome": {
+    "message": "Henüz yer işareti yedeği yok. Diğer cihazlarınızdaki yedekler, tarayıcınız eşitlendikten sonra burada görünür.",
+    "description": "Shown when there are no bookmark backups yet. (Chrome build)"
+  },
+  "selectAll": {
+    "message": "Tümünü seç",
+    "description": "Checks every tab in the restore preview."
+  },
+  "selectNone": {
+    "message": "Seçimi kaldır",
+    "description": "Unchecks every tab in the restore preview."
+  },
+  "skipOpenTabs": {
+    "message": "Zaten açık olan sekmeleri atla",
+    "description": "Checkbox in the restore preview."
+  },
+  "alreadyOpenCount_one": {
+    "message": "$1 zaten açık",
+    "description": "Part of the restore preview summary, e.g. “3 tabs · 1 already open”. $1 is the count."
+  },
+  "alreadyOpenCount_other": {
+    "message": "$1 zaten açık",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "cantOpenCount_one": {
+    "message": "$1 açılamıyor",
+    "description": "Part of the restore preview summary. $1 is the count of tabs the browser won't let extensions open."
+  },
+  "cantOpenCount_other": {
+    "message": "$1 açılamıyor",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "alreadyOpen": {
+    "message": "Zaten açık",
+    "description": "Note next to a tab in the restore preview."
+  },
+  "cantBeOpened": {
+    "message": "Açılamıyor",
+    "description": "Note next to a tab the browser won't let extensions open."
+  },
+  "openTabs_one": {
+    "message": "$1 sekmeyi aç",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openTabs_other": {
+    "message": "$1 sekmeyi aç",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openedTabs_one": {
+    "message": "$1 sekme açıldı.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "openedTabs_other": {
+    "message": "$1 sekme açıldı.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "skippedTabs_one": {
+    "message": "Açılamayan $1 sekme atlandı.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "skippedTabs_other": {
+    "message": "Açılamayan $1 sekme atlandı.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "noTabsInFile": {
+    "message": "Bu dosyada sekme bulunamadı.",
+    "description": "Shown when a chosen file has no tabs."
+  },
+  "cantReadFile": {
+    "message": "Bu dosya okunamadı.",
+    "description": "Shown when a chosen file can't be read."
+  },
+  "selectAtLeastOne": {
+    "message": "Açmak için en az bir sekme seçin.",
+    "description": "Shown when Open is pressed with nothing checked."
+  },
+  "restoreBackupLabel": {
+    "message": "Geri yükle: $1",
+    "description": "Screen reader label of a bookmark backup's Restore button. $1 is the backup's name."
+  },
+  "delete": {
+    "message": "Sil",
+    "description": "Deletes one bookmark backup."
+  },
+  "deleteBackupLabel": {
+    "message": "Sil: $1",
+    "description": "Screen reader label of a bookmark backup's Delete button. $1 is the backup's name."
+  },
+  "confirmDelete": {
+    "message": "“$1” yedeği silinsin mi?",
+    "description": "Confirmation before deleting a bookmark backup. $1 is the backup's name."
+  },
+  "backupFolderTitle_one": {
+    "message": "$2 · $1 sekme",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "backupFolderTitle_other": {
+    "message": "$2 · $1 sekme",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "settingsPageTitle": {
+    "message": "Ayarlar | Tab Backup",
+    "description": "Browser tab title of the settings page."
+  },
+  "saveBackupsTo": {
+    "message": "Yedeklerin kaydedileceği yer",
+    "description": "Heading of the destination choices."
+  },
+  "destinationFile": {
+    "message": "Dosya",
+    "description": "Destination choice."
+  },
+  "destinationFileHint": {
+    "message": "Aşağıdaki biçimde indirilir.",
+    "description": "Explains the file destination."
+  },
+  "destinationBookmarks__firefox": {
+    "message": "Yer imleri",
+    "description": "Destination choice. (Firefox build)"
+  },
+  "destinationBookmarks__chrome": {
+    "message": "Yer işaretleri",
+    "description": "Destination choice. (Chrome build)"
+  },
+  "destinationBookmarksHint__firefox": {
+    "message": "Diğer yer imleri içinde tarihli bir klasör; Firefox Sync ile diğer cihazlarınıza eşitlenir.",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Firefox build)"
+  },
+  "destinationBookmarksHint__chrome": {
+    "message": "Diğer yer işaretleri içinde tarihli bir klasör; tarayıcınızın eşitleme özelliğiyle diğer cihazlarınıza eşitlenir.",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Chrome build)"
+  },
+  "destinationBoth": {
+    "message": "İkisi de",
+    "description": "Destination choice."
+  },
+  "destinationBothHint__firefox": {
+    "message": "Bir dosya ve bir yer imi klasörü.",
+    "description": "Explains the both destination. (Firefox build)"
+  },
+  "destinationBothHint__chrome": {
+    "message": "Bir dosya ve bir yer işareti klasörü.",
+    "description": "Explains the both destination. (Chrome build)"
+  },
+  "keepBefore": {
+    "message": "Son",
+    "description": "Text before the number field in “Keep the last [20] bookmark backups”."
+  },
+  "keepAfter__firefox": {
+    "message": "yer imi yedeğini sakla",
+    "description": "Text after the number field in “Keep the last [20] bookmark backups”. (Firefox build)"
+  },
+  "keepAfter__chrome": {
+    "message": "yer işareti yedeğini sakla",
+    "description": "Text after the number field in “Keep the last [20] bookmark backups”. (Chrome build)"
+  },
+  "folderName__firefox": {
+    "message": "Yer imi klasörünün adı",
+    "description": "Label of the bookmark folder name field. (Firefox build)"
+  },
+  "folderName__chrome": {
+    "message": "Yer işareti klasörünün adı",
+    "description": "Label of the bookmark folder name field. (Chrome build)"
+  },
+  "folderNameHint__firefox": {
+    "message": "Diğer yer imleri içinde oluşturulur. Adı değiştirmek klasörü yeniden adlandırır; yedekleriniz içinde kalır.",
+    "description": "Explains the folder name field. (Firefox build)"
+  },
+  "folderNameHint__chrome": {
+    "message": "Diğer yer işaretleri içinde oluşturulur. Adı değiştirmek klasörü yeniden adlandırır; yedekleriniz içinde kalır.",
+    "description": "Explains the folder name field. (Chrome build)"
+  },
+  "enterFolderName": {
+    "message": "Bir klasör adı girin.",
+    "description": "Error when the folder name is empty."
+  },
+  "bookmarksNote__firefox": {
+    "message": "Sınıra ulaştığınızda Yedekle, en eskileri silmeden önce onay ister. Yer imlerine kaydetmek, yer imlerinizi okuma ve değiştirme izni ister. Tab Backup yalnızca içinde “About these backups” yer imi bulunan kendi klasörüne dokunur.",
+    "description": "Explains bookmark backups. Keep “About these backups” in English: it's the name of a bookmark that never changes. (Firefox build)"
+  },
+  "bookmarksNote__chrome": {
+    "message": "Sınıra ulaştığınızda Yedekle, en eskileri silmeden önce onay ister. Yer işaretlerine kaydetmek, yer işaretlerinizi okuma ve değiştirme izni ister. Tab Backup yalnızca içinde “About these backups” yer işareti bulunan kendi klasörüne dokunur.",
+    "description": "Explains bookmark backups. Keep “About these backups” in English: it's the name of a bookmark that never changes. (Chrome build)"
+  },
+  "needBookmarkAccess__firefox": {
+    "message": "Yer imi yedekleri için yer imlerinize erişim gerekir.",
+    "description": "Shown when bookmark access was refused. (Firefox build)"
+  },
+  "needBookmarkAccess__chrome": {
+    "message": "Yer işareti yedekleri için yer işaretlerinize erişim gerekir.",
+    "description": "Shown when bookmark access was refused. (Chrome build)"
+  },
+  "fileFormat": {
+    "message": "Dosya biçimi",
+    "description": "Heading of the format choices."
+  },
+  "formatJsonHint__firefox": {
+    "message": "Yeni sekmeler ve Okuyucu görünümü sayfaları dahil her sekmeyi aynen geri yükler.",
+    "description": "Explains the JSON format. (Firefox build)"
+  },
+  "formatJsonHint__chrome": {
+    "message": "Yeni sekmeler dahil her sekmeyi aynen geri yükler.",
+    "description": "Explains the JSON format. (Chrome build)"
+  },
+  "formatMarkdownHint": {
+    "message": "Notlar ve belgeler için başlıklı bağlantılar listesi.",
+    "description": "Explains the Markdown format."
+  },
+  "formatText": {
+    "message": "Düz metin",
+    "description": "Format choice."
+  },
+  "formatTextHint": {
+    "message": "Her satırda bir URL.",
+    "description": "Explains the plain text format."
+  },
+  "formatHtml__firefox": {
+    "message": "HTML yer imleri",
+    "description": "Format choice: a bookmarks file in HTML. (Firefox build)"
+  },
+  "formatHtml__chrome": {
+    "message": "HTML yer işaretleri",
+    "description": "Format choice: a bookmarks file in HTML. (Chrome build)"
+  },
+  "formatHtmlHint__firefox": {
+    "message": "Herhangi bir tarayıcının yer imlerine aktarılabilir.",
+    "description": "Explains the HTML bookmarks format. (Firefox build)"
+  },
+  "formatHtmlHint__chrome": {
+    "message": "Herhangi bir tarayıcının yer işaretlerine aktarılabilir.",
+    "description": "Explains the HTML bookmarks format. (Chrome build)"
+  },
+  "formatNote": {
+    "message": "Geri yükleme dört biçimi de okur. Markdown, düz metin ve HTML yalnızca web bağlantılarını geri getirir.",
+    "description": "Note below the format choices."
+  },
+  "fileName": {
+    "message": "Dosya adı",
+    "description": "Label of the file name pattern field."
+  },
+  "fileNameHint": {
+    "message": "Tarih ve saat için {YYYY} {MM} {DD} {HH} {mm} {ss}, sekme sayısı için {count} kullanın. Uzantı otomatik olarak eklenir.",
+    "description": "Explains the file name pattern. Keep the {…} tokens exactly as they are."
+  },
+  "reset": {
+    "message": "Sıfırla",
+    "description": "Restores the default file name pattern."
+  },
+  "preview": {
+    "message": "Önizleme:",
+    "description": "Label before the example file name."
+  },
+  "saved": {
+    "message": "Kaydedildi",
+    "description": "Shown briefly after a setting is saved."
+  },
+  "saveFailed": {
+    "message": "Ayarlarınız kaydedilemedi. Yeniden deneyin.",
+    "description": "Shown when settings couldn't be saved."
+  },
+  "settingsSyncNote__firefox": {
+    "message": "Firefox’ta oturum açtıysanız ve eklenti eşitleme açıksa ayarlar cihazlarınız arasında eşitlenir.",
+    "description": "Footer of the settings page. (Firefox build)"
+  },
+  "settingsSyncNote__chrome": {
+    "message": "Tarayıcınızda oturum açtıysanız ve eşitleme açıksa ayarlar cihazlarınız arasında eşitlenir.",
+    "description": "Footer of the settings page. (Chrome build)"
+  }
+}

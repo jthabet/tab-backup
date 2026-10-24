@@ -1,0 +1,378 @@
+{
+  "languageTag": {
+    "message": "it",
+    "description": "BCP 47 tag of this translation, used for plural rules. Don't translate; set it to the folder's language."
+  },
+  "extensionName": {
+    "message": "Tab Backup",
+    "description": "Extension name. Product name, normally not translated."
+  },
+  "extensionDescription__firefox": {
+    "message": "Salva le schede della finestra in un file o in una cartella di segnalibri, poi visualizzale in anteprima e ripristinale.",
+    "description": "Store summary and add-ons manager description. 132 characters at most. (Firefox build)"
+  },
+  "extensionDescription__chrome": {
+    "message": "Salva le schede della finestra in un file o in una cartella di preferiti, poi visualizzale in anteprima e ripristinale.",
+    "description": "Store summary and add-ons manager description. 132 characters at most. (Chrome build)"
+  },
+  "cancel": {
+    "message": "Annulla",
+    "description": "Button that closes a confirmation or preview without doing anything."
+  },
+  "settings": {
+    "message": "Impostazioni",
+    "description": "Settings button label and page heading."
+  },
+  "tabCount_one": {
+    "message": "$1 scheda",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "tabCount_other": {
+    "message": "$1 schede",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "backUp": {
+    "message": "Esegui backup",
+    "description": "Popup button that saves the current window's tabs."
+  },
+  "restore": {
+    "message": "Ripristina…",
+    "description": "Popup button that opens the restore page; also the button that restores one bookmark backup."
+  },
+  "limitTitle_one__firefox": {
+    "message": "Hai raggiunto il limite di $1 backup nei segnalibri",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit. (Firefox build)"
+  },
+  "limitTitle_one__chrome": {
+    "message": "Hai raggiunto il limite di $1 backup nei preferiti",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit. (Chrome build)"
+  },
+  "limitTitle_other__firefox": {
+    "message": "Hai raggiunto il limite di $1 backup nei segnalibri",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit. (Firefox build)"
+  },
+  "limitTitle_other__chrome": {
+    "message": "Hai raggiunto il limite di $1 backup nei preferiti",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit. (Chrome build)"
+  },
+  "limitText_one": {
+    "message": "Eseguendo ora il backup verrà eliminato il backup più vecchio:",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitText_other": {
+    "message": "Eseguendo ora il backup verranno eliminati i $1 backup più vecchi:",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitMore_one": {
+    "message": "e $1 altro",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "limitMore_other": {
+    "message": "e altri $1",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "changeLimit": {
+    "message": "Modifica limite",
+    "description": "Link-style button that opens settings to change how many bookmark backups are kept."
+  },
+  "backUpAnyway": {
+    "message": "Esegui comunque",
+    "description": "Confirms a backup that deletes the oldest bookmark backups."
+  },
+  "restorePageTitle": {
+    "message": "Ripristina schede | Tab Backup",
+    "description": "Browser tab title of the restore page."
+  },
+  "restoreHeading": {
+    "message": "Ripristina schede",
+    "description": "Restore page heading."
+  },
+  "restoreIntro": {
+    "message": "Scegli un file di backup salvato con Tab Backup. Potrai scegliere quali schede aprire prima che si aprano in questa finestra.",
+    "description": "Restore page introduction."
+  },
+  "chooseFile": {
+    "message": "Scegli file di backup…",
+    "description": "Button that opens the file picker."
+  },
+  "bookmarkBackups__firefox": {
+    "message": "Backup nei segnalibri",
+    "description": "Heading of the list of bookmark backups on the restore page. (Firefox build)"
+  },
+  "bookmarkBackups__chrome": {
+    "message": "Backup nei preferiti",
+    "description": "Heading of the list of bookmark backups on the restore page. (Chrome build)"
+  },
+  "noBookmarkBackups__firefox": {
+    "message": "Ancora nessun backup nei segnalibri. I backup dagli altri dispositivi compariranno qui dopo la sincronizzazione di Firefox Sync.",
+    "description": "Shown when there are no bookmark backups yet. (Firefox build)"
+  },
+  "noBookmarkBackups__chrome": {
+    "message": "Ancora nessun backup nei preferiti. I backup dagli altri dispositivi compariranno qui dopo la sincronizzazione del browser.",
+    "description": "Shown when there are no bookmark backups yet. (Chrome build)"
+  },
+  "selectAll": {
+    "message": "Seleziona tutto",
+    "description": "Checks every tab in the restore preview."
+  },
+  "selectNone": {
+    "message": "Deseleziona tutto",
+    "description": "Unchecks every tab in the restore preview."
+  },
+  "skipOpenTabs": {
+    "message": "Salta le schede già aperte",
+    "description": "Checkbox in the restore preview."
+  },
+  "alreadyOpenCount_one": {
+    "message": "$1 già aperta",
+    "description": "Part of the restore preview summary, e.g. “3 tabs · 1 already open”. $1 is the count."
+  },
+  "alreadyOpenCount_other": {
+    "message": "$1 già aperte",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "cantOpenCount_one": {
+    "message": "$1 non può essere aperta",
+    "description": "Part of the restore preview summary. $1 is the count of tabs the browser won't let extensions open."
+  },
+  "cantOpenCount_other": {
+    "message": "$1 non possono essere aperte",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "alreadyOpen": {
+    "message": "Già aperta",
+    "description": "Note next to a tab in the restore preview."
+  },
+  "cantBeOpened": {
+    "message": "Impossibile aprire",
+    "description": "Note next to a tab the browser won't let extensions open."
+  },
+  "openTabs_one": {
+    "message": "Apri $1 scheda",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openTabs_other": {
+    "message": "Apri $1 schede",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openedTabs_one": {
+    "message": "$1 scheda aperta.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "openedTabs_other": {
+    "message": "$1 schede aperte.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "skippedTabs_one": {
+    "message": "$1 saltata perché non può essere aperta.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "skippedTabs_other": {
+    "message": "$1 saltate perché non possono essere aperte.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "noTabsInFile": {
+    "message": "Nessuna scheda trovata in questo file.",
+    "description": "Shown when a chosen file has no tabs."
+  },
+  "cantReadFile": {
+    "message": "Impossibile leggere questo file.",
+    "description": "Shown when a chosen file can't be read."
+  },
+  "selectAtLeastOne": {
+    "message": "Seleziona almeno una scheda da aprire.",
+    "description": "Shown when Open is pressed with nothing checked."
+  },
+  "restoreBackupLabel": {
+    "message": "Ripristina $1",
+    "description": "Screen reader label of a bookmark backup's Restore button. $1 is the backup's name."
+  },
+  "delete": {
+    "message": "Elimina",
+    "description": "Deletes one bookmark backup."
+  },
+  "deleteBackupLabel": {
+    "message": "Elimina $1",
+    "description": "Screen reader label of a bookmark backup's Delete button. $1 is the backup's name."
+  },
+  "confirmDelete": {
+    "message": "Eliminare il backup «$1»?",
+    "description": "Confirmation before deleting a bookmark backup. $1 is the backup's name."
+  },
+  "backupFolderTitle_one": {
+    "message": "$2 · $1 scheda",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "backupFolderTitle_other": {
+    "message": "$2 · $1 schede",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "settingsPageTitle": {
+    "message": "Impostazioni | Tab Backup",
+    "description": "Browser tab title of the settings page."
+  },
+  "saveBackupsTo": {
+    "message": "Salva i backup in",
+    "description": "Heading of the destination choices."
+  },
+  "destinationFile": {
+    "message": "Un file",
+    "description": "Destination choice."
+  },
+  "destinationFileHint": {
+    "message": "Scaricato nel formato indicato sotto.",
+    "description": "Explains the file destination."
+  },
+  "destinationBookmarks__firefox": {
+    "message": "Segnalibri",
+    "description": "Destination choice. (Firefox build)"
+  },
+  "destinationBookmarks__chrome": {
+    "message": "Preferiti",
+    "description": "Destination choice. (Chrome build)"
+  },
+  "destinationBookmarksHint__firefox": {
+    "message": "Una cartella con la data in «Altri segnalibri», sincronizzata sugli altri dispositivi da Firefox Sync.",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Firefox build)"
+  },
+  "destinationBookmarksHint__chrome": {
+    "message": "Una cartella con la data in «Altri preferiti», sincronizzata sugli altri dispositivi da la sincronizzazione del browser.",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Chrome build)"
+  },
+  "destinationBoth": {
+    "message": "Entrambi",
+    "description": "Destination choice."
+  },
+  "destinationBothHint__firefox": {
+    "message": "Un file e una cartella di segnalibri.",
+    "description": "Explains the both destination. (Firefox build)"
+  },
+  "destinationBothHint__chrome": {
+    "message": "Un file e una cartella di preferiti.",
+    "description": "Explains the both destination. (Chrome build)"
+  },
+  "keepBefore": {
+    "message": "Conserva gli ultimi",
+    "description": "Text before the number field in “Keep the last [20] bookmark backups”."
+  },
+  "keepAfter__firefox": {
+    "message": "backup nei segnalibri",
+    "description": "Text after the number field in “Keep the last [20] bookmark backups”. (Firefox build)"
+  },
+  "keepAfter__chrome": {
+    "message": "backup nei preferiti",
+    "description": "Text after the number field in “Keep the last [20] bookmark backups”. (Chrome build)"
+  },
+  "folderName__firefox": {
+    "message": "Nome della cartella dei segnalibri",
+    "description": "Label of the bookmark folder name field. (Firefox build)"
+  },
+  "folderName__chrome": {
+    "message": "Nome della cartella dei preferiti",
+    "description": "Label of the bookmark folder name field. (Chrome build)"
+  },
+  "folderNameHint__firefox": {
+    "message": "Creata in «Altri segnalibri». Cambiando il nome la cartella viene rinominata; i backup restano al suo interno.",
+    "description": "Explains the folder name field. (Firefox build)"
+  },
+  "folderNameHint__chrome": {
+    "message": "Creata in «Altri preferiti». Cambiando il nome la cartella viene rinominata; i backup restano al suo interno.",
+    "description": "Explains the folder name field. (Chrome build)"
+  },
+  "enterFolderName": {
+    "message": "Inserisci un nome per la cartella.",
+    "description": "Error when the folder name is empty."
+  },
+  "bookmarksNote__firefox": {
+    "message": "Quando raggiungi il limite, Esegui backup chiede conferma prima di eliminare i più vecchi. Il salvataggio nei segnalibri richiede il permesso di leggere e modificare i tuoi segnalibri. Tab Backup modifica solo la propria cartella, contrassegnata da un segnalibro «About these backups» al suo interno.",
+    "description": "Explains bookmark backups. Keep “About these backups” in English: it's the name of a bookmark that never changes. (Firefox build)"
+  },
+  "bookmarksNote__chrome": {
+    "message": "Quando raggiungi il limite, Esegui backup chiede conferma prima di eliminare i più vecchi. Il salvataggio nei preferiti richiede il permesso di leggere e modificare i tuoi preferiti. Tab Backup modifica solo la propria cartella, contrassegnata da un preferito «About these backups» al suo interno.",
+    "description": "Explains bookmark backups. Keep “About these backups” in English: it's the name of a bookmark that never changes. (Chrome build)"
+  },
+  "needBookmarkAccess__firefox": {
+    "message": "I backup nei segnalibri richiedono l’accesso ai tuoi segnalibri.",
+    "description": "Shown when bookmark access was refused. (Firefox build)"
+  },
+  "needBookmarkAccess__chrome": {
+    "message": "I backup nei preferiti richiedono l’accesso ai tuoi preferiti.",
+    "description": "Shown when bookmark access was refused. (Chrome build)"
+  },
+  "fileFormat": {
+    "message": "Formato del file",
+    "description": "Heading of the format choices."
+  },
+  "formatJsonHint__firefox": {
+    "message": "Ripristina ogni scheda esattamente, comprese le nuove schede e le pagine in modalità lettura.",
+    "description": "Explains the JSON format. (Firefox build)"
+  },
+  "formatJsonHint__chrome": {
+    "message": "Ripristina ogni scheda esattamente, comprese le nuove schede.",
+    "description": "Explains the JSON format. (Chrome build)"
+  },
+  "formatMarkdownHint": {
+    "message": "Un elenco di link con titolo per note e documenti.",
+    "description": "Explains the Markdown format."
+  },
+  "formatText": {
+    "message": "Testo semplice",
+    "description": "Format choice."
+  },
+  "formatTextHint": {
+    "message": "Un URL per riga.",
+    "description": "Explains the plain text format."
+  },
+  "formatHtml__firefox": {
+    "message": "Segnalibri HTML",
+    "description": "Format choice: a bookmarks file in HTML. (Firefox build)"
+  },
+  "formatHtml__chrome": {
+    "message": "Preferiti HTML",
+    "description": "Format choice: a bookmarks file in HTML. (Chrome build)"
+  },
+  "formatHtmlHint__firefox": {
+    "message": "Da importare nei segnalibri di qualsiasi browser.",
+    "description": "Explains the HTML bookmarks format. (Firefox build)"
+  },
+  "formatHtmlHint__chrome": {
+    "message": "Da importare nei preferiti di qualsiasi browser.",
+    "description": "Explains the HTML bookmarks format. (Chrome build)"
+  },
+  "formatNote": {
+    "message": "Il ripristino legge tutti e quattro i formati. Markdown, testo semplice e HTML ripristinano solo i link web.",
+    "description": "Note below the format choices."
+  },
+  "fileName": {
+    "message": "Nome del file",
+    "description": "Label of the file name pattern field."
+  },
+  "fileNameHint": {
+    "message": "Usa {YYYY} {MM} {DD} {HH} {mm} {ss} per data e ora e {count} per il numero di schede. L’estensione viene aggiunta automaticamente.",
+    "description": "Explains the file name pattern. Keep the {…} tokens exactly as they are."
+  },
+  "reset": {
+    "message": "Ripristina predefinito",
+    "description": "Restores the default file name pattern."
+  },
+  "preview": {
+    "message": "Anteprima:",
+    "description": "Label before the example file name."
+  },
+  "saved": {
+    "message": "Salvato",
+    "description": "Shown briefly after a setting is saved."
+  },
+  "saveFailed": {
+    "message": "Impossibile salvare le impostazioni. Riprova.",
+    "description": "Shown when settings couldn't be saved."
+  },
+  "settingsSyncNote__firefox": {
+    "message": "Le impostazioni vengono sincronizzate tra i dispositivi se hai effettuato l’accesso a Firefox e la sincronizzazione dei componenti aggiuntivi è attiva.",
+    "description": "Footer of the settings page. (Firefox build)"
+  },
+  "settingsSyncNote__chrome": {
+    "message": "Le impostazioni vengono sincronizzate tra i dispositivi se hai effettuato l’accesso al browser e la sincronizzazione è attiva.",
+    "description": "Footer of the settings page. (Chrome build)"
+  }
+}

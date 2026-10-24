@@ -3,39 +3,10 @@ import { fileURLToPath } from "url";
 import webpack from "webpack";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import WebExtPlugin from "web-ext-plugin";
+import { resolveMessages } from "./scripts/locales.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// Firefox-specific wording in the pages, rewritten for the Chromium build.
-// Each pattern must match, so copy changes can't silently skip the rewrite.
-const CHROME_COPY = {
-  "settings.html": [
-    [/by\s+Firefox Sync\./, "by your browser's sync."],
-    [
-      /signed in to Firefox and\s+add-on sync is on\./,
-      "signed in to your browser with sync on.",
-    ],
-    // Chromium has no Reader View.
-    [
-      /including new tab and\s+Reader View\s+pages\./,
-      "including new tab pages.",
-    ],
-  ],
-  "restore.html": [
-    [/once\s+Firefox Sync has run\./, "once your browser has synced."],
-  ],
-};
-
-function rewriteCopy(file, content) {
-  let html = content.toString();
-  for (const [pattern, replacement] of CHROME_COPY[file] ?? []) {
-    if (!pattern.test(html))
-      throw new Error(`${file}: no match for ${pattern}`);
-    html = html.replace(pattern, replacement);
-  }
-  return html;
-}
 
 // Chromium wants a service worker instead of background scripts, and
 // rejects or warns about Firefox-only keys.
@@ -109,20 +80,26 @@ export default (env = {}) => {
           {
             from: "popup.html",
             to: "popup.html",
-            transform: (content) =>
-              chrome ? rewriteCopy("popup.html", content) : content,
           },
           {
             from: "restore.html",
             to: "restore.html",
-            transform: (content) =>
-              chrome ? rewriteCopy("restore.html", content) : content,
           },
           {
             from: "settings.html",
             to: "settings.html",
+          },
+          {
+            // Keeps each message's wording for this browser (key__firefox,
+            // key__chrome); see scripts/locales.mjs.
+            from: "_locales/*/messages.json",
             transform: (content) =>
-              chrome ? rewriteCopy("settings.html", content) : content,
+              JSON.stringify(
+                resolveMessages(
+                  JSON.parse(content.toString()),
+                  chrome ? "chrome" : "firefox",
+                ),
+              ),
           },
           {
             from: "manifest.json",

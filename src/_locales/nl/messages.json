@@ -1,0 +1,326 @@
+{
+  "languageTag": {
+    "message": "nl",
+    "description": "BCP 47 tag of this translation, used for plural rules. Don't translate; set it to the folder's language."
+  },
+  "extensionName": {
+    "message": "Tab Backup",
+    "description": "Extension name. Product name, normally not translated."
+  },
+  "extensionDescription": {
+    "message": "Maak een back-up van de tabbladen in je venster in een bestand of bladwijzermap, en bekijk en herstel ze later.",
+    "description": "Store summary and add-ons manager description. 132 characters at most."
+  },
+  "cancel": {
+    "message": "Annuleren",
+    "description": "Button that closes a confirmation or preview without doing anything."
+  },
+  "settings": {
+    "message": "Instellingen",
+    "description": "Settings button label and page heading."
+  },
+  "tabCount_one": {
+    "message": "$1 tabblad",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "tabCount_other": {
+    "message": "$1 tabbladen",
+    "description": "Number of tabs. $1 is the count."
+  },
+  "backUp": {
+    "message": "Back-up maken",
+    "description": "Popup button that saves the current window's tabs."
+  },
+  "restore": {
+    "message": "Herstellen…",
+    "description": "Popup button that opens the restore page; also the button that restores one bookmark backup."
+  },
+  "limitTitle_one": {
+    "message": "Je hebt je limiet van $1 bladwijzerback-up bereikt",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit."
+  },
+  "limitTitle_other": {
+    "message": "Je hebt je limiet van $1 bladwijzerback-ups bereikt",
+    "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit."
+  },
+  "limitText_one": {
+    "message": "Als je nu een back-up maakt, wordt je oudste back-up verwijderd:",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitText_other": {
+    "message": "Als je nu een back-up maakt, worden je $1 oudste back-ups verwijderd:",
+    "description": "Followed by the list of backups that would be deleted. $1 is how many."
+  },
+  "limitMore_one": {
+    "message": "en nog $1",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "limitMore_other": {
+    "message": "en nog $1",
+    "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
+  },
+  "changeLimit": {
+    "message": "Limiet wijzigen",
+    "description": "Link-style button that opens settings to change how many bookmark backups are kept."
+  },
+  "backUpAnyway": {
+    "message": "Toch back-up maken",
+    "description": "Confirms a backup that deletes the oldest bookmark backups."
+  },
+  "restorePageTitle": {
+    "message": "Tabbladen herstellen | Tab Backup",
+    "description": "Browser tab title of the restore page."
+  },
+  "restoreHeading": {
+    "message": "Tabbladen herstellen",
+    "description": "Restore page heading."
+  },
+  "restoreIntro": {
+    "message": "Kies een back-upbestand dat met Tab Backup is opgeslagen. Je kunt kiezen welke tabbladen je opent voordat ze in dit venster worden geopend.",
+    "description": "Restore page introduction."
+  },
+  "chooseFile": {
+    "message": "Back-upbestand kiezen…",
+    "description": "Button that opens the file picker."
+  },
+  "bookmarkBackups": {
+    "message": "Bladwijzerback-ups",
+    "description": "Heading of the list of bookmark backups on the restore page."
+  },
+  "noBookmarkBackups__firefox": {
+    "message": "Nog geen bladwijzerback-ups. Back-ups van je andere apparaten verschijnen hier zodra Firefox Sync heeft gesynchroniseerd.",
+    "description": "Shown when there are no bookmark backups yet. (Firefox build)"
+  },
+  "noBookmarkBackups__chrome": {
+    "message": "Nog geen bladwijzerback-ups. Back-ups van je andere apparaten verschijnen hier zodra je browser heeft gesynchroniseerd.",
+    "description": "Shown when there are no bookmark backups yet. (Chrome build)"
+  },
+  "selectAll": {
+    "message": "Alles selecteren",
+    "description": "Checks every tab in the restore preview."
+  },
+  "selectNone": {
+    "message": "Niets selecteren",
+    "description": "Unchecks every tab in the restore preview."
+  },
+  "skipOpenTabs": {
+    "message": "Tabbladen overslaan die al open zijn",
+    "description": "Checkbox in the restore preview."
+  },
+  "alreadyOpenCount_one": {
+    "message": "$1 al open",
+    "description": "Part of the restore preview summary, e.g. “3 tabs · 1 already open”. $1 is the count."
+  },
+  "alreadyOpenCount_other": {
+    "message": "$1 al open",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "cantOpenCount_one": {
+    "message": "$1 kan niet worden geopend",
+    "description": "Part of the restore preview summary. $1 is the count of tabs the browser won't let extensions open."
+  },
+  "cantOpenCount_other": {
+    "message": "$1 kunnen niet worden geopend",
+    "description": "Part of the restore preview summary. $1 is the count."
+  },
+  "alreadyOpen": {
+    "message": "Al open",
+    "description": "Note next to a tab in the restore preview."
+  },
+  "cantBeOpened": {
+    "message": "Kan niet worden geopend",
+    "description": "Note next to a tab the browser won't let extensions open."
+  },
+  "openTabs_one": {
+    "message": "$1 tabblad openen",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openTabs_other": {
+    "message": "$1 tabbladen openen",
+    "description": "Button that opens the checked tabs. $1 is the count."
+  },
+  "openedTabs_one": {
+    "message": "$1 tabblad geopend.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "openedTabs_other": {
+    "message": "$1 tabbladen geopend.",
+    "description": "Result after restoring. $1 is the count."
+  },
+  "skippedTabs_one": {
+    "message": "$1 overgeslagen dat niet kan worden geopend.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "skippedTabs_other": {
+    "message": "$1 overgeslagen die niet kunnen worden geopend.",
+    "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
+  },
+  "noTabsInFile": {
+    "message": "Geen tabbladen gevonden in dit bestand.",
+    "description": "Shown when a chosen file has no tabs."
+  },
+  "cantReadFile": {
+    "message": "Dit bestand kon niet worden gelezen.",
+    "description": "Shown when a chosen file can't be read."
+  },
+  "selectAtLeastOne": {
+    "message": "Selecteer minstens één tabblad om te openen.",
+    "description": "Shown when Open is pressed with nothing checked."
+  },
+  "restoreBackupLabel": {
+    "message": "$1 herstellen",
+    "description": "Screen reader label of a bookmark backup's Restore button. $1 is the backup's name."
+  },
+  "delete": {
+    "message": "Verwijderen",
+    "description": "Deletes one bookmark backup."
+  },
+  "deleteBackupLabel": {
+    "message": "$1 verwijderen",
+    "description": "Screen reader label of a bookmark backup's Delete button. $1 is the backup's name."
+  },
+  "confirmDelete": {
+    "message": "De back-up ‘$1’ verwijderen?",
+    "description": "Confirmation before deleting a bookmark backup. $1 is the backup's name."
+  },
+  "backupFolderTitle_one": {
+    "message": "$2 · $1 tabblad",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "backupFolderTitle_other": {
+    "message": "$2 · $1 tabbladen",
+    "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "settingsPageTitle": {
+    "message": "Instellingen | Tab Backup",
+    "description": "Browser tab title of the settings page."
+  },
+  "saveBackupsTo": {
+    "message": "Back-ups opslaan in",
+    "description": "Heading of the destination choices."
+  },
+  "destinationFile": {
+    "message": "Een bestand",
+    "description": "Destination choice."
+  },
+  "destinationFileHint": {
+    "message": "Gedownload in de indeling hieronder.",
+    "description": "Explains the file destination."
+  },
+  "destinationBookmarks": {
+    "message": "Bladwijzers",
+    "description": "Destination choice."
+  },
+  "destinationBookmarksHint__firefox": {
+    "message": "Een map met datum in Andere bladwijzers, die Firefox Sync naar je andere apparaten synchroniseert.",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Firefox build)"
+  },
+  "destinationBookmarksHint__chrome": {
+    "message": "Een map met datum in Andere bladwijzers, die de synchronisatie van je browser naar je andere apparaten overzet.",
+    "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Chrome build)"
+  },
+  "destinationBoth": {
+    "message": "Beide",
+    "description": "Destination choice."
+  },
+  "destinationBothHint": {
+    "message": "Een bestand en een bladwijzermap.",
+    "description": "Explains the both destination."
+  },
+  "keepBefore": {
+    "message": "De laatste",
+    "description": "Text before the number field in “Keep the last [20] bookmark backups”."
+  },
+  "keepAfter": {
+    "message": "bladwijzerback-ups bewaren",
+    "description": "Text after the number field in “Keep the last [20] bookmark backups”."
+  },
+  "folderName": {
+    "message": "Naam van bladwijzermap",
+    "description": "Label of the bookmark folder name field."
+  },
+  "folderNameHint": {
+    "message": "Aangemaakt in Andere bladwijzers. Als je de naam wijzigt, wordt de map hernoemd; je back-ups blijven erin staan.",
+    "description": "Explains the folder name field."
+  },
+  "enterFolderName": {
+    "message": "Voer een mapnaam in.",
+    "description": "Error when the folder name is empty."
+  },
+  "bookmarksNote": {
+    "message": "Als je de limiet bereikt, vraagt Back-up maken om bevestiging voordat de oudste worden verwijderd. Opslaan in bladwijzers vraagt toestemming om je bladwijzers te lezen en te wijzigen. Tab Backup wijzigt alleen zijn eigen map, herkenbaar aan een bladwijzer ‘About these backups’ erin.",
+    "description": "Explains bookmark backups. Keep “About these backups” in English: it's the name of a bookmark that never changes."
+  },
+  "needBookmarkAccess": {
+    "message": "Bladwijzerback-ups hebben toegang tot je bladwijzers nodig.",
+    "description": "Shown when bookmark access was refused."
+  },
+  "fileFormat": {
+    "message": "Bestandsindeling",
+    "description": "Heading of the format choices."
+  },
+  "formatJsonHint__firefox": {
+    "message": "Herstelt elk tabblad precies, inclusief nieuwe tabbladen en pagina’s in Lezerweergave.",
+    "description": "Explains the JSON format. (Firefox build)"
+  },
+  "formatJsonHint__chrome": {
+    "message": "Herstelt elk tabblad precies, inclusief nieuwe tabbladen.",
+    "description": "Explains the JSON format. (Chrome build)"
+  },
+  "formatMarkdownHint": {
+    "message": "Een lijst met links met titels, voor notities en documenten.",
+    "description": "Explains the Markdown format."
+  },
+  "formatText": {
+    "message": "Platte tekst",
+    "description": "Format choice."
+  },
+  "formatTextHint": {
+    "message": "Eén URL per regel.",
+    "description": "Explains the plain text format."
+  },
+  "formatHtml": {
+    "message": "HTML-bladwijzers",
+    "description": "Format choice: a bookmarks file in HTML."
+  },
+  "formatHtmlHint": {
+    "message": "Te importeren in de bladwijzers van elke browser.",
+    "description": "Explains the HTML bookmarks format."
+  },
+  "formatNote": {
+    "message": "Herstellen leest alle vier. Markdown, platte tekst en HTML herstellen alleen weblinks.",
+    "description": "Note below the format choices."
+  },
+  "fileName": {
+    "message": "Bestandsnaam",
+    "description": "Label of the file name pattern field."
+  },
+  "fileNameHint": {
+    "message": "Gebruik {YYYY} {MM} {DD} {HH} {mm} {ss} voor de datum en tijd, en {count} voor het aantal tabbladen. De extensie wordt automatisch toegevoegd.",
+    "description": "Explains the file name pattern. Keep the {…} tokens exactly as they are."
+  },
+  "reset": {
+    "message": "Standaard herstellen",
+    "description": "Restores the default file name pattern."
+  },
+  "preview": {
+    "message": "Voorbeeld:",
+    "description": "Label before the example file name."
+  },
+  "saved": {
+    "message": "Opgeslagen",
+    "description": "Shown briefly after a setting is saved."
+  },
+  "saveFailed": {
+    "message": "Je instellingen konden niet worden opgeslagen. Probeer het opnieuw.",
+    "description": "Shown when settings couldn't be saved."
+  },
+  "settingsSyncNote__firefox": {
+    "message": "Instellingen worden gesynchroniseerd tussen je apparaten als je bent aangemeld bij Firefox en synchronisatie van add-ons aan staat.",
+    "description": "Footer of the settings page. (Firefox build)"
+  },
+  "settingsSyncNote__chrome": {
+    "message": "Instellingen worden gesynchroniseerd tussen je apparaten als je bent aangemeld bij je browser en synchronisatie aan staat.",
+    "description": "Footer of the settings page. (Chrome build)"
+  }
+}
