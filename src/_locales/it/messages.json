@@ -64,7 +64,7 @@
     "description": "Followed by the list of backups that would be deleted. $1 is how many."
   },
   "limitMore_one": {
-    "message": "e $1 altro",
+    "message": "e un altro",
     "description": "Last item of the list of backups to delete, when it's shortened. $1 is how many aren't listed."
   },
   "limitMore_other": {
@@ -236,7 +236,7 @@
     "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Firefox build)"
   },
   "destinationBookmarksHint__chrome": {
-    "message": "Una cartella con la data in «Altri preferiti», sincronizzata sugli altri dispositivi da la sincronizzazione del browser.",
+    "message": "Una cartella con la data in «Altri preferiti», sincronizzata sugli altri dispositivi dalla sincronizzazione del browser.",
     "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Chrome build)"
   },
   "destinationBoth": {
@@ -352,7 +352,7 @@
     "description": "Explains the file name pattern. Keep the {…} tokens exactly as they are."
   },
   "reset": {
-    "message": "Ripristina predefinito",
+    "message": "Reimposta",
     "description": "Restores the default file name pattern."
   },
   "preview": {

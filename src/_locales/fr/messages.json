@@ -104,7 +104,7 @@
     "description": "Heading of the list of bookmark backups on the restore page. (Chrome build)"
   },
   "noBookmarkBackups__firefox": {
-    "message": "Aucune sauvegarde dans les marque-pages pour l’instant. Les sauvegardes de vos autres appareils apparaîtront ici après la synchronisation de Firefox.",
+    "message": "Aucune sauvegarde dans les marque-pages pour l’instant. Les sauvegardes de vos autres appareils apparaîtront ici après la synchronisation par Firefox Sync.",
     "description": "Shown when there are no bookmark backups yet. (Firefox build)"
   },
   "noBookmarkBackups__chrome": {

@@ -36,7 +36,7 @@
     "description": "Shown when saving one more bookmark backup would delete the oldest. $1 is the limit."
   },
   "limitText_other": {
-    "message": "今バックアップすると、古いバックアップ $1 件が削除されます：",
+    "message": "今バックアップすると、最も古いバックアップ $1 件が削除されます：",
     "description": "Followed by the list of backups that would be deleted. $1 is how many."
   },
   "limitMore_other": {
@@ -176,7 +176,7 @@
     "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Firefox build)"
   },
   "destinationBookmarksHint__chrome": {
-    "message": "「その他のブックマーク」内に日付入りのフォルダーを作成し、ブラウザーの同期で他のデバイスと同期します。",
+    "message": "「その他のブックマーク」内に日付入りのフォルダーを作成し、ブラウザーの同期機能で他のデバイスに反映されます。",
     "description": "Explains the bookmark destination. Use the browser's own name for the Other Bookmarks folder. (Chrome build)"
   },
   "destinationBoth": {

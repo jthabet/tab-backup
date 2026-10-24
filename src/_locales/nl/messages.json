@@ -8,7 +8,7 @@
     "description": "Extension name. Product name, normally not translated."
   },
   "extensionDescription": {
-    "message": "Maak een back-up van de tabbladen in je venster in een bestand of bladwijzermap, en bekijk en herstel ze later.",
+    "message": "Maak een back-up van de tabbladen in je venster in een bestand of bladwijzermap, bekijk ze vooraf en herstel ze.",
     "description": "Store summary and add-ons manager description. 132 characters at most."
   },
   "cancel": {
@@ -148,11 +148,11 @@
     "description": "Result after restoring. $1 is the count."
   },
   "skippedTabs_one": {
-    "message": "$1 overgeslagen dat niet kan worden geopend.",
+    "message": "$1 overgeslagen omdat het niet kan worden geopend.",
     "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
   },
   "skippedTabs_other": {
-    "message": "$1 overgeslagen die niet kunnen worden geopend.",
+    "message": "$1 overgeslagen omdat ze niet kunnen worden geopend.",
     "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
   },
   "noTabsInFile": {
@@ -300,7 +300,7 @@
     "description": "Explains the file name pattern. Keep the {…} tokens exactly as they are."
   },
   "reset": {
-    "message": "Standaard herstellen",
+    "message": "Standaardwaarde terugzetten",
     "description": "Restores the default file name pattern."
   },
   "preview": {

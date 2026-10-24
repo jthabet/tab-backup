@@ -308,11 +308,11 @@
     "description": "Explains the both destination."
   },
   "keepBefore": {
-    "message": "Хранить последние",
+    "message": "Резервных копий в закладках, не более:",
     "description": "Text before the number field in “Keep the last [20] bookmark backups”."
   },
   "keepAfter": {
-    "message": "резервных копий в закладках",
+    "message": "шт.",
     "description": "Text after the number field in “Keep the last [20] bookmark backups”."
   },
   "folderName": {
