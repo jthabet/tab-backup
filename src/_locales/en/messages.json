@@ -155,6 +155,20 @@
     "message": "Skipped $1 that can't be opened.",
     "description": "Follows the restore result when some tabs couldn't be opened. $1 is the count."
   },
+  "twoSentences": {
+    "message": "$FIRST$ $SECOND$",
+    "description": "Joins two sentences of the restore result. Keep the spacing your language uses between sentences.",
+    "placeholders": {
+      "first": {
+        "content": "$1",
+        "example": "Opened 4 tabs."
+      },
+      "second": {
+        "content": "$2",
+        "example": "Skipped 1 that can't be opened."
+      }
+    }
+  },
   "noTabsInFile": {
     "message": "No tabs found in this file.",
     "description": "Shown when a chosen file has no tabs."
@@ -190,6 +204,10 @@
   "backupFolderTitle_other": {
     "message": "$2 · $1 tabs",
     "description": "Name of a bookmark backup folder. $1 is the number of tabs, $2 the date and time."
+  },
+  "backupFolderTaken": {
+    "message": "$1 (backups)",
+    "description": "Name of the backup folder when a folder with the chosen name already exists. $1 is the chosen name, e.g. “Tab Backup (backups)”."
   },
   "settingsPageTitle": {
     "message": "Settings | Tab Backup",

@@ -59,6 +59,10 @@ version in every command.
 
 The listing text and screenshots are in [`store/listing.md`](../store/listing.md).
 
+The first release with translations (manifest `default_locale` `en`, while
+the listing's default language is English (UK)): check afterwards that the
+listing's default language and summary on Firefox Add-ons are unchanged.
+
 ## Chrome Web Store
 
 1. Package the Chromium build:

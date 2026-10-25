@@ -1,8 +1,9 @@
 // Translations come from _locales/<lang>/messages.json, picked by the browser
 // for the user's language with English as the fallback.
 
-// The translation's own language, so plural rules match the text shown.
-const language = browser.i18n.getMessage("languageTag") || "en";
+// The translation's own language, so plural rules and dates match the text
+// shown.
+export const language = browser.i18n.getMessage("languageTag") || "en";
 const pluralRules = new Intl.PluralRules(language);
 
 // Returns the message for `key`, with $1, $2… replaced by `substitutions`.

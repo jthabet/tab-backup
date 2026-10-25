@@ -188,12 +188,11 @@ async function openUrls(urls) {
   for (const { reason } of failed) console.warn(`Skipped: ${reason}`);
 
   const opened = results.length - failed.length;
-  status.textContent = [
-    plural("openedTabs", opened),
-    failed.length && plural("skippedTabs", failed.length),
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const result = plural("openedTabs", opened);
+  // Japanese runs sentences together; the message decides the spacing.
+  status.textContent = failed.length
+    ? t("twoSentences", result, plural("skippedTabs", failed.length))
+    : result;
 }
 
 async function initBookmarkBackups() {

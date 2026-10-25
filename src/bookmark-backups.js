@@ -16,7 +16,7 @@ const MARKER_TITLE =
   "About these backups: the oldest are deleted when you reach your limit";
 
 import { saveSettings } from "./settings-store.js";
-import { plural } from "./i18n.js";
+import { language, plural, t } from "./i18n.js";
 
 const PERMISSION = { permissions: ["bookmarks"] };
 
@@ -140,7 +140,7 @@ async function getOrCreateRoot(folderName) {
   const taken = siblings.some(
     (node) => isFolder(node) && node.title === folderName,
   );
-  const title = taken ? `${folderName} (backups)` : folderName;
+  const title = taken ? t("backupFolderTaken", folderName) : folderName;
   const root = await browser.bookmarks.create({ parentId, title });
   // Keep the setting in step with the name the folder actually got.
   if (title !== folderName) await saveSettings({ bookmarkFolderName: title });
@@ -168,7 +168,7 @@ function isFolder(node) {
 }
 
 function formatDate(date) {
-  return new Intl.DateTimeFormat(undefined, {
+  return new Intl.DateTimeFormat(language, {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(date);
