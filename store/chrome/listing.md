@@ -143,7 +143,7 @@ A contact email must be set and verified before the first submission.
 
 ## Version history
 
-| Version | Date       | Changes                                                                                        | Status        |
-| ------- | ---------- | ---------------------------------------------------------------------------------------------- | ------------- |
-| next    | —          | Translations: Dutch, French, German, Italian, Japanese, Russian, Turkish; French store listing | Not submitted |
-| 0.8.0   | 2026-10-22 | First Chrome Web Store release: file and bookmark backups, restore preview, settings           | Published     |
+| Version | Date       | Changes                                                                                        | Status    |
+| ------- | ---------- | ---------------------------------------------------------------------------------------------- | --------- |
+| 0.10.0  | 2026-10-27 | Translations: Dutch, French, German, Italian, Japanese, Russian, Turkish; French store listing | Draft     |
+| 0.8.0   | 2026-10-22 | First Chrome Web Store release: file and bookmark backups, restore preview, settings           | Published |
