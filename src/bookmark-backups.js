@@ -8,10 +8,11 @@
 
 // Firefox and Chromium bookmarks never sync with each other, so each build
 // has its own marker. Neither may change after release.
-const MARKER_URL =
-  process.env.BROWSER === "firefox"
+function markerUrl() {
+  return process.env.BROWSER === "firefox"
     ? "https://addons.mozilla.org/firefox/addon/tab-backup/?src=backup-folder"
     : "https://github.com/jthabet/tab-backup?src=backup-folder";
+}
 const MARKER_TITLE =
   "About these backups: the oldest are deleted when you reach your limit";
 
@@ -117,7 +118,7 @@ async function pruneBackups(keep) {
 
 // Folders that contain the marker bookmark, wherever the user moved them.
 async function findRoots() {
-  const markers = await browser.bookmarks.search({ url: MARKER_URL });
+  const markers = await browser.bookmarks.search({ url: markerUrl() });
   const parentIds = [
     ...new Set(
       markers
@@ -148,7 +149,7 @@ async function getOrCreateRoot(folderName) {
     parentId: root.id,
     index: 0,
     title: MARKER_TITLE,
-    url: MARKER_URL,
+    url: markerUrl(),
   });
   return root;
 }

@@ -3,6 +3,7 @@
   "description": "Tab manager extension",
   "version": "1.0.0",
   "license": "Mozilla Public License 2.0",
+  "type": "module",
   "dependencies": {
     "prettier": "^3.9.6"
   },
@@ -40,7 +41,8 @@
     "start:chrome": "webpack -w --env target=chrome --env launchBrowser=false",
     "dev:chrome": "webpack -w --env target=chrome",
     "check-locales": "node scripts/check-locales.mjs",
-    "lint": "pnpm check-locales && pnpm build && web-ext lint",
+    "test": "node --test test/",
+    "lint": "pnpm check-locales && pnpm test && pnpm build && web-ext lint",
     "build-extension": "web-ext build",
     "build-extension:chrome": "pnpm build:chrome && web-ext build -s dist-chrome --filename tab_backup-chrome-{version}.zip",
     "sign-extension": "make sign-extension"

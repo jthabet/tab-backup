@@ -42,10 +42,25 @@ extension by hand:
 To see runtime errors, select **Inspect** next to Tab Backup on
 `about:debugging`, or **service worker** / **Errors** on `chrome://extensions`.
 
+## Tests
+
+```sh
+pnpm test
+```
+
+Unit tests for the backup formats and file names, reading backups back in,
+translations and plural forms, and bookmark backups (in both Firefox's and
+Chrome's bookmark trees). They run in Node with no browser and no
+dependencies: [`test/fake-browser.js`](../test/fake-browser.js) stands in for
+the extension APIs. `pnpm lint` runs them too.
+
+They don't cover the pages themselves (popup, restore, settings) or
+reading HTML bookmark files, which needs a browser; the smoke test below
+does.
+
 ## Smoke test
 
-There is no automated test suite. Before a release, run through this in both
-browsers. Sample backups of three tabs in every format are in
+Before a release, run through this in both browsers. Sample backups of three tabs in every format are in
 [`samples/`](../samples/) for testing restore.
 
 1. The toolbar badge shows the number of open tabs, and changes when you open
@@ -96,7 +111,7 @@ To see a translation, switch the browser's language, or start Chrome in it:
 pnpm lint
 ```
 
-Checks the translations, builds `dist/` and runs Mozilla's add-on linter on it. It must report 0 errors
+Checks the translations, runs the tests, builds `dist/` and runs Mozilla's add-on linter on it. It must report 0 errors
 before a Firefox release. There is no equivalent for Chrome.
 
 ## Package
