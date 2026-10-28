@@ -48,15 +48,21 @@ To see runtime errors, select **Inspect** next to Tab Backup on
 pnpm test
 ```
 
-Unit tests for the backup formats and file names, reading backups back in,
-translations and plural forms, and bookmark backups (in both Firefox's and
-Chrome's bookmark trees). They run in Node with no browser and no
-dependencies: [`test/fake-browser.js`](../test/fake-browser.js) stands in for
-the extension APIs. `pnpm lint` runs them too.
+Builds both versions, then runs the tests in Node, with no browser:
+[`test/fake-browser.js`](../test/fake-browser.js) stands in for the extension
+APIs. `pnpm lint` runs them too.
 
-They don't cover the pages themselves (popup, restore, settings) or
-reading HTML bookmark files, which needs a browser; the smoke test below
-does.
+- Unit tests for the backup formats and file names, reading backups back in,
+  translations and plural forms, and bookmark backups (in both Firefox's and
+  Chrome's bookmark trees).
+- Page tests ([`test/pages.test.js`](../test/pages.test.js)) open the built
+  popup, restore and settings pages of each version in
+  [happy-dom](https://github.com/capricorn86/happy-dom) and click through
+  them: backing up to a file or bookmarks, restoring every sample format and
+  bookmark backups, and changing each setting.
+
+They can't catch what only a real browser shows (layout, the file picker,
+permission prompts, the toolbar badge); the smoke test below does.
 
 ## Smoke test
 

@@ -17,6 +17,7 @@
     "css-loader": "^7.1.5",
     "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
+    "happy-dom": "21.0.1",
     "html-webpack-plugin": "^5.6.8",
     "mini-css-extract-plugin": "^2.10.2",
     "postcss": "^8.5.28",
@@ -41,8 +42,8 @@
     "start:chrome": "webpack -w --env target=chrome --env launchBrowser=false",
     "dev:chrome": "webpack -w --env target=chrome",
     "check-locales": "node scripts/check-locales.mjs",
-    "test": "node --test test/",
-    "lint": "pnpm check-locales && pnpm test && pnpm build && web-ext lint",
+    "test": "pnpm build && pnpm build:chrome && node --test test/",
+    "lint": "pnpm check-locales && pnpm test && web-ext lint",
     "build-extension": "web-ext build",
     "build-extension:chrome": "pnpm build:chrome && web-ext build -s dist-chrome --filename tab_backup-chrome-{version}.zip",
     "sign-extension": "make sign-extension"

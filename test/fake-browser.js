@@ -1,6 +1,8 @@
-// A stand-in for the WebExtension `browser` API, enough to run the extension's
-// modules in Node: i18n from the real message files, storage.sync in memory,
-// and a bookmark tree shaped like Firefox's or Chromium's.
+// A stand-in for the WebExtension `browser` API, enough to run the
+// extension's modules and pages in Node: i18n from the real message files,
+// storage, permissions, tabs and downloads in memory, and a bookmark tree
+// shaped like Firefox's or Chromium's. Tests read and set its state directly
+// (e.g. `fake.tabs.open`, `fake.downloads.saved`).
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { readLocales, resolveMessages } from "../scripts/locales.mjs";
@@ -9,17 +11,41 @@ const LOCALES = readLocales(
   path.join(path.dirname(fileURLToPath(import.meta.url)), "../src/_locales"),
 );
 
-// Installs a fresh fake as globalThis.browser and returns it. `target` sets
-// process.env.BROWSER, which the build would otherwise replace.
-export function installBrowser({ target = "firefox", locale = "en" } = {}) {
-  process.env.BROWSER = target;
-  const fake = {
+// A fresh fake for one browser and UI language.
+export function createBrowser({
+  target = "firefox",
+  locale = "en",
+  tabs = [],
+  bookmarksAllowed = true,
+} = {}) {
+  return {
     i18n: fakeI18n(target, locale),
     storage: { sync: fakeStorage() },
+    permissions: fakePermissions(bookmarksAllowed ? ["bookmarks"] : []),
     bookmarks: target === "firefox" ? firefoxBookmarks() : chromeBookmarks(),
+    tabs: fakeTabs(tabs),
+    downloads: fakeDownloads(),
+    runtime: fakeRuntime(target),
   };
-  globalThis.browser = fake;
-  return fake;
+}
+
+// Installs a fresh fake as globalThis.browser and returns it. `target` sets
+// process.env.BROWSER, which the build would otherwise replace.
+export function installBrowser(options = {}) {
+  process.env.BROWSER = options.target ?? "firefox";
+  globalThis.browser = createBrowser(options);
+  return globalThis.browser;
+}
+
+// browser.*.onSomething: listeners the fake calls when its state changes.
+function fakeEvent() {
+  const listeners = new Set();
+  return {
+    addListener: (fn) => listeners.add(fn),
+    removeListener: (fn) => listeners.delete(fn),
+    hasListener: (fn) => listeners.has(fn),
+    fire: (...args) => listeners.forEach((fn) => fn(...args)),
+  };
 }
 
 // Like browser.i18n.getMessage: the locale's message, else English's (also
@@ -52,14 +78,111 @@ function fakeI18n(target, locale) {
 
 function fakeStorage() {
   const data = {};
+  const onChanged = fakeEvent();
   return {
+    data,
+    onChanged,
     async get(defaults) {
       return { ...defaults, ...structuredClone(data) };
     },
     async set(changes) {
       Object.assign(data, structuredClone(changes));
+      onChanged.fire(
+        Object.fromEntries(
+          Object.entries(changes).map(([key, newValue]) => [key, { newValue }]),
+        ),
+      );
     },
   };
+}
+
+// Optional permissions; `answer` is what the user picks in the prompt.
+function fakePermissions(granted) {
+  const permissions = {
+    granted: new Set(granted),
+    answer: true,
+    requests: 0,
+    onAdded: fakeEvent(),
+    async contains({ permissions: wanted }) {
+      return wanted.every((p) => permissions.granted.has(p));
+    },
+    async request({ permissions: wanted }) {
+      permissions.requests++;
+      if (!permissions.answer) return false;
+      wanted.forEach((p) => permissions.granted.add(p));
+      permissions.onAdded.fire({ permissions: wanted, origins: [] });
+      return true;
+    },
+  };
+  return permissions;
+}
+
+// Tabs in the current window; `created` and `activated` record what pages did.
+function fakeTabs(initial) {
+  let nextId = 1;
+  const open = initial.map((tab) => ({ id: nextId++, ...tab }));
+  const tabs = {
+    open,
+    created: [],
+    activated: [],
+    onCreated: fakeEvent(),
+    onRemoved: fakeEvent(),
+    async query() {
+      return structuredClone(open);
+    },
+    async create(properties) {
+      const tab = {
+        id: nextId++,
+        title: "",
+        url: "about:newtab",
+        ...properties,
+      };
+      // A copy made here, since pages pass objects from their own realm,
+      // which deepStrictEqual never matches.
+      tabs.created.push({ ...properties });
+      open.push(tab);
+      return tab;
+    },
+    async update(id, changes) {
+      if (changes.active) tabs.activated.push(id);
+      return open.find((tab) => tab.id === id);
+    },
+  };
+  return tabs;
+}
+
+// Downloads complete at once. `saved` holds { filename, url }; a page test
+// reads the file's contents from the blob behind `url`.
+function fakeDownloads() {
+  let nextId = 1;
+  const downloads = {
+    saved: [],
+    onChanged: fakeEvent(),
+    async download({ url, filename }) {
+      const id = nextId++;
+      downloads.saved.push({ id, url, filename });
+      return id;
+    },
+    async search({ id }) {
+      return downloads.saved.some((d) => d.id === id)
+        ? [{ id, state: "complete" }]
+        : [];
+    },
+  };
+  return downloads;
+}
+
+function fakeRuntime(target) {
+  const base =
+    target === "firefox" ? "moz-extension://test/" : "chrome-extension://test/";
+  const runtime = {
+    optionsOpened: 0,
+    getURL: (file) => base + file,
+    async openOptionsPage() {
+      runtime.optionsOpened++;
+    },
+  };
+  return runtime;
 }
 
 // --- Bookmarks ---
@@ -153,8 +276,15 @@ function bookmarkTree({
     return node;
   };
 
+  const onCreated = fakeEvent();
+  const onRemoved = fakeEvent();
+  const onChanged = fakeEvent();
+
   return {
     nodes,
+    onCreated,
+    onRemoved,
+    onChanged,
     // Adds a top-level folder, e.g. a synced copy of Other bookmarks.
     addTopFolder(folder) {
       add({ ...folder, parentId: rootId, childIds: [] });
@@ -174,6 +304,7 @@ function bookmarkTree({
         dateAdded: clock++,
         childIds: url ? undefined : [],
       });
+      onCreated.fire(node.id, view(node));
       return view(node);
     },
     async get(ids) {
@@ -191,6 +322,7 @@ function bookmarkTree({
     async update(id, { title }) {
       const node = lookup(id);
       node.title = title;
+      onChanged.fire(id, { title });
       return view(node);
     },
     async removeTree(id) {
@@ -202,6 +334,7 @@ function bookmarkTree({
       const siblings = nodes.get(node.parentId).childIds;
       siblings.splice(siblings.indexOf(id), 1);
       drop(node);
+      onRemoved.fire(id, { parentId: node.parentId });
     },
     // Test helper: the titles of a folder's children.
     titles(id) {
