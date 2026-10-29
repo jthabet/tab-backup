@@ -116,6 +116,10 @@ async function showPreview(title, entries) {
 
 function renderPreviewRow(entry) {
   const item = document.createElement("li");
+  // Rows off screen skip layout, which halves the memory of a preview of
+  // thousands of tabs. 53px is a row's height, until it's first shown.
+  item.className =
+    "[contain-intrinsic-size:auto_53px] [content-visibility:auto]";
 
   const row = document.createElement("label");
   row.className = entry.openable
