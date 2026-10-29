@@ -26,6 +26,7 @@ export function createBrowser({
     tabs: fakeTabs(tabs),
     downloads: fakeDownloads(),
     runtime: fakeRuntime(target),
+    action: fakeAction(),
   };
 }
 
@@ -117,7 +118,8 @@ function fakePermissions(granted) {
   return permissions;
 }
 
-// Tabs in the current window; `created` and `activated` record what pages did.
+// Tabs in the current window; `created` and `activated` record what pages did,
+// and `queries` counts calls to query().
 function fakeTabs(initial) {
   let nextId = 1;
   const open = initial.map((tab) => ({ id: nextId++, ...tab }));
@@ -125,9 +127,11 @@ function fakeTabs(initial) {
     open,
     created: [],
     activated: [],
+    queries: 0,
     onCreated: fakeEvent(),
     onRemoved: fakeEvent(),
     async query() {
+      tabs.queries++;
       return structuredClone(open);
     },
     async create(properties) {
@@ -177,12 +181,31 @@ function fakeRuntime(target) {
     target === "firefox" ? "moz-extension://test/" : "chrome-extension://test/";
   const runtime = {
     optionsOpened: 0,
+    onInstalled: fakeEvent(),
+    onStartup: fakeEvent(),
     getURL: (file) => base + file,
     async openOptionsPage() {
       runtime.optionsOpened++;
     },
   };
   return runtime;
+}
+
+// The toolbar button's badge; `textUpdates` counts setBadgeText calls.
+function fakeAction() {
+  const action = {
+    badgeText: "",
+    badgeColor: null,
+    textUpdates: 0,
+    async setBadgeText({ text }) {
+      action.badgeText = text;
+      action.textUpdates++;
+    },
+    async setBadgeBackgroundColor({ color }) {
+      action.badgeColor = color;
+    },
+  };
+  return action;
 }
 
 // --- Bookmarks ---
