@@ -226,7 +226,7 @@
     "description": "Text after the number field in “Keep the last [20] bookmark backups”."
   },
   "keepRenamedHint": {
-    "message": "「タブの復元」ページで名前を変更したバックアップは、自動的に削除されません。",
+    "message": "「タブの復元」ページで名前を変更したバックアップが自動的に削除されることはありません。",
     "description": "Settings note under the number of bookmark backups to keep."
   },
   "folderName": {

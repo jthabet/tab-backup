@@ -266,7 +266,7 @@
     "description": "Text after the number field in “Keep the last [20] bookmark backups”."
   },
   "keepRenamedHint": {
-    "message": "Back-ups waarvan je de naam wijzigt op de pagina ‘Tabbladen herstellen’, worden nooit automatisch verwijderd.",
+    "message": "Back-ups waarvan je de naam wijzigt op de pagina ‘Tabbladen herstellen’ worden nooit automatisch verwijderd.",
     "description": "Settings note under the number of bookmark backups to keep."
   },
   "folderName": {
