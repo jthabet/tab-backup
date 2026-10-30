@@ -80,7 +80,9 @@ Before a release, run through this in both browsers. Sample backups of three tab
    next backup uses them and still restores.
 6. In settings, choose **Bookmarks** and allow access. **Back up** creates a
    dated folder in Other Bookmarks › Tab Backup, which is listed on the restore
-   page, where **Restore…** and **Delete** work.
+   page, where **Restore…**, **Rename** and **Delete** work. A renamed backup
+   shows its date and tab count under its new name, and is skipped when the
+   oldest backups are deleted.
 
 ## Translations
 

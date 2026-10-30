@@ -110,12 +110,21 @@
           <input
             id="keep"
             type="number"
+            aria-describedby="keep-hint"
             min="1"
             max="200"
             step="1"
             class="h-8 w-16 rounded-md border border-neutral-300 bg-transparent px-2 text-sm focus:outline-2 focus:outline-offset-1 focus:outline-neutral-800 dark:border-neutral-600 dark:focus:outline-neutral-100"
           />
           <span data-i18n="keepAfter">bookmark backups</span>
+          <p
+            id="keep-hint"
+            data-i18n="keepRenamedHint"
+            class="w-full text-xs text-neutral-500 dark:text-neutral-400"
+          >
+            Backups you rename on the restore page are never deleted
+            automatically.
+          </p>
         </div>
 
         <div class="mt-2 flex flex-col gap-1">

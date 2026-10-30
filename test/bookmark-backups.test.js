@@ -155,6 +155,53 @@ for (const target of ["firefox", "chrome"]) {
       );
     });
 
+    test("a renamed backup is never pruned and doesn't count toward the limit", async () => {
+      const keep = { ...OPTIONS, keep: 2 };
+      await backups.saveBookmarkBackup(TABS.slice(0, 1), date(1), keep);
+      await backups.saveBookmarkBackup(TABS.slice(0, 2), date(2), keep);
+      const [, oldest] = await backups.listBookmarkBackups();
+      await backups.renameBookmarkBackup(oldest, "  Trip research ");
+
+      const [, renamed] = await backups.listBookmarkBackups();
+      assert.equal(renamed.title, "Trip research");
+      assert.equal(renamed.kept, true);
+      assert.deepEqual(renamed.entries, TABS.slice(0, 1));
+      // Only one backup counts toward the limit of 2, so nothing is deleted.
+      assert.deepEqual(await backups.backupsDeletedByNextSave(2), []);
+
+      await backups.saveBookmarkBackup(TABS, date(3), keep);
+      await backups.saveBookmarkBackup(TABS, date(4), keep);
+      const listed = await backups.listBookmarkBackups();
+      assert.equal(listed.length, 3);
+      assert.equal(listed.at(-1).title, "Trip research");
+
+      // Renaming again doesn't add a second keep marker.
+      await backups.renameBookmarkBackup(renamed, "Trip");
+      const [tree] = await browser.bookmarks.getSubTree(renamed.id);
+      assert.equal(tree.children.filter((node) => !node.url).length, 1);
+    });
+
+    test("clearing a backup's name restores its default title and pruning", async () => {
+      const keep = { ...OPTIONS, keep: 1 };
+      await backups.saveBookmarkBackup(TABS.slice(0, 2), date(1), keep);
+      const [backup] = await backups.listBookmarkBackups();
+      await backups.renameBookmarkBackup(backup, "Mine");
+      await backups.renameBookmarkBackup(
+        (await backups.listBookmarkBackups())[0],
+        "",
+      );
+
+      const [reset] = await backups.listBookmarkBackups();
+      assert.equal(reset.kept, false);
+      assert.equal(reset.title, backups.defaultBackupTitle(reset));
+      assert.match(reset.title, /· 2 tabs$/);
+      const doomed = await backups.backupsDeletedByNextSave(1);
+      assert.deepEqual(
+        doomed.map((b) => b.id),
+        [reset.id],
+      );
+    });
+
     test("there's no folder name before the first backup", async () => {
       assert.equal(await backups.getBackupFolderName(), null);
       assert.deepEqual(await backups.listBookmarkBackups(), []);

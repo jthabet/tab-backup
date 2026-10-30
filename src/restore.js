@@ -1,8 +1,10 @@
 import "./main.css";
 import {
+  defaultBackupTitle,
   deleteBookmarkBackup,
   hasBookmarksPermission,
   listBookmarkBackups,
+  renameBookmarkBackup,
 } from "./bookmark-backups.js";
 import { localizePage, plural, t } from "./i18n.js";
 import {
@@ -230,9 +232,21 @@ async function initBookmarkBackups() {
   browser.bookmarks.onChanged.addListener(refresh);
 }
 
-async function renderBookmarkBackups() {
+// True while a backup's name is being edited, so a refresh doesn't throw
+// away what the user is typing; the list is redrawn when they're done.
+let renaming = false;
+
+// Redraws the list, keeping focus on the same button of the same backup
+// (`focus` overrides it: { id, action }).
+async function renderBookmarkBackups(focus) {
+  if (renaming) return;
   const list = document.getElementById("synced-list");
   const backups = await listBookmarkBackups();
+  const active = document.activeElement;
+  focus ??= list.contains(active) && {
+    id: active.closest("li")?.dataset.id,
+    action: active.dataset.action,
+  };
   document.getElementById("synced-empty").hidden = backups.length > 0;
   list.hidden = backups.length === 0;
 
@@ -240,11 +254,33 @@ async function renderBookmarkBackups() {
     ...backups.map((backup) => {
       const item = document.createElement("li");
       item.className = "flex items-center gap-2 px-3 py-2";
+      item.dataset.id = backup.id;
 
       const label = document.createElement("span");
-      label.className = "min-w-0 flex-1 truncate text-sm";
-      label.textContent = backup.title;
-      label.title = backup.title;
+      label.className = "flex min-w-0 flex-1 flex-col";
+      const name = document.createElement("span");
+      // Wraps rather than truncates, so the date and size stay readable.
+      name.className = "line-clamp-2 text-sm break-words";
+      name.textContent = backup.title;
+      name.title = backup.title;
+      label.append(name);
+      // A renamed backup no longer shows its date and size in its name.
+      if (backup.kept) {
+        const details = document.createElement("span");
+        details.className = "text-xs text-neutral-500 dark:text-neutral-400";
+        details.textContent = defaultBackupTitle(backup);
+        label.append(details);
+      }
+
+      const rename = document.createElement("button");
+      rename.type = "button";
+      rename.className =
+        "h-8 cursor-pointer rounded-md px-3 text-sm text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100";
+      rename.textContent = t("rename");
+      rename.setAttribute("aria-label", t("renameBackupLabel", backup.title));
+      rename.addEventListener("click", () =>
+        startRenaming(backup, label, rename),
+      );
 
       const restore = document.createElement("button");
       restore.type = "button";
@@ -268,8 +304,54 @@ async function renderBookmarkBackups() {
         await renderBookmarkBackups();
       });
 
-      item.append(label, restore, remove);
+      restore.dataset.action = "restore";
+      rename.dataset.action = "rename";
+      remove.dataset.action = "delete";
+      item.append(label, restore, rename, remove);
       return item;
     }),
   );
+  if (focus?.action) {
+    list
+      .querySelector(`li[data-id="${CSS.escape(focus.id)}"]`)
+      ?.querySelector(`[data-action="${focus.action}"]`)
+      ?.focus();
+  }
+}
+
+// Swaps a backup's name for a text field: Enter or leaving the field saves,
+// Escape cancels, and an empty name restores the default (date and size).
+function startRenaming(backup, label, button) {
+  renaming = true;
+  const input = document.createElement("input");
+  input.type = "text";
+  input.value = backup.title;
+  input.placeholder = defaultBackupTitle(backup);
+  input.spellcheck = false;
+  input.autocomplete = "off";
+  input.setAttribute("aria-label", t("backupName"));
+  input.className =
+    "h-8 min-w-0 flex-1 rounded-md border border-neutral-300 bg-transparent px-2 text-sm focus:outline-2 focus:outline-offset-1 focus:outline-neutral-800 dark:border-neutral-600 dark:focus:outline-neutral-100";
+  label.replaceWith(input);
+  button.disabled = true;
+  input.focus();
+  input.select();
+
+  let done = false;
+  const finish = async (save) => {
+    if (done) return;
+    done = true;
+    const name = input.value.trim();
+    // Leaving the default name as it is doesn't count as renaming.
+    if (save && name !== backup.title) {
+      await renameBookmarkBackup(backup, name);
+    }
+    renaming = false;
+    await renderBookmarkBackups({ id: backup.id, action: "rename" });
+  };
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") finish(true);
+    if (event.key === "Escape") finish(false);
+  });
+  input.addEventListener("blur", () => finish(true));
 }

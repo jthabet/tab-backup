@@ -157,6 +157,18 @@
     "message": "$1 を削除",
     "description": "Screen reader label of a bookmark backup's Delete button. $1 is the backup's name."
   },
+  "rename": {
+    "message": "名前を変更",
+    "description": "Renames one bookmark backup."
+  },
+  "renameBackupLabel": {
+    "message": "$1 の名前を変更",
+    "description": "Screen reader label of a bookmark backup's Rename button. $1 is the backup's name."
+  },
+  "backupName": {
+    "message": "バックアップ名",
+    "description": "Screen reader label of the field for a bookmark backup's new name."
+  },
   "confirmDelete": {
     "message": "バックアップ「$1」を削除しますか？",
     "description": "Confirmation before deleting a bookmark backup. $1 is the backup's name."
@@ -212,6 +224,10 @@
   "keepAfter": {
     "message": "件まで保持",
     "description": "Text after the number field in “Keep the last [20] bookmark backups”."
+  },
+  "keepRenamedHint": {
+    "message": "「タブの復元」ページで名前を変更したバックアップは、自動的に削除されません。",
+    "description": "Settings note under the number of bookmark backups to keep."
   },
   "folderName": {
     "message": "ブックマークフォルダー名",

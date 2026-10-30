@@ -193,6 +193,18 @@
     "message": "$1 verwijderen",
     "description": "Screen reader label of a bookmark backup's Delete button. $1 is the backup's name."
   },
+  "rename": {
+    "message": "Naam wijzigen",
+    "description": "Renames one bookmark backup."
+  },
+  "renameBackupLabel": {
+    "message": "Naam van $1 wijzigen",
+    "description": "Screen reader label of a bookmark backup's Rename button. $1 is the backup's name."
+  },
+  "backupName": {
+    "message": "Naam van back-up",
+    "description": "Screen reader label of the field for a bookmark backup's new name."
+  },
   "confirmDelete": {
     "message": "De back-up ‘$1’ verwijderen?",
     "description": "Confirmation before deleting a bookmark backup. $1 is the backup's name."
@@ -252,6 +264,10 @@
   "keepAfter": {
     "message": "bladwijzerback-ups bewaren",
     "description": "Text after the number field in “Keep the last [20] bookmark backups”."
+  },
+  "keepRenamedHint": {
+    "message": "Back-ups waarvan je de naam wijzigt op de pagina ‘Tabbladen herstellen’, worden nooit automatisch verwijderd.",
+    "description": "Settings note under the number of bookmark backups to keep."
   },
   "folderName": {
     "message": "Naam van bladwijzermap",

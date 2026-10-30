@@ -14,7 +14,8 @@ Chromium browsers).
 - **Back up** to a file (JSON, Markdown, plain text or HTML bookmarks), to a
   bookmark folder that your browser syncs to your other devices, or both.
 - **Restore** from any backup with a preview: choose which tabs come back, and
-  tabs that are already open are left out.
+  tabs that are already open are left out. Rename a bookmark backup to keep
+  it: renamed backups are never deleted automatically.
 - **Settings** for the file format, file name pattern, bookmark folder name and
   how many bookmark backups to keep.
 

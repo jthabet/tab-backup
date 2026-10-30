@@ -193,6 +193,18 @@
     "message": "Delete $1",
     "description": "Screen reader label of a bookmark backup's Delete button. $1 is the backup's name."
   },
+  "rename": {
+    "message": "Rename",
+    "description": "Renames one bookmark backup."
+  },
+  "renameBackupLabel": {
+    "message": "Rename $1",
+    "description": "Screen reader label of a bookmark backup's Rename button. $1 is the backup's name."
+  },
+  "backupName": {
+    "message": "Backup name",
+    "description": "Screen reader label of the field for a bookmark backup's new name."
+  },
   "confirmDelete": {
     "message": "Delete the backup \"$1\"?",
     "description": "Confirmation before deleting a bookmark backup. $1 is the backup's name."
@@ -252,6 +264,10 @@
   "keepAfter": {
     "message": "bookmark backups",
     "description": "Text after the number field in “Keep the last [20] bookmark backups”."
+  },
+  "keepRenamedHint": {
+    "message": "Backups you rename on the restore page are never deleted automatically.",
+    "description": "Settings note under the number of bookmark backups to keep."
   },
   "folderName": {
     "message": "Bookmark folder name",

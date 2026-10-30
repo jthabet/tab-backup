@@ -298,7 +298,7 @@ for (const target of ["firefox", "chrome"]) {
       await page.click("#preview-cancel");
 
       const deleteOldest = () =>
-        page.$$("#synced-list li")[1].querySelectorAll("button")[1];
+        page.$$("#synced-list li")[1].querySelector('[aria-label^="Delete"]');
       page.confirmAnswer = false;
       await page.click(deleteOldest());
       await page.settle();
@@ -316,6 +316,53 @@ for (const target of ["firefox", "chrome"]) {
         [newest.id],
       );
       assert.equal(page.$$("#synced-list li").length, 1);
+    });
+
+    test("a bookmark backup can be renamed, which keeps it, and reset", async () => {
+      const browser = createBrowser({ target });
+      await seedBookmarkBackups(browser, target, 2);
+      page = await openPage("restore", { target, browser });
+
+      const row = () => page.$$("#synced-list li")[0];
+      const lines = () =>
+        [...row().querySelectorAll("span")]
+          .filter((span) => !span.children.length)
+          .map((span) => span.textContent);
+      const rename = async (name, key = "Enter") => {
+        await page.click(row().querySelector('[aria-label^="Rename"]'));
+        const input = row().querySelector("input");
+        assert.ok(page.document.activeElement === input, "the field has focus");
+        await page.type("#synced-list input", name);
+        input.dispatchEvent(new page.window.KeyboardEvent("keydown", { key }));
+        await page.settle();
+      };
+
+      await rename("Trip research");
+      const [renamed] = await backupsIn(browser, target);
+      assert.equal(renamed.title, "Trip research");
+      assert.equal(renamed.kept, true);
+      assert.equal(renamed.entries.length, 2);
+      // The date and size move under the new name.
+      assert.equal(lines()[0], "Trip research");
+      assert.match(lines()[1], /· 2 tabs$/);
+      assert.ok(
+        page.document.activeElement ===
+          row().querySelector('[aria-label^="Rename"]'),
+        "focus returns to Rename",
+      );
+
+      await rename("Something else", "Escape");
+      assert.equal(
+        (await backupsIn(browser, target))[0].title,
+        "Trip research",
+      );
+
+      await rename("  ");
+      const [reset] = await backupsIn(browser, target);
+      assert.equal(reset.kept, false);
+      assert.match(reset.title, /· 2 tabs$/);
+      assert.deepEqual(lines(), [reset.title]);
+      assert.equal((await backupsIn(browser, target))[1].kept, false);
     });
 
     test("bookmark backups appear once access is granted", async () => {

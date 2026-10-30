@@ -265,6 +265,18 @@
     "message": "Удалить $1",
     "description": "Screen reader label of a bookmark backup's Delete button. $1 is the backup's name."
   },
+  "rename": {
+    "message": "Переименовать",
+    "description": "Renames one bookmark backup."
+  },
+  "renameBackupLabel": {
+    "message": "Переименовать $1",
+    "description": "Screen reader label of a bookmark backup's Rename button. $1 is the backup's name."
+  },
+  "backupName": {
+    "message": "Название резервной копии",
+    "description": "Screen reader label of the field for a bookmark backup's new name."
+  },
   "confirmDelete": {
     "message": "Удалить резервную копию «$1»?",
     "description": "Confirmation before deleting a bookmark backup. $1 is the backup's name."
@@ -332,6 +344,10 @@
   "keepAfter": {
     "message": "шт.",
     "description": "Text after the number field in “Keep the last [20] bookmark backups”."
+  },
+  "keepRenamedHint": {
+    "message": "Резервные копии, переименованные на странице «Восстановление вкладок», никогда не удаляются автоматически.",
+    "description": "Settings note under the number of bookmark backups to keep."
   },
   "folderName": {
     "message": "Название папки закладок",

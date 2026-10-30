@@ -15,6 +15,10 @@ function markerUrl() {
 }
 const MARKER_TITLE =
   "About these backups: the oldest are deleted when you reach your limit";
+// A backup renamed from the restore page holds an empty folder with this
+// title, so it syncs with the backup and keeps it from being pruned on every
+// device. Like the marker, it is never translated and may not change.
+const KEPT_TITLE = "Renamed in Tab Backup: kept when older backups are deleted";
 
 import { saveSettings } from "./settings-store.js";
 import { language, plural, t } from "./i18n.js";
@@ -31,8 +35,8 @@ export function requestBookmarksPermission() {
 }
 
 // Saves the tabs as a new backup folder, newest first, then deletes the
-// oldest backups beyond `keep`. Returns how many tabs were skipped because
-// they can't be bookmarked (such as about:newtab).
+// oldest backups beyond `keep`, leaving renamed ones. Returns how many tabs
+// were skipped because they can't be bookmarked (such as about:newtab).
 export async function saveBookmarkBackup(tabs, date, { keep, folderName }) {
   const root = await getOrCreateRoot(folderName);
   const folder = await browser.bookmarks.create({
@@ -71,11 +75,13 @@ export async function listBookmarkBackups() {
     const [tree] = await browser.bookmarks.getSubTree(root.id);
     for (const node of tree.children ?? []) {
       if (!isFolder(node)) continue;
+      const children = node.children ?? [];
       backups.push({
         id: node.id,
         title: node.title,
         dateAdded: node.dateAdded ?? 0,
-        entries: (node.children ?? [])
+        kept: children.some(isKeptFolder),
+        entries: children
           .filter((child) => child.url)
           .map(({ title, url }) => ({ title, url })),
       });
@@ -84,10 +90,41 @@ export async function listBookmarkBackups() {
   return backups.sort((a, b) => b.dateAdded - a.dateAdded);
 }
 
-// The backups that saving one more would delete, oldest last.
+// The backups that saving one more would delete, oldest last. Renamed
+// (kept) backups are never deleted and don't count toward the limit.
 export async function backupsDeletedByNextSave(keep) {
-  const backups = await listBookmarkBackups();
+  const backups = await listPrunable();
   return backups.slice(Math.max(keep - 1, 0));
+}
+
+// The name a backup gets when it's saved: its date and number of tabs.
+export function defaultBackupTitle({ dateAdded, entries }) {
+  return plural(
+    "backupFolderTitle",
+    entries.length,
+    formatDate(new Date(dateAdded)),
+  );
+}
+
+// Renames a backup and keeps it from being pruned. An empty name gives it
+// back its default title, and it's pruned like any other backup again.
+export async function renameBookmarkBackup(backup, name) {
+  const [tree] = await browser.bookmarks.getSubTree(backup.id);
+  const keptFolders = (tree.children ?? []).filter(isKeptFolder);
+  const title = name.trim();
+  if (!title) {
+    await browser.bookmarks.update(backup.id, {
+      title: defaultBackupTitle(backup),
+    });
+    for (const folder of keptFolders) {
+      await browser.bookmarks.removeTree(folder.id);
+    }
+    return;
+  }
+  await browser.bookmarks.update(backup.id, { title });
+  if (keptFolders.length === 0) {
+    await browser.bookmarks.create({ parentId: backup.id, title: KEPT_TITLE });
+  }
 }
 
 export function deleteBookmarkBackup(id) {
@@ -109,8 +146,12 @@ export async function renameBackupFolder(name) {
   }
 }
 
+async function listPrunable() {
+  return (await listBookmarkBackups()).filter((backup) => !backup.kept);
+}
+
 async function pruneBackups(keep) {
-  const backups = await listBookmarkBackups();
+  const backups = await listPrunable();
   for (const backup of backups.slice(keep)) {
     await deleteBookmarkBackup(backup.id);
   }
@@ -161,6 +202,10 @@ async function otherBookmarksId() {
   const top = await browser.bookmarks.getChildren("0");
   const other = top.filter((node) => node.folderType === "other");
   return (other.find((node) => node.syncing) ?? other[0])?.id ?? "2";
+}
+
+function isKeptFolder(node) {
+  return isFolder(node) && node.title === KEPT_TITLE;
 }
 
 // Firefox sets node.type; Chromium only leaves out url on folders.

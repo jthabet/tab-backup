@@ -209,6 +209,18 @@
     "message": "Supprimer $1",
     "description": "Screen reader label of a bookmark backup's Delete button. $1 is the backup's name."
   },
+  "rename": {
+    "message": "Renommer",
+    "description": "Renames one bookmark backup."
+  },
+  "renameBackupLabel": {
+    "message": "Renommer $1",
+    "description": "Screen reader label of a bookmark backup's Rename button. $1 is the backup's name."
+  },
+  "backupName": {
+    "message": "Nom de la sauvegarde",
+    "description": "Screen reader label of the field for a bookmark backup's new name."
+  },
   "confirmDelete": {
     "message": "Supprimer la sauvegarde « $1 » ?",
     "description": "Confirmation before deleting a bookmark backup. $1 is the backup's name."
@@ -280,6 +292,10 @@
   "keepAfter__chrome": {
     "message": "dernières sauvegardes dans les favoris",
     "description": "Text after the number field in “Keep the last [20] bookmark backups”. (Chrome build)"
+  },
+  "keepRenamedHint": {
+    "message": "Les sauvegardes que vous renommez sur la page « Restaurer des onglets » ne sont jamais supprimées automatiquement.",
+    "description": "Settings note under the number of bookmark backups to keep."
   },
   "folderName__firefox": {
     "message": "Nom du dossier de marque-pages",
