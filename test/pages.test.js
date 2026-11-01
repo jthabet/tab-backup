@@ -382,6 +382,29 @@ for (const target of ["firefox", "chrome"]) {
       assert.equal((await backupsIn(browser, target))[1].kept, false);
     });
 
+    test("Enter that confirms an input method's conversion doesn't save the name", async () => {
+      const browser = createBrowser({ target });
+      await seedBookmarkBackups(browser, target, 1);
+      page = await openPage("restore", { target, browser });
+
+      await page.click('#synced-list [aria-label^="Rename"]');
+      await page.type("#synced-list input", "旅行");
+      const input = page.$("#synced-list input");
+      for (const key of ["Enter", "Escape"]) {
+        input.dispatchEvent(
+          new page.window.KeyboardEvent("keydown", { key, isComposing: true }),
+        );
+      }
+      await page.settle();
+      assert.ok(page.$("#synced-list input"), "still editing");
+
+      input.dispatchEvent(
+        new page.window.KeyboardEvent("keydown", { key: "Enter" }),
+      );
+      await page.settle();
+      assert.equal((await backupsIn(browser, target))[0].title, "旅行");
+    });
+
     test("bookmark backups appear once access is granted", async () => {
       const browser = createBrowser({ target, bookmarksAllowed: false });
       page = await openPage("restore", { target, browser });
