@@ -316,18 +316,30 @@ for (const target of ["firefox", "chrome"]) {
 
       const deleteOldest = () =>
         page.$$("#synced-list li")[1].querySelector('[aria-label^="Delete"]');
-      page.confirmAnswer = false;
+      const dialog = page.$("#delete-dialog");
+      const answer = (value) =>
+        page.click(dialog.querySelector(`button[value="${value}"]`));
+
       await page.click(deleteOldest());
+      assert.ok(dialog.open, "the dialog asks first");
+      assert.equal(
+        page.text("#delete-title"),
+        `Delete the backup "${oldest.title}"?`,
+      );
+      await answer("cancel");
+      await page.settle();
+      assert.equal(dialog.open, false);
+      assert.equal((await backupsIn(browser, target)).length, 2);
+
+      // Escape closes it without an answer.
+      await page.click(deleteOldest());
+      dialog.close();
       await page.settle();
       assert.equal((await backupsIn(browser, target)).length, 2);
 
-      page.confirmAnswer = true;
       await page.click(deleteOldest());
+      await answer("delete");
       await page.settle();
-      assert.deepEqual(page.confirms, [
-        `Delete the backup "${oldest.title}"?`,
-        `Delete the backup "${oldest.title}"?`,
-      ]);
       assert.deepEqual(
         (await backupsIn(browser, target)).map((b) => b.id),
         [newest.id],

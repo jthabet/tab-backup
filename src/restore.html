@@ -160,6 +160,32 @@
         class="min-h-5 text-sm text-neutral-500 dark:text-neutral-400"
       ></p>
     </main>
+
+    <!-- Asks before deleting a bookmark backup; the title is filled in. -->
+    <dialog
+      id="delete-dialog"
+      aria-labelledby="delete-title"
+      class="m-auto w-full max-w-sm overscroll-contain rounded-lg border border-neutral-200 bg-white p-5 text-neutral-900 backdrop:overflow-hidden backdrop:overscroll-contain backdrop:bg-black/40 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white"
+    >
+      <h2 id="delete-title" class="text-sm font-semibold break-words"></h2>
+      <form method="dialog" class="mt-4 flex justify-end gap-2">
+        <button
+          value="cancel"
+          autofocus
+          data-i18n="cancel"
+          class="h-9 cursor-pointer rounded-md border border-neutral-300 px-4 text-sm font-medium hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-800"
+        >
+          Cancel
+        </button>
+        <button
+          value="delete"
+          data-i18n="delete"
+          class="h-9 cursor-pointer rounded-md bg-neutral-800 px-4 text-sm font-medium text-white hover:bg-neutral-700 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
+        >
+          Delete
+        </button>
+      </form>
+    </dialog>
     <script src="restore.js"></script>
   </body>
 </html>
