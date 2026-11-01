@@ -19,6 +19,10 @@ const MARKER_TITLE =
 // title, so it syncs with the backup and keeps it from being pruned on every
 // device. Like the marker, it is never translated and may not change.
 const KEPT_TITLE = "Renamed in Tab Backup: kept when older backups are deleted";
+// Automatic backups hold an empty folder with this title, so every device
+// prunes them against their own limit, apart from the ones made with Back up.
+// Never translated and may not change either.
+const AUTO_TITLE = "Saved automatically by Tab Backup";
 
 import { saveSettings } from "./settings-store.js";
 import { language, plural, t } from "./i18n.js";
@@ -35,15 +39,23 @@ export function requestBookmarksPermission() {
 }
 
 // Saves the tabs as a new backup folder, newest first, then deletes the
-// oldest backups beyond `keep`, leaving renamed ones. Returns how many tabs
-// were skipped because they can't be bookmarked (such as about:newtab).
-export async function saveBookmarkBackup(tabs, date, { keep, folderName }) {
+// oldest backups of the same kind (automatic or not) beyond `keep`, leaving
+// renamed ones. Returns how many tabs were skipped because they can't be
+// bookmarked (such as about:newtab).
+export async function saveBookmarkBackup(
+  tabs,
+  date,
+  { keep, folderName, automatic = false },
+) {
   const root = await getOrCreateRoot(folderName);
   const folder = await browser.bookmarks.create({
     parentId: root.id,
     index: 1, // right after the marker
     title: formatDate(date),
   });
+  if (automatic) {
+    await browser.bookmarks.create({ parentId: folder.id, title: AUTO_TITLE });
+  }
 
   let skipped = 0;
   for (const { title, url } of tabs) {
@@ -62,7 +74,7 @@ export async function saveBookmarkBackup(tabs, date, { keep, folderName }) {
     title: plural("backupFolderTitle", saved, formatDate(date)),
   });
 
-  await pruneBackups(keep);
+  await pruneBackups(keep, automatic);
   return skipped;
 }
 
@@ -81,6 +93,7 @@ export async function listBookmarkBackups() {
         title: node.title,
         dateAdded: node.dateAdded ?? 0,
         kept: children.some(isKeptFolder),
+        automatic: children.some(isAutoFolder),
         entries: children
           .filter((child) => child.url)
           .map(({ title, url }) => ({ title, url })),
@@ -90,10 +103,10 @@ export async function listBookmarkBackups() {
   return backups.sort((a, b) => b.dateAdded - a.dateAdded);
 }
 
-// The backups that saving one more would delete, oldest last. Renamed
-// (kept) backups are never deleted and don't count toward the limit.
+// The backups that saving one more with Back up would delete, oldest last.
+// Renamed (kept) and automatic backups don't count toward its limit.
 export async function backupsDeletedByNextSave(keep) {
-  const backups = await listPrunable();
+  const backups = await listPrunable(false);
   return backups.slice(Math.max(keep - 1, 0));
 }
 
@@ -146,12 +159,14 @@ export async function renameBackupFolder(name) {
   }
 }
 
-async function listPrunable() {
-  return (await listBookmarkBackups()).filter((backup) => !backup.kept);
+async function listPrunable(automatic) {
+  return (await listBookmarkBackups()).filter(
+    (backup) => !backup.kept && backup.automatic === automatic,
+  );
 }
 
-async function pruneBackups(keep) {
-  const backups = await listPrunable();
+async function pruneBackups(keep, automatic) {
+  const backups = await listPrunable(automatic);
   for (const backup of backups.slice(keep)) {
     await deleteBookmarkBackup(backup.id);
   }
@@ -208,12 +223,16 @@ function isKeptFolder(node) {
   return isFolder(node) && node.title === KEPT_TITLE;
 }
 
+function isAutoFolder(node) {
+  return isFolder(node) && node.title === AUTO_TITLE;
+}
+
 // Firefox sets node.type; Chromium only leaves out url on folders.
 function isFolder(node) {
   return node.type ? node.type === "folder" : !node.url;
 }
 
-function formatDate(date) {
+export function formatDate(date) {
   return new Intl.DateTimeFormat(language, {
     dateStyle: "medium",
     timeStyle: "short",

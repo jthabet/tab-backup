@@ -408,5 +408,61 @@
   "settingsSyncNote__chrome": {
     "message": "Les paramètres sont synchronisés sur vos appareils si vous êtes connecté à votre navigateur avec la synchronisation activée.",
     "description": "Footer of the settings page. (Chrome build)"
+  },
+  "autoBackups": {
+    "message": "Sauvegardes automatiques",
+    "description": "Settings heading for scheduled bookmark backups."
+  },
+  "autoBackupToggle": {
+    "message": "Sauvegarder automatiquement sur cet appareil",
+    "description": "Checkbox that turns on scheduled bookmark backups for this device only."
+  },
+  "autoBackupHint__firefox": {
+    "message": "Enregistre dans les marque-pages les onglets de toutes les fenêtres, sauf celles de navigation privée. Ignorée si vos onglets n’ont pas changé.",
+    "description": "Explains automatic backups under their checkbox. (Firefox build)"
+  },
+  "autoBackupHint__chrome": {
+    "message": "Enregistre dans les favoris les onglets de toutes les fenêtres, sauf celles de navigation privée. Ignorée si vos onglets n’ont pas changé.",
+    "description": "Explains automatic backups under their checkbox. (Chrome build)"
+  },
+  "autoBackupInterval": {
+    "message": "Fréquence",
+    "description": "Label of the menu that picks how often automatic backups run."
+  },
+  "autoEveryHour": {
+    "message": "Toutes les heures",
+    "description": "Automatic backup interval option."
+  },
+  "autoEvery6Hours": {
+    "message": "Toutes les 6 heures",
+    "description": "Automatic backup interval option."
+  },
+  "autoEveryDay": {
+    "message": "Tous les jours",
+    "description": "Automatic backup interval option."
+  },
+  "keepAutoBefore": {
+    "message": "Conserver les",
+    "description": "Text before the number field in “Keep the last [5] automatic backups”."
+  },
+  "keepAutoAfter": {
+    "message": "dernières sauvegardes automatiques",
+    "description": "Text after the number field in “Keep the last [5] automatic backups”."
+  },
+  "keepAutoHint": {
+    "message": "Comptées à part des sauvegardes que vous faites. Les plus anciennes sont supprimées sans confirmation ; celles que vous renommez sont conservées. Une limite plus basse s’applique à partir de la prochaine sauvegarde automatique.",
+    "description": "Settings note under the number of automatic backups to keep."
+  },
+  "lastAutoBackup": {
+    "message": "Dernière sauvegarde automatique : $1",
+    "description": "When the last automatic backup was saved. $1 is its date and time."
+  },
+  "lastAutoBackupNever": {
+    "message": "Aucune sauvegarde automatique pour l’instant.",
+    "description": "Shown in settings before the first automatic backup."
+  },
+  "automaticBackup": {
+    "message": "Automatique",
+    "description": "Label under an automatic backup in the restore page's list of bookmark backups."
   }
 }

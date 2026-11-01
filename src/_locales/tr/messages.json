@@ -408,5 +408,61 @@
   "settingsSyncNote__chrome": {
     "message": "Tarayıcınızda oturum açtıysanız ve eşitleme açıksa ayarlar cihazlarınız arasında eşitlenir.",
     "description": "Footer of the settings page. (Chrome build)"
+  },
+  "autoBackups": {
+    "message": "Otomatik yedekler",
+    "description": "Settings heading for scheduled bookmark backups."
+  },
+  "autoBackupToggle": {
+    "message": "Bu cihazda otomatik olarak yedekle",
+    "description": "Checkbox that turns on scheduled bookmark backups for this device only."
+  },
+  "autoBackupHint__firefox": {
+    "message": "Gizli pencereler dışındaki tüm pencerelerin sekmelerini yer imlerine kaydeder. Sekmeleriniz değişmediyse atlanır.",
+    "description": "Explains automatic backups under their checkbox. (Firefox build)"
+  },
+  "autoBackupHint__chrome": {
+    "message": "Gizli pencereler dışındaki tüm pencerelerin sekmelerini yer işaretlerine kaydeder. Sekmeleriniz değişmediyse atlanır.",
+    "description": "Explains automatic backups under their checkbox. (Chrome build)"
+  },
+  "autoBackupInterval": {
+    "message": "Sıklık",
+    "description": "Label of the menu that picks how often automatic backups run."
+  },
+  "autoEveryHour": {
+    "message": "Saatte bir",
+    "description": "Automatic backup interval option."
+  },
+  "autoEvery6Hours": {
+    "message": "6 saatte bir",
+    "description": "Automatic backup interval option."
+  },
+  "autoEveryDay": {
+    "message": "Her gün",
+    "description": "Automatic backup interval option."
+  },
+  "keepAutoBefore": {
+    "message": "Son",
+    "description": "Text before the number field in “Keep the last [5] automatic backups”."
+  },
+  "keepAutoAfter": {
+    "message": "otomatik yedeği sakla",
+    "description": "Text after the number field in “Keep the last [5] automatic backups”."
+  },
+  "keepAutoHint": {
+    "message": "Kendi aldığınız yedeklerden ayrı sayılır. En eskiler sorulmadan silinir; yeniden adlandırdıklarınız saklanır. Daha düşük bir sınır bir sonraki otomatik yedekten itibaren geçerli olur.",
+    "description": "Settings note under the number of automatic backups to keep."
+  },
+  "lastAutoBackup": {
+    "message": "Son otomatik yedek: $1",
+    "description": "When the last automatic backup was saved. $1 is its date and time."
+  },
+  "lastAutoBackupNever": {
+    "message": "Henüz otomatik yedek yok.",
+    "description": "Shown in settings before the first automatic backup."
+  },
+  "automaticBackup": {
+    "message": "Otomatik",
+    "description": "Label under an automatic backup in the restore page's list of bookmark backups."
   }
 }

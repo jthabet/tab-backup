@@ -76,3 +76,17 @@ test("a closed tab that's already gone is counted once", async () => {
   await settle();
   assert.equal(browser.action.badgeText, "2");
 });
+
+test("turning on automatic backups sets the alarm, which saves a backup", async () => {
+  await browser.storage.local.set({ autoBackup: true });
+  await settle();
+  assert.equal(browser.alarms.created.get("auto-backup").periodInMinutes, 1440);
+
+  browser.alarms.onAlarm.fire({ name: "auto-backup" });
+  await settle();
+  assert.equal(browser.storage.local.data.lastAutoBackup.urls.length, 2);
+
+  await browser.storage.local.set({ autoBackup: false });
+  await settle();
+  assert.equal(browser.alarms.created.has("auto-backup"), false);
+});

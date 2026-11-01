@@ -270,6 +270,11 @@ async function renderBookmarkBackups(focus) {
         details.className = "text-xs text-neutral-500 dark:text-neutral-400";
         details.textContent = defaultBackupTitle(backup);
         label.append(details);
+      } else if (backup.automatic) {
+        const details = document.createElement("span");
+        details.className = "text-xs text-neutral-500 dark:text-neutral-400";
+        details.textContent = t("automaticBackup");
+        label.append(details);
       }
 
       const rename = document.createElement("button");

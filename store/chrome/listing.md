@@ -36,6 +36,7 @@ BACK UP
 • Save to a file: JSON, Markdown, plain text, or an HTML bookmarks file you can import into any browser.
 • Or save to a bookmark folder that your browser's sync carries to your other devices.
 • Name your files with date, time and tab count patterns.
+• Turn on automatic backups to save every window's tabs to bookmarks every hour, 6 hours or day, with their own limit. Incognito windows are left out.
 
 RESTORE
 • Preview a backup before anything opens, and choose which tabs come back.
@@ -111,9 +112,10 @@ Backs up the tabs in the current window to a file or a bookmark folder, and rest
 
 | Permission             | Justification                                                                                                                                                                                                                                                                                                                 |
 | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `tabs`                 | Reads the title and URL of each tab in the current window so they can be listed in the popup, saved in a backup, and compared with open tabs when restoring. Nothing is sent off the device.                                                                                                                                  |
+| `tabs`                 | Reads the title and URL of each tab in the current window (or every non-Incognito window, for automatic backups) so they can be listed in the popup, saved in a backup, and compared with open tabs when restoring. Nothing is sent off the device.                                                                           |
 | `downloads`            | Saves the backup file (JSON, Markdown, plain text or HTML bookmarks) to the user's downloads folder when they click Back up.                                                                                                                                                                                                  |
-| `storage`              | Saves the user's settings: backup format, file name pattern, destination, bookmark folder name and how many bookmark backups to keep.                                                                                                                                                                                         |
+| `storage`              | Saves the user's settings: backup format, file name pattern, destination, bookmark folder name, how many bookmark backups to keep, and the automatic backup schedule.                                                                                                                                                         |
+| `alarms`               | Runs automatic backups on the schedule the user picks (every hour, 6 hours or day). Automatic backups are off until the user turns them on in settings, and are saved to the extension's own bookmark folder only.                                                                                                            |
 | `bookmarks` (optional) | Requested only when the user turns on bookmark backups in settings. Creates a dated folder of bookmarks for each backup inside the extension's own folder in Other Bookmarks, lists those backups for restoring, and deletes the oldest when the user's limit is reached. Other bookmarks are never read, changed or deleted. |
 
 **Remote code:** No, I am not using remote code. All JavaScript is bundled in

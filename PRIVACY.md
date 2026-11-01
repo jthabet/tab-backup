@@ -1,6 +1,6 @@
 # Privacy policy for Tab Backup
 
-Last updated: 22 October 2026
+Last updated: 30 October 2026
 
 Tab Backup does not collect, sell or share any personal data. It has no
 analytics, no tracking and no servers, and it never sends data to the
@@ -13,15 +13,21 @@ tabs in the current window to build your backup. When you restore, it compares
 the backup with the tabs you have open so it can leave those out. This happens
 only on your device.
 
+If you turn on automatic backups, Tab Backup reads the titles and addresses of
+the tabs in all your windows, except private ones, on the schedule you pick,
+and saves them as a bookmark backup.
+
 ## What it stores, and where
 
 - **Backup files** are saved to your downloads folder, like any other download.
 - **Bookmark backups**, if you turn them on, are saved as folders in your
   browser's bookmarks, inside Tab Backup's own folder. Tab Backup never reads,
   changes or deletes your other bookmarks.
-- **Settings** (backup format, file name pattern, destination, folder name and
-  how many bookmark backups to keep) are saved in your browser's extension
-  storage.
+- **Settings** (backup format, file name pattern, destination, folder name,
+  how many bookmark backups to keep, and the automatic backup schedule) are
+  saved in your browser's extension storage. Whether automatic backups are on,
+  and the addresses in the last one (to skip a backup when nothing changed),
+  are stored on that device only.
 
 If you've turned on sync in your browser, your browser may sync your bookmark
 backups and settings to your other devices through your own browser account
@@ -33,6 +39,7 @@ privacy policy. Tab Backup doesn't control it or receive any of that data.
 - **Tabs**: to read the titles and addresses of the tabs you back up.
 - **Downloads**: to save backup files.
 - **Storage**: to save your settings.
+- **Alarms**: to run automatic backups on schedule, if you turn them on.
 - **Bookmarks** (optional, only if you turn on bookmark backups): to create,
   list and prune Tab Backup's own backup folders.
 

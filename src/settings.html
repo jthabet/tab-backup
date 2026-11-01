@@ -165,6 +165,82 @@
       </fieldset>
 
       <fieldset class="flex flex-col gap-2">
+        <legend class="mb-2 text-sm font-semibold" data-i18n="autoBackups">
+          Automatic backups
+        </legend>
+
+        <label
+          class="flex cursor-pointer gap-3 rounded-lg border border-neutral-200 p-3 has-checked:border-neutral-800 has-checked:bg-neutral-50 dark:border-neutral-700 dark:has-checked:border-neutral-200 dark:has-checked:bg-neutral-800"
+        >
+          <input
+            id="auto-backup"
+            type="checkbox"
+            aria-describedby="auto-backup-hint"
+            class="mt-1 accent-neutral-800 dark:accent-neutral-100"
+          />
+          <span class="flex flex-col">
+            <span class="text-sm font-medium" data-i18n="autoBackupToggle"
+              >Back up automatically on this device</span
+            >
+            <span
+              id="auto-backup-hint"
+              class="text-sm text-neutral-500 dark:text-neutral-400"
+              data-i18n="autoBackupHint"
+            >
+              Saves the tabs of every window except private ones to bookmarks.
+              Skipped when your tabs haven't changed.
+            </span>
+          </span>
+        </label>
+
+        <div class="mt-1 flex flex-wrap items-center gap-2 text-sm">
+          <label for="auto-interval" data-i18n="autoBackupInterval"
+            >How often</label
+          >
+          <select
+            id="auto-interval"
+            class="h-8 rounded-md border border-neutral-300 bg-transparent px-2 text-sm focus:outline-2 focus:outline-offset-1 focus:outline-neutral-800 disabled:opacity-50 dark:border-neutral-600 dark:bg-neutral-900 dark:focus:outline-neutral-100"
+          >
+            <option value="60" data-i18n="autoEveryHour">Every hour</option>
+            <option value="360" data-i18n="autoEvery6Hours">
+              Every 6 hours
+            </option>
+            <option value="1440" data-i18n="autoEveryDay">Every day</option>
+          </select>
+        </div>
+
+        <div class="mt-1 flex flex-wrap items-center gap-2 text-sm">
+          <label for="keep-auto" data-i18n="keepAutoBefore"
+            >Keep the last</label
+          >
+          <input
+            id="keep-auto"
+            type="number"
+            aria-describedby="keep-auto-hint"
+            min="1"
+            max="200"
+            step="1"
+            class="h-8 w-16 rounded-md border border-neutral-300 bg-transparent px-2 text-sm focus:outline-2 focus:outline-offset-1 focus:outline-neutral-800 disabled:opacity-50 dark:border-neutral-600 dark:focus:outline-neutral-100"
+          />
+          <span data-i18n="keepAutoAfter">automatic backups</span>
+          <p
+            id="keep-auto-hint"
+            data-i18n="keepAutoHint"
+            class="w-full text-xs text-neutral-500 dark:text-neutral-400"
+          >
+            Counted apart from the backups you make. The oldest are deleted
+            without asking; renamed ones are kept. A lower limit applies from
+            the next automatic backup.
+          </p>
+        </div>
+
+        <p
+          id="last-auto-backup"
+          class="text-xs text-neutral-500 dark:text-neutral-400"
+        ></p>
+      </fieldset>
+
+      <fieldset class="flex flex-col gap-2">
         <legend class="mb-2 text-sm font-semibold" data-i18n="fileFormat">
           File format
         </legend>

@@ -1,6 +1,6 @@
 // A stand-in for the WebExtension `browser` API, enough to run the
 // extension's modules and pages in Node: i18n from the real message files,
-// storage, permissions, tabs and downloads in memory, and a bookmark tree
+// storage, permissions, alarms, tabs and downloads in memory, and a bookmark tree
 // shaped like Firefox's or Chromium's. Tests read and set its state directly
 // (e.g. `fake.tabs.open`, `fake.downloads.saved`).
 import path from "node:path";
@@ -18,10 +18,16 @@ export function createBrowser({
   tabs = [],
   bookmarksAllowed = true,
 } = {}) {
+  const storageChanged = fakeEvent();
   return {
     i18n: fakeI18n(target, locale),
-    storage: { sync: fakeStorage() },
+    storage: {
+      sync: fakeStorage("sync", storageChanged),
+      local: fakeStorage("local", storageChanged),
+      onChanged: storageChanged,
+    },
     permissions: fakePermissions(bookmarksAllowed ? ["bookmarks"] : []),
+    alarms: fakeAlarms(),
     bookmarks: target === "firefox" ? firefoxBookmarks() : chromeBookmarks(),
     tabs: fakeTabs(tabs),
     downloads: fakeDownloads(),
@@ -77,7 +83,9 @@ function fakeI18n(target, locale) {
   };
 }
 
-function fakeStorage() {
+// One storage area; `anyChanged` is storage.onChanged, which also gets the
+// area's name.
+function fakeStorage(area, anyChanged) {
   const data = {};
   const onChanged = fakeEvent();
   return {
@@ -88,11 +96,11 @@ function fakeStorage() {
     },
     async set(changes) {
       Object.assign(data, structuredClone(changes));
-      onChanged.fire(
-        Object.fromEntries(
-          Object.entries(changes).map(([key, newValue]) => [key, { newValue }]),
-        ),
+      const delta = Object.fromEntries(
+        Object.entries(changes).map(([key, newValue]) => [key, { newValue }]),
       );
+      onChanged.fire(delta);
+      anyChanged.fire(delta, area);
     },
   };
 }
@@ -118,8 +126,9 @@ function fakePermissions(granted) {
   return permissions;
 }
 
-// Tabs in the current window; `created` and `activated` record what pages did,
-// and `queries` counts calls to query().
+// Open tabs, all in the current window unless a tab says otherwise
+// (`windowType`, `incognito`); `created` and `activated` record what pages
+// did, and `queries` counts calls to query().
 function fakeTabs(initial) {
   let nextId = 1;
   const open = initial.map((tab) => ({ id: nextId++, ...tab }));
@@ -130,9 +139,13 @@ function fakeTabs(initial) {
     queries: 0,
     onCreated: fakeEvent(),
     onRemoved: fakeEvent(),
-    async query() {
+    async query({ windowType } = {}) {
       tabs.queries++;
-      return structuredClone(open);
+      return structuredClone(
+        open.filter(
+          (tab) => !windowType || (tab.windowType ?? "normal") === windowType,
+        ),
+      );
     },
     async create(properties) {
       const tab = {
@@ -153,6 +166,22 @@ function fakeTabs(initial) {
     },
   };
   return tabs;
+}
+
+// Alarms by name, as created: { when, periodInMinutes }. Tests fire
+// `onAlarm` themselves.
+function fakeAlarms() {
+  const alarms = {
+    created: new Map(),
+    onAlarm: fakeEvent(),
+    async create(name, info) {
+      alarms.created.set(name, { ...info });
+    },
+    async clear(name) {
+      return alarms.created.delete(name);
+    },
+  };
+  return alarms;
 }
 
 // Downloads complete at once. `saved` holds { filename, url }; a page test

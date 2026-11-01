@@ -1,6 +1,8 @@
 // Keeps the toolbar badge set to the number of open tabs. A burst of tab
 // changes (restoring a backup, or the session at startup) becomes a single
-// update, since each one lists every tab.
+// update, since each one lists every tab. Also runs automatic backups.
+import { ALARM, runAutoBackup, scheduleAutoBackup } from "./auto-backup.js";
+
 const UPDATE_DELAY = 100; // ms
 let timer;
 
@@ -32,9 +34,23 @@ browser.tabs.onRemoved.addListener((tabId) => {
   scheduleUpdate();
 });
 
+browser.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name !== ALARM) return;
+  runAutoBackup().catch((err) => {
+    console.error(`Automatic backup failed: ${err}`);
+  });
+});
+
+// The switch is kept per device (local), the interval synced.
+browser.storage.onChanged.addListener((changes, area) => {
+  const key = area === "local" ? "autoBackup" : "autoBackupInterval";
+  if (key in changes) scheduleAutoBackup().catch((err) => console.error(err));
+});
+
 function init() {
   browser.action.setBadgeBackgroundColor({ color: "#008000" });
   updateCount();
+  scheduleAutoBackup().catch((err) => console.error(err));
 }
 
 browser.runtime.onInstalled.addListener(init);

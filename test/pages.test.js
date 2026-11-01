@@ -18,7 +18,12 @@ const sample = (ext) =>
 
 // Saves bookmark backups into a fake browser with the extension's own code,
 // as earlier clicks on Back up would have.
-async function seedBookmarkBackups(browser, target, count) {
+async function seedBookmarkBackups(
+  browser,
+  target,
+  count,
+  { automatic = false } = {},
+) {
   process.env.BROWSER = target;
   globalThis.browser = browser;
   const { saveBookmarkBackup } = await import("../src/bookmark-backups.js");
@@ -29,6 +34,7 @@ async function seedBookmarkBackups(browser, target, count) {
       {
         keep: 20,
         folderName: "Tab Backup",
+        automatic,
       },
     );
   }
@@ -278,6 +284,17 @@ for (const target of ["firefox", "chrome"]) {
       assert.equal(page.text("#status"), "No tabs found in this file.");
     });
 
+    test("automatic backups are labeled in the list", async () => {
+      const browser = createBrowser({ target });
+      await seedBookmarkBackups(browser, target, 1, { automatic: true });
+      page = await openPage("restore", { target, browser });
+      const [row] = page.$$("#synced-list li");
+      assert.equal(
+        row.querySelectorAll("span span")[1].textContent,
+        "Automatic",
+      );
+    });
+
     test("bookmark backups are listed, restored and deleted", async () => {
       const browser = createBrowser({ target });
       await seedBookmarkBackups(browser, target, 2);
@@ -457,6 +474,66 @@ for (const target of ["firefox", "chrome"]) {
       assert.equal(page.browser.storage.sync.data.keepBookmarkBackups, 5);
     });
 
+    test("automatic backups start off, and their controls are disabled", async () => {
+      page = await openPage("settings", { target });
+      assert.equal(page.$("#auto-backup").checked, false);
+      assert.equal(page.$("#auto-interval").value, "1440");
+      assert.equal(page.$("#auto-interval").disabled, true);
+      assert.equal(page.$("#keep-auto").value, "5");
+      assert.equal(page.$("#keep-auto").disabled, true);
+      assert.equal(page.text("#last-auto-backup"), "No automatic backup yet.");
+    });
+
+    test("turning on automatic backups asks for access, then saves on this device", async () => {
+      const browser = createBrowser({ target, bookmarksAllowed: false });
+      page = await openPage("settings", { target, browser });
+      await toggle(page, "#auto-backup", true);
+      await page.settle();
+      assert.equal(browser.permissions.requests, 1);
+      assert.equal(browser.storage.local.data.autoBackup, true);
+      assert.equal(browser.storage.sync.data.autoBackup, undefined);
+      assert.equal(page.$("#auto-interval").disabled, false);
+
+      page.$("#auto-interval").value = "360";
+      page.$("#auto-interval").dispatchEvent(new page.window.Event("change"));
+      await page.type("#keep-auto", "3");
+      await page.settle();
+      assert.equal(browser.storage.sync.data.autoBackupInterval, 360);
+      assert.equal(browser.storage.sync.data.keepAutoBackups, 3);
+
+      await toggle(page, "#auto-backup", false);
+      await page.settle();
+      assert.equal(browser.storage.local.data.autoBackup, false);
+      assert.equal(page.$("#keep-auto").disabled, true);
+    });
+
+    test("refusing bookmark access leaves automatic backups off", async () => {
+      const browser = createBrowser({ target, bookmarksAllowed: false });
+      browser.permissions.answer = false;
+      page = await openPage("settings", { target, browser });
+      await toggle(page, "#auto-backup", true);
+      assert.equal(
+        page.text("#status"),
+        "Bookmark backups need access to your bookmarks.",
+      );
+      assert.equal(page.$("#auto-backup").checked, false);
+      assert.equal(browser.storage.local.data.autoBackup, undefined);
+    });
+
+    test("shows when the last automatic backup was saved", async () => {
+      const browser = createBrowser({ target });
+      await browser.storage.local.set({
+        autoBackup: true,
+        lastAutoBackup: { time: Date.UTC(2026, 9, 30, 12), urls: [] },
+      });
+      page = await openPage("settings", { target, browser });
+      assert.equal(page.$("#auto-backup").checked, true);
+      assert.match(
+        page.text("#last-auto-backup"),
+        /^Last automatic backup: .*2026/,
+      );
+    });
+
     test("the folder name can't be empty, and a new name renames the folder", async () => {
       const browser = createBrowser({ target });
       await seedBookmarkBackups(browser, target, 1);
@@ -532,6 +609,14 @@ function checkboxes(page) {
   return page
     .$$("#preview-list input:not(.invisible)")
     .map((box) => box.checked);
+}
+
+// Ticks or clears a checkbox, as a user's click would.
+async function toggle(page, selector, on) {
+  const input = page.$(selector);
+  input.checked = on;
+  input.dispatchEvent(new page.window.Event("change", { bubbles: true }));
+  await page.flush();
 }
 
 function checked(page, name) {

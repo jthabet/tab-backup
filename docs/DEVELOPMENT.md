@@ -83,6 +83,11 @@ Before a release, run through this in both browsers. Sample backups of three tab
    page, where **Restore…**, **Rename** and **Delete** work. A renamed backup
    shows its date and tab count under its new name, and is skipped when the
    oldest backups are deleted.
+7. In settings, turn on **Back up automatically on this device**. About a
+   minute later a backup labeled **Automatic** appears on the restore page
+   and settings shows when it was saved; with the tabs unchanged, the next
+   one is skipped. Automatic backups are pruned to their own limit, never
+   the ones made with **Back up**.
 
 ## Translations
 

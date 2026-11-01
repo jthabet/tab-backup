@@ -16,6 +16,9 @@ Chromium browsers).
 - **Restore** from any backup with a preview: choose which tabs come back, and
   tabs that are already open are left out. Rename a bookmark backup to keep
   it: renamed backups are never deleted automatically.
+- **Automatic backups** (off until you turn them on, per device) save every
+  window's tabs to bookmarks every hour, 6 hours or day, skipping private
+  windows and unchanged tabs, with their own limit.
 - **Settings** for the file format, file name pattern, bookmark folder name and
   how many bookmark backups to keep.
 
