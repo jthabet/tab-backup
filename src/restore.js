@@ -303,11 +303,7 @@ async function renderBookmarkBackups(focus) {
         "h-8 cursor-pointer rounded-md px-3 text-sm text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100";
       remove.textContent = t("delete");
       remove.setAttribute("aria-label", t("deleteBackupLabel", backup.title));
-      remove.addEventListener("click", async () => {
-        if (!window.confirm(t("confirmDelete", backup.title))) return;
-        await deleteBookmarkBackup(backup.id);
-        await renderBookmarkBackups();
-      });
+      remove.addEventListener("click", () => confirmDelete(backup));
 
       restore.dataset.action = "restore";
       rename.dataset.action = "rename";
@@ -323,6 +319,28 @@ async function renderBookmarkBackups(focus) {
       ?.focus();
   }
 }
+
+const deleteDialog = document.getElementById("delete-dialog");
+// The backup the open dialog asks about.
+let backupToDelete;
+
+function confirmDelete(backup) {
+  backupToDelete = backup;
+  document.getElementById("delete-title").textContent = t(
+    "confirmDelete",
+    backup.title,
+  );
+  deleteDialog.showModal();
+}
+
+deleteDialog.addEventListener("close", async () => {
+  // Escape sets no value, so reset it rather than reuse the last answer.
+  const answer = deleteDialog.returnValue;
+  deleteDialog.returnValue = "";
+  if (answer !== "delete") return;
+  await deleteBookmarkBackup(backupToDelete.id);
+  await renderBookmarkBackups();
+});
 
 // Swaps a backup's name for a text field: Enter or leaving the field saves,
 // Escape cancels, and an empty name restores the default (date and size).

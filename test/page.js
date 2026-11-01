@@ -40,8 +40,6 @@ export async function openPage(name, options = {}) {
     document,
     browser,
     closed: false,
-    confirms: [],
-    confirmAnswer: true,
 
     $: (selector) => document.querySelector(selector),
     $$: (selector) => [...document.querySelectorAll(selector)],
@@ -116,10 +114,6 @@ export async function openPage(name, options = {}) {
 
   window.close = () => {
     page.closed = true;
-  };
-  window.confirm = (message) => {
-    page.confirms.push(message);
-    return page.confirmAnswer;
   };
   window.browser = browser;
 
