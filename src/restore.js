@@ -355,6 +355,9 @@ function startRenaming(backup, label, button) {
     await renderBookmarkBackups({ id: backup.id, action: "rename" });
   };
   input.addEventListener("keydown", (event) => {
+    // Enter and Escape confirm or cancel a Japanese input method's
+    // conversion; they only reach the field once it's done.
+    if (event.isComposing) return;
     if (event.key === "Enter") finish(true);
     if (event.key === "Escape") finish(false);
   });
