@@ -14,6 +14,7 @@ import {
   renameBackupFolder,
   requestBookmarksPermission,
 } from "./bookmark-backups.js";
+import { parseSites } from "./excluded-sites.js";
 import { localizePage, t } from "./i18n.js";
 
 localizePage();
@@ -32,12 +33,15 @@ const autoInput = document.getElementById("auto-backup");
 const intervalInput = document.getElementById("auto-interval");
 const keepAutoInput = document.getElementById("keep-auto");
 const lastAutoBackup = document.getElementById("last-auto-backup");
+const excludedInput = document.getElementById("excluded-sites");
+const excludedError = document.getElementById("excluded-sites-error");
 
 let statusTimer;
 let saveTimer;
 let keepTimer;
 let keepAutoTimer;
 let folderTimer;
+let excludedTimer;
 
 init();
 
@@ -69,6 +73,7 @@ async function init() {
   keepAutoInput.value = settings.keepAutoBackups;
   updateAutoControls();
   showLastAutoBackup(local.lastAutoBackup);
+  excludedInput.value = settings.excludedSites.join("\n");
 
   autoInput.addEventListener("change", async () => {
     if (!autoInput.checked) {
@@ -150,6 +155,18 @@ async function init() {
     }, 600);
   });
 
+  // Lines that aren't a site are pointed out once the user leaves the field,
+  // and the message goes away as soon as they're fixed.
+  excludedInput.addEventListener("input", () => {
+    const { sites, invalid } = parseSites(excludedInput.value);
+    if (invalid.length === 0) showInvalidSites([]);
+    clearTimeout(excludedTimer);
+    excludedTimer = setTimeout(() => save({ excludedSites: sites }), 600);
+  });
+  excludedInput.addEventListener("blur", () => {
+    showInvalidSites(parseSites(excludedInput.value).invalid);
+  });
+
   keepInput.addEventListener("input", () => {
     const keep = Math.round(Number(keepInput.value));
     if (!Number.isFinite(keep) || keep < 1 || keep > 200) return;
@@ -204,6 +221,14 @@ async function showActualFolderName(saved) {
   } catch (error) {
     console.error(error);
   }
+}
+
+function showInvalidSites(invalid) {
+  excludedError.textContent = invalid.length
+    ? t("notASite", invalid.join(", "))
+    : "";
+  if (invalid.length) excludedInput.setAttribute("aria-invalid", "true");
+  else excludedInput.removeAttribute("aria-invalid");
 }
 
 function updateAutoControls() {

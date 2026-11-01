@@ -11,6 +11,7 @@ import {
   hasBookmarksPermission,
   saveBookmarkBackup,
 } from "./bookmark-backups.js";
+import { withoutExcluded } from "./excluded-sites.js";
 
 export const ALARM = "auto-backup";
 const MINUTE = 60_000; // ms
@@ -32,7 +33,7 @@ export async function scheduleAutoBackup(now = Date.now()) {
   });
 }
 
-// Saves every tab outside private windows, unless they're the same as at
+// Saves every tab outside private windows and excluded sites, unless they're the same as at
 // the last automatic backup. Returns whether a backup was saved.
 export async function runAutoBackup(now = new Date()) {
   const [local, settings] = await Promise.all([
@@ -42,8 +43,11 @@ export async function runAutoBackup(now = new Date()) {
   // Bookmark access can be revoked in about:addons.
   if (!local.autoBackup || !(await hasBookmarksPermission())) return false;
 
-  const tabs = (await browser.tabs.query({ windowType: "normal" })).filter(
-    (tab) => !tab.incognito,
+  const tabs = withoutExcluded(
+    (await browser.tabs.query({ windowType: "normal" })).filter(
+      (tab) => !tab.incognito,
+    ),
+    settings.excludedSites,
   );
   const urls = tabs.map((tab) => tab.url);
   if (urls.length === 0 || sameUrls(urls, local.lastAutoBackup?.urls)) {

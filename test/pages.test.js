@@ -88,6 +88,38 @@ for (const target of ["firefox", "chrome"]) {
       ]);
     });
 
+    test("tabs on excluded sites are marked and left out of the backup", async () => {
+      const tabs = [
+        ...OPEN_TABS,
+        { title: "Bank", url: "https://www.bank.example/" },
+      ];
+      const browser = createBrowser({ target, tabs });
+      await browser.storage.sync.set({
+        excludedSites: ["bank.example"],
+        filenamePattern: "tabs-{count}",
+      });
+      page = await openPage("popup", { target, browser });
+      const notes = page
+        .$$("#tabs-list li")
+        .map((li) => li.querySelector("span")?.textContent ?? null);
+      assert.deepEqual(notes, [null, null, "Not backed up"]);
+
+      await page.click("#backup");
+      await page.settle();
+      const [file] = await page.downloads();
+      assert.equal(file.filename, "tabs-2.json");
+      assert.deepEqual(JSON.parse(file.contents), OPEN_TABS);
+    });
+
+    test("Back up is off when every tab is on an excluded site", async () => {
+      const browser = createBrowser({ target, tabs: OPEN_TABS });
+      await browser.storage.sync.set({
+        excludedSites: ["go.dev", "github.com"],
+      });
+      page = await openPage("popup", { target, browser });
+      assert.equal(page.$("#backup").disabled, true);
+    });
+
     test("backing up to bookmarks saves a bookmark backup and no file", async () => {
       const browser = createBrowser({ target, tabs: OPEN_TABS });
       await browser.storage.sync.set({ destination: "bookmarks" });
@@ -566,6 +598,35 @@ for (const target of ["firefox", "chrome"]) {
       assert.match(
         page.text("#last-auto-backup"),
         /^Last automatic backup: .*2026/,
+      );
+    });
+
+    test("excluded sites save one per line; lines that aren't sites are pointed out", async () => {
+      const browser = createBrowser({ target });
+      await browser.storage.sync.set({ excludedSites: ["bank.example"] });
+      page = await openPage("settings", { target, browser });
+      const field = page.$("#excluded-sites");
+      assert.equal(field.value, "bank.example");
+
+      await page.type("#excluded-sites", "bank.example\nnot a site\n");
+      assert.equal(page.text("#excluded-sites-error"), "", "not while typing");
+      field.dispatchEvent(new page.window.Event("blur"));
+      assert.equal(
+        page.text("#excluded-sites-error"),
+        "Ignored (not a site): not a site",
+      );
+      assert.equal(field.getAttribute("aria-invalid"), "true");
+
+      await page.type(
+        "#excluded-sites",
+        "bank.example\nhttps://Mail.Example.com/",
+      );
+      assert.equal(page.text("#excluded-sites-error"), "");
+      assert.equal(field.hasAttribute("aria-invalid"), false);
+      await page.settle();
+      assert.deepEqual(
+        [...browser.storage.sync.data.excludedSites],
+        ["bank.example", "mail.example.com"],
       );
     });
 

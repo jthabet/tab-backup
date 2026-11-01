@@ -1,12 +1,13 @@
 import "./main.css";
 import { FORMATS, formatFilename } from "./formats.js";
 import { getSettings } from "./settings-store.js";
-import { localizePage, plural } from "./i18n.js";
+import { localizePage, plural, t } from "./i18n.js";
 import {
   backupsDeletedByNextSave,
   hasBookmarksPermission,
   saveBookmarkBackup,
 } from "./bookmark-backups.js";
+import { isExcluded, withoutExcluded } from "./excluded-sites.js";
 
 localizePage();
 
@@ -51,11 +52,17 @@ renderTabsList();
 
 async function renderTabsList() {
   const list = document.getElementById("tabs-list");
-  const tabs = await getCurrentWindowTabs();
+  const [tabs, { excludedSites }] = await Promise.all([
+    getCurrentWindowTabs(),
+    getSettings(),
+  ]);
 
-  for (const tab of tabs) {
+  for (const [index, tab] of tabs.entries()) {
+    const excluded = isExcluded(tab.url, excludedSites);
     const item = document.createElement("li");
-    item.className = "truncate";
+    item.className = excluded
+      ? "truncate text-neutral-400 dark:text-neutral-500"
+      : "truncate";
     item.title = tab.title;
 
     const button = document.createElement("button");
@@ -70,8 +77,20 @@ async function renderTabsList() {
     });
 
     item.append(button);
+    if (excluded) {
+      // On its own line, so a long title can't truncate it away.
+      const note = document.createElement("span");
+      note.id = `excluded-${index}`;
+      note.className = "block pl-3 text-xs";
+      note.textContent = t("notBackedUp");
+      button.setAttribute("aria-describedby", note.id);
+      item.append(note);
+    }
     list.append(item);
   }
+  // Nothing to back up when every tab is on an excluded site.
+  document.getElementById("backup").disabled =
+    withoutExcluded(tabs, excludedSites).length === 0;
 }
 
 function getCurrentWindowTabs() {
@@ -79,10 +98,12 @@ function getCurrentWindowTabs() {
 }
 
 async function exportCurrentTabs({ confirmedDeletion = false } = {}) {
-  const [tabs, settings] = await Promise.all([
+  const [allTabs, settings] = await Promise.all([
     getCurrentWindowTabs(),
     getSettings(),
   ]);
+  const tabs = withoutExcluded(allTabs, settings.excludedSites);
+  if (tabs.length === 0) return;
   const now = new Date();
 
   let toFile = settings.destination !== "bookmarks";

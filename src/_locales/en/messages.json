@@ -416,5 +416,21 @@
   "automaticBackup": {
     "message": "Automatic",
     "description": "Label under an automatic backup in the restore page's list of bookmark backups."
+  },
+  "excludedSites": {
+    "message": "Sites not to back up",
+    "description": "Settings label of the list of sites that are never backed up."
+  },
+  "excludedSitesHint": {
+    "message": "One per line, like example.com. Its subdomains are left out too. Applies to every backup, including automatic ones; backups you already have don't change.",
+    "description": "Explains the list of sites that are never backed up. Keep example.com as is."
+  },
+  "notASite": {
+    "message": "Ignored (not a site): $1",
+    "description": "Shown under the list of excluded sites. $1 is the lines that aren't site names, separated by commas."
+  },
+  "notBackedUp": {
+    "message": "Not backed up",
+    "description": "Shown in the popup under a tab whose site is excluded from backups."
   }
 }

@@ -19,8 +19,10 @@ Chromium browsers).
 - **Automatic backups** (off until you turn them on, per device) save every
   window's tabs to bookmarks every hour, 6 hours or day, skipping private
   windows and unchanged tabs, with their own limit.
-- **Settings** for the file format, file name pattern, bookmark folder name and
-  how many bookmark backups to keep.
+- **Excluded sites**: list sites (and their subdomains) that are never backed
+  up, such as your bank or email.
+- **Settings** for the file format, file name pattern, bookmark folder name,
+  how many bookmark backups to keep and which sites to leave out.
 
 Available in English, Dutch, French, German, Italian, Japanese, Russian and Turkish. Tab Backup doesn't collect or send any data. See the
 [privacy policy](PRIVACY.md).

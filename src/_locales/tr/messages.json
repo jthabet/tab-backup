@@ -464,5 +464,21 @@
   "automaticBackup": {
     "message": "Otomatik",
     "description": "Label under an automatic backup in the restore page's list of bookmark backups."
+  },
+  "excludedSites": {
+    "message": "Yedeklenmeyecek siteler",
+    "description": "Settings label of the list of sites that are never backed up."
+  },
+  "excludedSitesHint": {
+    "message": "Her satıra bir tane, örneğin example.com. Alt alan adları da hariç tutulur. Otomatik olanlar dahil tüm yedeklere uygulanır; mevcut yedekler değişmez.",
+    "description": "Explains the list of sites that are never backed up. Keep example.com as is."
+  },
+  "notASite": {
+    "message": "Yok sayıldı (site değil): $1",
+    "description": "Shown under the list of excluded sites. $1 is the lines that aren't site names, separated by commas."
+  },
+  "notBackedUp": {
+    "message": "Yedeklenmiyor",
+    "description": "Shown in the popup under a tab whose site is excluded from backups."
   }
 }
