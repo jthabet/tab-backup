@@ -436,5 +436,61 @@
   "settingsSyncNote__chrome": {
     "message": "Настройки синхронизируются между устройствами, если вы вошли в браузер и включена синхронизация.",
     "description": "Footer of the settings page. (Chrome build)"
+  },
+  "autoBackups": {
+    "message": "Автоматические резервные копии",
+    "description": "Settings heading for scheduled bookmark backups."
+  },
+  "autoBackupToggle": {
+    "message": "Автоматически создавать копии на этом устройстве",
+    "description": "Checkbox that turns on scheduled bookmark backups for this device only."
+  },
+  "autoBackupHint__firefox": {
+    "message": "Сохраняет в закладки вкладки всех окон, кроме приватных. Пропускается, если вкладки не изменились.",
+    "description": "Explains automatic backups under their checkbox. (Firefox build)"
+  },
+  "autoBackupHint__chrome": {
+    "message": "Сохраняет в закладки вкладки всех окон, кроме окон в режиме инкогнито. Пропускается, если вкладки не изменились.",
+    "description": "Explains automatic backups under their checkbox. (Chrome build)"
+  },
+  "autoBackupInterval": {
+    "message": "Как часто",
+    "description": "Label of the menu that picks how often automatic backups run."
+  },
+  "autoEveryHour": {
+    "message": "Каждый час",
+    "description": "Automatic backup interval option."
+  },
+  "autoEvery6Hours": {
+    "message": "Каждые 6 часов",
+    "description": "Automatic backup interval option."
+  },
+  "autoEveryDay": {
+    "message": "Каждый день",
+    "description": "Automatic backup interval option."
+  },
+  "keepAutoBefore": {
+    "message": "Автоматических копий, не более:",
+    "description": "Text before the number field in “Keep the last [5] automatic backups”."
+  },
+  "keepAutoAfter": {
+    "message": "шт.",
+    "description": "Text after the number field in “Keep the last [5] automatic backups”."
+  },
+  "keepAutoHint": {
+    "message": "Считаются отдельно от копий, которые вы создаёте сами. Самые старые удаляются без вопросов, переименованные сохраняются. Меньший предел начинает действовать со следующей автоматической копии.",
+    "description": "Settings note under the number of automatic backups to keep."
+  },
+  "lastAutoBackup": {
+    "message": "Последняя автоматическая копия: $1",
+    "description": "When the last automatic backup was saved. $1 is its date and time."
+  },
+  "lastAutoBackupNever": {
+    "message": "Автоматических копий пока нет.",
+    "description": "Shown in settings before the first automatic backup."
+  },
+  "automaticBackup": {
+    "message": "Автоматическая",
+    "description": "Label under an automatic backup in the restore page's list of bookmark backups."
   }
 }

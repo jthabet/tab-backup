@@ -356,5 +356,61 @@
   "settingsSyncNote__chrome": {
     "message": "Instellingen worden gesynchroniseerd tussen je apparaten als je bent aangemeld bij je browser en synchronisatie aan staat.",
     "description": "Footer of the settings page. (Chrome build)"
+  },
+  "autoBackups": {
+    "message": "Automatische back-ups",
+    "description": "Settings heading for scheduled bookmark backups."
+  },
+  "autoBackupToggle": {
+    "message": "Automatisch back-ups maken op dit apparaat",
+    "description": "Checkbox that turns on scheduled bookmark backups for this device only."
+  },
+  "autoBackupHint__firefox": {
+    "message": "Bewaart de tabbladen van alle vensters behalve privévensters als bladwijzers. Wordt overgeslagen als je tabbladen niet zijn veranderd.",
+    "description": "Explains automatic backups under their checkbox. (Firefox build)"
+  },
+  "autoBackupHint__chrome": {
+    "message": "Bewaart de tabbladen van alle vensters behalve incognitovensters als bladwijzers. Wordt overgeslagen als je tabbladen niet zijn veranderd.",
+    "description": "Explains automatic backups under their checkbox. (Chrome build)"
+  },
+  "autoBackupInterval": {
+    "message": "Hoe vaak",
+    "description": "Label of the menu that picks how often automatic backups run."
+  },
+  "autoEveryHour": {
+    "message": "Elk uur",
+    "description": "Automatic backup interval option."
+  },
+  "autoEvery6Hours": {
+    "message": "Elke 6 uur",
+    "description": "Automatic backup interval option."
+  },
+  "autoEveryDay": {
+    "message": "Elke dag",
+    "description": "Automatic backup interval option."
+  },
+  "keepAutoBefore": {
+    "message": "De laatste",
+    "description": "Text before the number field in “Keep the last [5] automatic backups”."
+  },
+  "keepAutoAfter": {
+    "message": "automatische back-ups bewaren",
+    "description": "Text after the number field in “Keep the last [5] automatic backups”."
+  },
+  "keepAutoHint": {
+    "message": "Telt los van de back-ups die je zelf maakt. De oudste worden zonder te vragen verwijderd; hernoemde back-ups blijven bewaard. Een lagere limiet geldt vanaf de volgende automatische back-up.",
+    "description": "Settings note under the number of automatic backups to keep."
+  },
+  "lastAutoBackup": {
+    "message": "Laatste automatische back-up: $1",
+    "description": "When the last automatic backup was saved. $1 is its date and time."
+  },
+  "lastAutoBackupNever": {
+    "message": "Nog geen automatische back-up.",
+    "description": "Shown in settings before the first automatic backup."
+  },
+  "automaticBackup": {
+    "message": "Automatisch",
+    "description": "Label under an automatic backup in the restore page's list of bookmark backups."
   }
 }

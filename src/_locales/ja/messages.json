@@ -320,5 +320,61 @@
   "settingsSyncNote__chrome": {
     "message": "ブラウザーにログインして同期を有効にすると、設定がデバイス間で同期されます。",
     "description": "Footer of the settings page. (Chrome build)"
+  },
+  "autoBackups": {
+    "message": "自動バックアップ",
+    "description": "Settings heading for scheduled bookmark backups."
+  },
+  "autoBackupToggle": {
+    "message": "このデバイスで自動的にバックアップ",
+    "description": "Checkbox that turns on scheduled bookmark backups for this device only."
+  },
+  "autoBackupHint__firefox": {
+    "message": "プライベートウィンドウを除くすべてのウィンドウのタブをブックマークに保存します。タブに変更がない場合はスキップされます。",
+    "description": "Explains automatic backups under their checkbox. (Firefox build)"
+  },
+  "autoBackupHint__chrome": {
+    "message": "シークレット ウィンドウを除くすべてのウィンドウのタブをブックマークに保存します。タブに変更がない場合はスキップされます。",
+    "description": "Explains automatic backups under their checkbox. (Chrome build)"
+  },
+  "autoBackupInterval": {
+    "message": "頻度",
+    "description": "Label of the menu that picks how often automatic backups run."
+  },
+  "autoEveryHour": {
+    "message": "1 時間ごと",
+    "description": "Automatic backup interval option."
+  },
+  "autoEvery6Hours": {
+    "message": "6 時間ごと",
+    "description": "Automatic backup interval option."
+  },
+  "autoEveryDay": {
+    "message": "毎日",
+    "description": "Automatic backup interval option."
+  },
+  "keepAutoBefore": {
+    "message": "自動バックアップを最新",
+    "description": "Text before the number field in “Keep the last [5] automatic backups”."
+  },
+  "keepAutoAfter": {
+    "message": "件まで保持",
+    "description": "Text after the number field in “Keep the last [5] automatic backups”."
+  },
+  "keepAutoHint": {
+    "message": "手動のバックアップとは別に数えます。古いものから確認なしで削除されますが、名前を変更したものは残ります。上限を下げた場合は、次の自動バックアップから適用されます。",
+    "description": "Settings note under the number of automatic backups to keep."
+  },
+  "lastAutoBackup": {
+    "message": "前回の自動バックアップ: $1",
+    "description": "When the last automatic backup was saved. $1 is its date and time."
+  },
+  "lastAutoBackupNever": {
+    "message": "自動バックアップはまだありません。",
+    "description": "Shown in settings before the first automatic backup."
+  },
+  "automaticBackup": {
+    "message": "自動",
+    "description": "Label under an automatic backup in the restore page's list of bookmark backups."
   }
 }

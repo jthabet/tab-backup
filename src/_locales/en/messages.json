@@ -360,5 +360,61 @@
   "settingsSyncNote__chrome": {
     "message": "Settings sync across your devices when you're signed in to your browser with sync on.",
     "description": "Footer of the settings page. (Chrome build)"
+  },
+  "autoBackups": {
+    "message": "Automatic backups",
+    "description": "Settings heading for scheduled bookmark backups."
+  },
+  "autoBackupToggle": {
+    "message": "Back up automatically on this device",
+    "description": "Checkbox that turns on scheduled bookmark backups for this device only."
+  },
+  "autoBackupHint__firefox": {
+    "message": "Saves the tabs of every window except private ones to bookmarks. Skipped when your tabs haven't changed.",
+    "description": "Explains automatic backups under their checkbox. (Firefox build)"
+  },
+  "autoBackupHint__chrome": {
+    "message": "Saves the tabs of every window except Incognito ones to bookmarks. Skipped when your tabs haven't changed.",
+    "description": "Explains automatic backups under their checkbox. (Chrome build)"
+  },
+  "autoBackupInterval": {
+    "message": "How often",
+    "description": "Label of the menu that picks how often automatic backups run."
+  },
+  "autoEveryHour": {
+    "message": "Every hour",
+    "description": "Automatic backup interval option."
+  },
+  "autoEvery6Hours": {
+    "message": "Every 6 hours",
+    "description": "Automatic backup interval option."
+  },
+  "autoEveryDay": {
+    "message": "Every day",
+    "description": "Automatic backup interval option."
+  },
+  "keepAutoBefore": {
+    "message": "Keep the last",
+    "description": "Text before the number field in “Keep the last [5] automatic backups”."
+  },
+  "keepAutoAfter": {
+    "message": "automatic backups",
+    "description": "Text after the number field in “Keep the last [5] automatic backups”."
+  },
+  "keepAutoHint": {
+    "message": "Counted apart from the backups you make. The oldest are deleted without asking; renamed ones are kept. A lower limit applies from the next automatic backup.",
+    "description": "Settings note under the number of automatic backups to keep."
+  },
+  "lastAutoBackup": {
+    "message": "Last automatic backup: $1",
+    "description": "When the last automatic backup was saved. $1 is its date and time."
+  },
+  "lastAutoBackupNever": {
+    "message": "No automatic backup yet.",
+    "description": "Shown in settings before the first automatic backup."
+  },
+  "automaticBackup": {
+    "message": "Automatic",
+    "description": "Label under an automatic backup in the restore page's list of bookmark backups."
   }
 }

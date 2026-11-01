@@ -202,6 +202,57 @@ for (const target of ["firefox", "chrome"]) {
       );
     });
 
+    test("automatic backups are pruned apart from the ones made with Back up", async () => {
+      const manual = { ...OPTIONS, keep: 2 };
+      const auto = { ...OPTIONS, keep: 2, automatic: true };
+      await backups.saveBookmarkBackup(TABS, date(1), manual);
+      await backups.saveBookmarkBackup(TABS, date(2), manual);
+      for (const day of [3, 4, 5]) {
+        await backups.saveBookmarkBackup(TABS.slice(0, 1), date(day), auto);
+      }
+
+      const listed = await backups.listBookmarkBackups();
+      assert.deepEqual(
+        listed.map((b) => b.automatic),
+        [true, true, false, false],
+      );
+      // The marker folder isn't a tab.
+      assert.deepEqual(listed[0].entries, TABS.slice(0, 1));
+      // Back up's limit counts only its own backups.
+      assert.deepEqual(
+        (await backups.backupsDeletedByNextSave(2)).map((b) => b.id),
+        [listed[3].id],
+      );
+
+      await backups.saveBookmarkBackup(TABS, date(6), manual);
+      assert.deepEqual(
+        (await backups.listBookmarkBackups()).map((b) => b.automatic),
+        [false, true, true, false],
+      );
+    });
+
+    test("a renamed automatic backup is kept, and returns to its pool when cleared", async () => {
+      const auto = { ...OPTIONS, keep: 1, automatic: true };
+      await backups.saveBookmarkBackup(TABS, date(1), auto);
+      const [backup] = await backups.listBookmarkBackups();
+      await backups.renameBookmarkBackup(backup, "Keep me");
+      await backups.saveBookmarkBackup(TABS, date(2), auto);
+      assert.equal((await backups.listBookmarkBackups()).length, 2);
+
+      const renamed = (await backups.listBookmarkBackups()).find((b) => b.kept);
+      await backups.renameBookmarkBackup(renamed, "");
+      const reset = (await backups.listBookmarkBackups()).find(
+        (b) => b.id === renamed.id,
+      );
+      assert.equal(reset.kept, false);
+      assert.equal(reset.automatic, true);
+
+      await backups.saveBookmarkBackup(TABS, date(3), auto);
+      const listed = await backups.listBookmarkBackups();
+      assert.equal(listed.length, 1);
+      assert.notEqual(listed[0].id, renamed.id);
+    });
+
     test("there's no folder name before the first backup", async () => {
       assert.equal(await backups.getBackupFolderName(), null);
       assert.deepEqual(await backups.listBookmarkBackups(), []);

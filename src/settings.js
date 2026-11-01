@@ -2,10 +2,13 @@ import "./main.css";
 import { FORMATS, formatFilename } from "./formats.js";
 import {
   DEFAULT_SETTINGS,
+  getLocalSettings,
   getSettings,
+  saveLocalSettings,
   saveSettings,
 } from "./settings-store.js";
 import {
+  formatDate,
   getBackupFolderName,
   hasBookmarksPermission,
   renameBackupFolder,
@@ -25,16 +28,24 @@ const formatInputs = document.querySelectorAll('input[name="format"]');
 const filenameInput = document.getElementById("filename");
 const preview = document.getElementById("filename-preview");
 const status = document.getElementById("status");
+const autoInput = document.getElementById("auto-backup");
+const intervalInput = document.getElementById("auto-interval");
+const keepAutoInput = document.getElementById("keep-auto");
+const lastAutoBackup = document.getElementById("last-auto-backup");
 
 let statusTimer;
 let saveTimer;
 let keepTimer;
+let keepAutoTimer;
 let folderTimer;
 
 init();
 
 async function init() {
-  const settings = await getSettings();
+  const [settings, local] = await Promise.all([
+    getSettings(),
+    getLocalSettings(),
+  ]);
   // A destination that needs bookmarks only counts if access is granted;
   // the user can revoke it in about:addons.
   const destination =
@@ -52,6 +63,45 @@ async function init() {
   }
   filenameInput.value = settings.filenamePattern;
   updatePreview();
+  // Like the destination, it only counts while bookmark access is granted.
+  autoInput.checked = local.autoBackup && (await hasBookmarksPermission());
+  intervalInput.value = String(settings.autoBackupInterval);
+  keepAutoInput.value = settings.keepAutoBackups;
+  updateAutoControls();
+  showLastAutoBackup(local.lastAutoBackup);
+
+  autoInput.addEventListener("change", async () => {
+    if (!autoInput.checked) {
+      updateAutoControls();
+      saveLocal({ autoBackup: false });
+      return;
+    }
+    // As with the destination, request access before awaiting anything else.
+    let granted = false;
+    try {
+      granted = await requestBookmarksPermission();
+    } catch (err) {
+      console.error(err);
+    }
+    if (granted) {
+      updateAutoControls();
+      saveLocal({ autoBackup: true });
+    } else {
+      autoInput.checked = false;
+      showStatus(t("needBookmarkAccess"));
+    }
+  });
+
+  intervalInput.addEventListener("change", () => {
+    save({ autoBackupInterval: Number(intervalInput.value) });
+  });
+
+  keepAutoInput.addEventListener("input", () => {
+    const keep = Math.round(Number(keepAutoInput.value));
+    if (!Number.isFinite(keep) || keep < 1 || keep > 200) return;
+    clearTimeout(keepAutoTimer);
+    keepAutoTimer = setTimeout(() => save({ keepAutoBackups: keep }), 400);
+  });
 
   let currentDestination = destination;
   for (const input of destinationInputs) {
@@ -156,6 +206,17 @@ async function showActualFolderName(saved) {
   }
 }
 
+function updateAutoControls() {
+  intervalInput.disabled = !autoInput.checked;
+  keepAutoInput.disabled = !autoInput.checked;
+}
+
+function showLastAutoBackup(last) {
+  lastAutoBackup.textContent = last
+    ? t("lastAutoBackup", formatDate(new Date(last.time)))
+    : t("lastAutoBackupNever");
+}
+
 // A backup made while this page is open may rename the folder.
 browser.storage.sync.onChanged.addListener((changes) => {
   const name = changes.bookmarkFolderName?.newValue;
@@ -164,9 +225,23 @@ browser.storage.sync.onChanged.addListener((changes) => {
   }
 });
 
+browser.storage.local.onChanged.addListener((changes) => {
+  if ("lastAutoBackup" in changes) {
+    showLastAutoBackup(changes.lastAutoBackup.newValue);
+  }
+});
+
 async function save(changes) {
+  await saveTo(saveSettings, changes);
+}
+
+async function saveLocal(changes) {
+  await saveTo(saveLocalSettings, changes);
+}
+
+async function saveTo(store, changes) {
   try {
-    await saveSettings(changes);
+    await store(changes);
     showStatus(t("saved"));
   } catch (error) {
     console.error(error);
