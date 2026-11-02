@@ -20,6 +20,7 @@ Back up
 • Or save to a bookmark folder that Firefox Sync carries to your other devices, including Firefox for Android and iOS.
 • Name your files with date, time and tab count patterns.
 • Turn on automatic backups to save every window's tabs to bookmarks every hour, 6 hours or day, with their own limit. Private windows are left out.
+• Leave out sites you never want backed up, like your bank or email; their subdomains are left out too.
 
 Restore
 • Preview a backup before anything opens, and choose which tabs come back.

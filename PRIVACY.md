@@ -1,6 +1,6 @@
 # Privacy policy for Tab Backup
 
-Last updated: 30 October 2026
+Last updated: 1 November 2026
 
 Tab Backup does not collect, sell or share any personal data. It has no
 analytics, no tracking and no servers, and it never sends data to the
@@ -24,7 +24,8 @@ and saves them as a bookmark backup.
   browser's bookmarks, inside Tab Backup's own folder. Tab Backup never reads,
   changes or deletes your other bookmarks.
 - **Settings** (backup format, file name pattern, destination, folder name,
-  how many bookmark backups to keep, and the automatic backup schedule) are
+  how many bookmark backups to keep, the automatic backup schedule, and the
+  sites you chose not to back up) are
   saved in your browser's extension storage. Whether automatic backups are on,
   and the addresses in the last one (to skip a backup when nothing changed),
   are stored on that device only.

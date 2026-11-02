@@ -240,6 +240,37 @@
         ></p>
       </fieldset>
 
+      <div class="flex flex-col gap-2">
+        <label
+          for="excluded-sites"
+          class="text-sm font-semibold"
+          data-i18n="excludedSites"
+          >Sites not to back up</label
+        >
+        <p
+          id="excluded-sites-hint"
+          data-i18n="excludedSitesHint"
+          class="text-sm text-neutral-500 dark:text-neutral-400"
+        >
+          One per line, like example.com. Its subdomains are left out too.
+          Applies to every backup, including automatic ones; backups you already
+          have don't change.
+        </p>
+        <textarea
+          id="excluded-sites"
+          rows="4"
+          spellcheck="false"
+          autocomplete="off"
+          placeholder="mybank.com&#10;*.google.com&#10;mail.example.com&#10;https://intranet.example.org/login"
+          aria-describedby="excluded-sites-hint excluded-sites-error"
+          class="resize-y rounded-md border border-neutral-300 bg-transparent px-3 py-2 font-mono text-sm focus:outline-2 focus:outline-offset-1 focus:outline-neutral-800 dark:border-neutral-600 dark:focus:outline-neutral-100"
+        ></textarea>
+        <p
+          id="excluded-sites-error"
+          class="text-xs text-red-700 empty:hidden dark:text-red-400"
+        ></p>
+      </div>
+
       <fieldset class="flex flex-col gap-2">
         <legend class="mb-2 text-sm font-semibold" data-i18n="fileFormat">
           File format

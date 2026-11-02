@@ -10,6 +10,8 @@ export const DEFAULT_SETTINGS = {
   // Minutes between automatic backups: 60, 360 or 1440.
   autoBackupInterval: 1440,
   keepAutoBackups: 5,
+  // Hostnames never backed up, with their subdomains (see excluded-sites.js).
+  excludedSites: [],
 };
 
 // Kept on this device only. Automatic backups are switched on per device,

@@ -492,5 +492,21 @@
   "automaticBackup": {
     "message": "Автоматическая",
     "description": "Label under an automatic backup in the restore page's list of bookmark backups."
+  },
+  "excludedSites": {
+    "message": "Не сохранять эти сайты",
+    "description": "Settings label of the list of sites that are never backed up."
+  },
+  "excludedSitesHint": {
+    "message": "По одному в строке, например example.com. Поддомены тоже исключаются. Действует для всех копий, включая автоматические; уже созданные копии не меняются.",
+    "description": "Explains the list of sites that are never backed up. Keep example.com as is."
+  },
+  "notASite": {
+    "message": "Пропущено (не сайт): $1",
+    "description": "Shown under the list of excluded sites. $1 is the lines that aren't site names, separated by commas."
+  },
+  "notBackedUp": {
+    "message": "Не сохраняется",
+    "description": "Shown in the popup under a tab whose site is excluded from backups."
   }
 }

@@ -464,5 +464,21 @@
   "automaticBackup": {
     "message": "Automatico",
     "description": "Label under an automatic backup in the restore page's list of bookmark backups."
+  },
+  "excludedSites": {
+    "message": "Siti da escludere dal backup",
+    "description": "Settings label of the list of sites that are never backed up."
+  },
+  "excludedSitesHint": {
+    "message": "Uno per riga, ad esempio example.com. Anche i suoi sottodomini vengono esclusi. Vale per tutti i backup, anche automatici; i backup esistenti non cambiano.",
+    "description": "Explains the list of sites that are never backed up. Keep example.com as is."
+  },
+  "notASite": {
+    "message": "Ignorato (non è un sito): $1",
+    "description": "Shown under the list of excluded sites. $1 is the lines that aren't site names, separated by commas."
+  },
+  "notBackedUp": {
+    "message": "Escluso dal backup",
+    "description": "Shown in the popup under a tab whose site is excluded from backups."
   }
 }

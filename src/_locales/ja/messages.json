@@ -376,5 +376,21 @@
   "automaticBackup": {
     "message": "自動",
     "description": "Label under an automatic backup in the restore page's list of bookmark backups."
+  },
+  "excludedSites": {
+    "message": "バックアップしないサイト",
+    "description": "Settings label of the list of sites that are never backed up."
+  },
+  "excludedSitesHint": {
+    "message": "1 行に 1 つずつ、example.com のように入力します。サブドメインも除外されます。自動バックアップを含むすべてのバックアップに適用されます。既存のバックアップは変更されません。",
+    "description": "Explains the list of sites that are never backed up. Keep example.com as is."
+  },
+  "notASite": {
+    "message": "サイトではないため無視: $1",
+    "description": "Shown under the list of excluded sites. $1 is the lines that aren't site names, separated by commas."
+  },
+  "notBackedUp": {
+    "message": "バックアップ対象外",
+    "description": "Shown in the popup under a tab whose site is excluded from backups."
   }
 }

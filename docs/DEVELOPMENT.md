@@ -88,6 +88,10 @@ Before a release, run through this in both browsers. Sample backups of three tab
    and settings shows when it was saved; with the tabs unchanged, the next
    one is skipped. Automatic backups are pruned to their own limit, never
    the ones made with **Back up**.
+8. In settings, add one of the open tabs' sites under **Sites not to back
+   up** (a line that isn't a site is pointed out when you leave the field).
+   The popup marks that tab **Not backed up**, and **Back up** leaves it out
+   of the file and the bookmark backup.
 
 ## Translations
 

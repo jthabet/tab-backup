@@ -66,6 +66,20 @@ test("unchanged tabs are skipped, and a change is saved", async () => {
   assert.equal((await listBookmarkBackups()).length, 2);
 });
 
+test("excluded sites are left out, and opening one isn't a change", async () => {
+  await turnOn();
+  await browser.storage.sync.set({ excludedSites: ["github.com"] });
+  assert.equal(await runAutoBackup(new Date(NOW)), true);
+  const [backup] = await listBookmarkBackups();
+  assert.deepEqual(
+    backup.entries.map((entry) => entry.url),
+    ["https://go.dev/"],
+  );
+
+  browser.tabs.open.push({ id: 99, url: "https://gist.github.com/" });
+  assert.equal(await runAutoBackup(new Date(NOW + 60 * MINUTE)), false);
+});
+
 test("the automatic limit prunes only automatic backups", async () => {
   await turnOn();
   await browser.storage.sync.set({ keepAutoBackups: 2 });
