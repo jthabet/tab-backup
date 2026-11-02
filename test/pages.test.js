@@ -5,6 +5,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import { createBrowser } from "./fake-browser.js";
 import { openPage } from "./page.js";
+import { parseSites } from "../src/excluded-sites.js";
 
 const OPEN_TABS = [
   { title: "Go", url: "https://go.dev/" },
@@ -607,6 +608,9 @@ for (const target of ["firefox", "chrome"]) {
       page = await openPage("settings", { target, browser });
       const field = page.$("#excluded-sites");
       assert.equal(field.value, "bank.example");
+      const examples = parseSites(field.placeholder);
+      assert.equal(examples.sites.length, 4, "every example is a site");
+      assert.deepEqual(examples.invalid, []);
 
       await page.type("#excluded-sites", "bank.example\nnot a site\n");
       assert.equal(page.text("#excluded-sites-error"), "", "not while typing");
